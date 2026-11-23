@@ -127,6 +127,12 @@
   .ord-note { margin: 10px 0 0; font-size: 13px; color: var(--ink-2); }
 
   .hero-facts-line { margin-top: 20px; font-size: 14.4px; color: var(--ink-2); }
+
+  .deliv-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .deliv-points li { position: relative; padding-left: 26px; font-size: 15.5px; color: var(--ink-2); }
+  .deliv-points li::before { content: ""; position: absolute; left: 0; top: .55em;
+    width: 12px; height: 2px; background: var(--accent); border-radius: 2px; }
+  .deliv-points b { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -286,11 +292,11 @@
           </a>
         </div>
       </div>
-      <dl class="facts rv">
-        <div><dt>Приймаємо замовлення</dt><dd>10:00 – 21:30</dd></div>
-        <div><dt>Середній час доставки</dt><dd>30 хвилин</dd></div>
-        <div><dt>Оплата</dt><dd>Готівкою кур'єру або карткою</dd></div>
-      </dl>
+      <ul class="deliv-points rv">
+        <li>Приймаємо замовлення до <b>21:30</b></li>
+        <li>Середній час доставки — <b>30 хвилин</b></li>
+        <li>Оплата готівкою кур'єру або карткою</li>
+      </ul>
     </div>
   </section>
 
