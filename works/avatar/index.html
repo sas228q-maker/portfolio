@@ -69,6 +69,14 @@
   .c-photo img { width: 100%; height: 100%; object-fit: cover; display: block;
     transition: transform 700ms cubic-bezier(.22,.61,.36,1); }
   .c-item:hover .c-photo img { transform: scale(1.06); }
+  .c-photo--icon { display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--surface-2),
+      color-mix(in srgb, var(--accent) 13%, var(--surface-2))); }
+  /* размер задаём долей от карточки: иконка масштабируется вместе с ней */
+  .c-photo .c-photo-ic { width: 38%; height: auto; aspect-ratio: 1;
+    color: var(--accent); stroke-width: 1.35;
+    transition: transform 320ms cubic-bezier(.22,.61,.36,1); }
+  .c-item:hover .c-photo-ic { transform: scale(1.08); }
   .c-tag { position: absolute; left: 12px; top: 12px; padding: 5px 10px;
     border-radius: 5px; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase;
     background: rgba(9,12,15,.82); color: #C9D4DA; }
@@ -233,7 +241,7 @@
 
       <div class="c-grid" data-cat-grid>
         <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="mid" data-task="city work" data-price="12400" data-name="Шосейний велосипед">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-hero.jpg" width="900" height="675" loading="lazy" alt="Шосейний велосипед"><span class="c-tag">Велосипеди</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-bike"></use></svg><span class="c-tag">Велосипеди</span></div>
           <div class="c-body"><h3>Шосейний велосипед</h3>
             <ul class="c-specs"><li>Алюмінієва рама</li><li>18 швидкостей</li><li>Кліпси в комплекті</li></ul>
             <div class="c-foot"><b class="c-price">12 400 ₴</b>
@@ -241,7 +249,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="mid" data-task="offroad" data-price="10400" data-name="Гірський велосипед 27,5">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-p1.jpg" width="900" height="675" loading="lazy" alt="Гірський велосипед 27,5"><span class="c-tag">Велосипеди</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-bike"></use></svg><span class="c-tag">Велосипеди</span></div>
           <div class="c-body"><h3>Гірський велосипед 27,5</h3>
             <ul class="c-specs"><li>21 швидкість</li><li>Дискові гальма</li><li>Амортизаційна вилка</li></ul>
             <div class="c-foot"><b class="c-price">10 400 ₴</b>
@@ -249,7 +257,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="low" data-task="city work" data-price="7200" data-name="Міський велосипед 26">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-g1.jpg" width="900" height="675" loading="lazy" alt="Міський велосипед 26"><span class="c-tag">Велосипеди</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-bike"></use></svg><span class="c-tag">Велосипеди</span></div>
           <div class="c-body"><h3>Міський велосипед 26</h3>
             <ul class="c-specs"><li>7 швидкостей</li><li>Крила й багажник</li><li>Колеса 26"</li></ul>
             <div class="c-foot"><b class="c-price">7 200 ₴</b>
@@ -257,7 +265,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="electro" data-budget="mid" data-task="city work" data-price="18900" data-name="Електроскутер 500 Вт">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-g4.jpg" width="900" height="675" loading="lazy" alt="Електроскутер 500 Вт"><span class="c-tag">Електроскутери</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-scooter"></use></svg><span class="c-tag">Електроскутери</span></div>
           <div class="c-body"><h3>Електроскутер 500 Вт</h3>
             <ul class="c-specs"><li>Запас 45 км</li><li>25 км/год</li><li>Складна рама</li></ul>
             <div class="c-foot"><b class="c-price">18 900 ₴</b>
@@ -265,7 +273,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="mid" data-task="city offroad work" data-price="13400" data-name="Електровелосипед">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-p3.jpg" width="900" height="675" loading="lazy" alt="Електровелосипед"><span class="c-tag">Велосипеди</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-bike"></use></svg><span class="c-tag">Велосипеди</span></div>
           <div class="c-body"><h3>Електровелосипед</h3>
             <ul class="c-specs"><li>Мотор у колесі</li><li>Запас 50 км</li><li>Багажник</li></ul>
             <div class="c-foot"><b class="c-price">13 400 ₴</b>
@@ -273,7 +281,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="high" data-task="city work" data-price="32000" data-name="Скутер 50 см³">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-g3.jpg" width="900" height="675" loading="lazy" alt="Скутер 50 см³"><span class="c-tag">Мотоцикли</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-moto"></use></svg><span class="c-tag">Мотоцикли</span></div>
           <div class="c-body"><h3>Скутер 50 см³</h3>
             <ul class="c-specs"><li>Категорія AM</li><li>Економний</li><li>Документи</li></ul>
             <div class="c-foot"><b class="c-price">32 000 ₴</b>
@@ -281,7 +289,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="high" data-task="offroad" data-price="26800" data-name="Мопед 49 см³">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-p2.jpg" width="900" height="675" loading="lazy" alt="Мопед 49 см³"><span class="c-tag">Мотоцикли</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-moto"></use></svg><span class="c-tag">Мотоцикли</span></div>
           <div class="c-body"><h3>Мопед 49 см³</h3>
             <ul class="c-specs"><li>Просте обслуговування</li><li>Запчастини в наявності</li></ul>
             <div class="c-foot"><b class="c-price">26 800 ₴</b>
@@ -289,7 +297,7 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="low" data-task="city offroad work" data-price="2100" data-name="Шолом">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-g2.jpg" width="900" height="675" loading="lazy" alt="Шолом"><span class="c-tag">Мотоцикли</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-shield"></use></svg><span class="c-tag">Мотоцикли</span></div>
           <div class="c-body"><h3>Шолом</h3>
             <ul class="c-specs"><li>Закритий</li><li>Захист підборіддя</li><li>Розміри S–XL</li></ul>
             <div class="c-foot"><b class="c-price">2 100 ₴</b>
@@ -297,23 +305,23 @@
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="high" data-task="city offroad" data-price="8900" data-name="Мотор-колесо 1000 Вт">
-          <div class="c-photo"><img src="../assets/img/cat-avatar-g5.jpg" width="900" height="675" loading="lazy" alt="Мотор-колесо 1000 Вт"><span class="c-tag">Запчастини</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-battery"></use></svg><span class="c-tag">Запчастини</span></div>
           <div class="c-body"><h3>Мотор-колесо 1000 Вт</h3>
             <ul class="c-specs"><li>Для 26–28"</li><li>Контролер у комплекті</li></ul>
             <div class="c-foot"><b class="c-price">8 900 ₴</b>
               <a class="c-go" href="#contact" aria-label="Спитати про Мотор-колесо 1000 Вт"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg></a></div>
           </div>
         </article>
-        <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low" data-task="city offroad kids" data-price="650" data-name="Шина 26"">
-          <div class="c-photo"><img src="../assets/img/cat-part-tire2.jpg" width="900" height="675" loading="lazy" alt="Шина 26""><span class="c-tag">Запчастини</span></div>
-          <div class="c-body"><h3>Шина 26"</h3>
+        <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low" data-task="city offroad kids" data-price="650" data-name="Шина 26 дюймів">
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-wheel"></use></svg><span class="c-tag">Запчастини</span></div>
+          <div class="c-body"><h3>Шина 26 дюймів</h3>
             <ul class="c-specs"><li>Посилений протектор</li><li>Антипрокольний шар</li></ul>
             <div class="c-foot"><b class="c-price">650 ₴</b>
-              <a class="c-go" href="#contact" aria-label="Спитати про Шина 26""><svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg></a></div>
+              <a class="c-go" href="#contact" aria-label="Спитати про Шину 26 дюймів"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg></a></div>
           </div>
         </article>
         <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low" data-task="city work" data-price="450" data-name="Замок">
-          <div class="c-photo"><img src="../assets/img/cat-part-lock.jpg" width="900" height="675" loading="lazy" alt="Замок"><span class="c-tag">Запчастини</span></div>
+          <div class="c-photo c-photo--icon card-icon" aria-hidden="true"><svg class="ic c-photo-ic" aria-hidden="true"><use href="#i-shield"></use></svg><span class="c-tag">Запчастини</span></div>
           <div class="c-body"><h3>Замок</h3>
             <ul class="c-specs"><li>Тросовий</li><li>Код або ключ</li></ul>
             <div class="c-foot"><b class="c-price">450 ₴</b>

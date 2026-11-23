@@ -44,6 +44,7 @@
   .cover-bot { align-self: end; display: grid;
     grid-template-columns: minmax(0, 1fr) auto; gap: 26px; align-items: end; }
   .cover h1 {
+    padding-top: .08em;
     font-family: "Oswald", sans-serif; font-weight: 700; text-transform: uppercase;
     font-size: clamp(46px, 9.4vw, 132px); line-height: .86; letter-spacing: -.015em;
     margin: 0 0 16px; max-width: 11ch;
@@ -73,15 +74,15 @@
   .rail-nav button:first-child svg { transform: rotate(180deg); }
 
   .rail {
-    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    display: flex; gap: 16px; overflow-x: auto; scroll-behavior: auto;
     padding: 4px 0 18px; cursor: grab; scrollbar-width: none;
   }
   .rail::-webkit-scrollbar { display: none; }
-  .rail.is-drag { cursor: grabbing; scroll-snap-type: none; }
-  .rail figure { flex: 0 0 auto; width: min(70vw, 396px); margin: 0;
-    scroll-snap-align: start; position: relative; border-radius: var(--r-lg);
+  .rail.is-drag { cursor: grabbing; }
+  .rail figure { flex: 0 0 auto; width: min(76vw, 430px); margin: 0;
+    position: relative; border-radius: var(--r-lg);
     overflow: hidden; background: var(--surface); }
-  .rail img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  .rail img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block;
     transition: transform 700ms cubic-bezier(.22,.61,.36,1); pointer-events: none; }
   .rail figure:hover img { transform: scale(1.045); }
   .rail figcaption { position: absolute; left: 0; right: 0; bottom: 0;
@@ -170,11 +171,14 @@
   .voice-who { font-size: 14px; color: var(--ink-2); }
   .voice-who b { color: var(--ink); }
   .voice-nav { display: flex; gap: 8px; }
-  .voice-nav button { width: 40px; height: 40px; border-radius: 50%;
-    border: 1px solid var(--rule); background: transparent; color: var(--ink);
+  /* стрілки відгуків — акцентні: це єдиний спосіб перемкнути відгук */
+  .voice-nav button { width: 42px; height: 42px; border-radius: 50%;
+    border: 1.5px solid var(--accent); background: transparent; color: var(--accent);
     cursor: pointer; display: grid; place-items: center;
-    transition: border-color 200ms, color 200ms; }
-  .voice-nav button:hover { border-color: var(--accent); color: var(--accent); }
+    transition: background 200ms ease, color 200ms ease,
+                transform 200ms cubic-bezier(.22,.61,.36,1); }
+  .voice-nav button:hover { background: var(--accent); color: var(--accent-ink);
+    transform: scale(1.06); }
   .voice-nav button:first-child svg { transform: rotate(180deg); }
 
   @media (max-width: 980px) {
@@ -186,7 +190,8 @@
     .flow > div { padding: 20px 0; }
   }
   @media (max-width: 620px) {
-    .cover-in { padding-top: 88px; }
+    .cover-in { padding-top: 92px; }
+    .cover h1 { font-size: clamp(38px, 13vw, 56px); line-height: .96; }
     .cover-facts { grid-template-columns: repeat(2, auto); }
     .rail figure { width: 84vw; }
     .place { grid-template-columns: 1fr; gap: 6px; }
@@ -271,29 +276,29 @@
       </div>
       <div class="rail" data-rail tabindex="0" role="region" aria-label="Фотографії страв, прокручується">
         <figure>
-          <img src="../assets/img/rail-1.jpg" width="1200" height="900" loading="lazy"
+          <img src="../assets/img/rail-1.jpg" width="900" height="1200" loading="lazy"
                alt="Подача">
-          <figcaption><b>Подача</b> На чорному таці, як у закладі</figcaption>
+          <figcaption><b>Подача</b></figcaption>
         </figure>
         <figure>
-          <img src="../assets/img/rail-2.jpg" width="1200" height="900" loading="lazy"
+          <img src="../assets/img/rail-2.jpg" width="900" height="1200" loading="lazy"
                alt="Бургер у руках">
-          <figcaption><b>Бургер у руках</b> Збираємо після замовлення</figcaption>
+          <figcaption><b>Сборка замовлення</b></figcaption>
         </figure>
         <figure>
-          <img src="../assets/img/rail-3.jpg" width="1200" height="900" loading="lazy"
+          <img src="../assets/img/rail-3.jpg" width="900" height="1200" loading="lazy"
                alt="Картопля фрі">
-          <figcaption><b>Картопля фрі</b> Хрустка, з морською сіллю</figcaption>
+          <figcaption><b>Картопля фрі</b></figcaption>
         </figure>
         <figure>
-          <img src="../assets/img/rail-4.jpg" width="1200" height="900" loading="lazy"
+          <img src="../assets/img/rail-4.jpg" width="900" height="1200" loading="lazy"
                alt="Зала">
-          <figcaption><b>Зала</b> Стометрівка, майдан Незалежності</figcaption>
+          <figcaption><b>Зала</b></figcaption>
         </figure>
         <figure>
-          <img src="../assets/img/rail-5.jpg" width="1200" height="900" loading="lazy"
+          <img src="../assets/img/rail-5.jpg" width="900" height="1200" loading="lazy"
                alt="Інтер'єр">
-          <figcaption><b>Інтер'єр</b> Дерево і тепле світло</figcaption>
+          <figcaption><b>Інтер'єр</b></figcaption>
         </figure>
       </div>
     </div>

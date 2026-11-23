@@ -142,3 +142,9 @@ a:hover .anim-ic[data-anim="ring"],
   .anim-ic, a:hover .anim-ic, .crow:hover .anim-ic,
   [data-add]:hover .anim-ic, .c-go:hover .anim-ic { animation: none !important; transform: none !important; }
 }
+
+
+/* Стрілки перемикання відгуків — акцентні, щоб їх було видно */
+.voice-nav button { border-color: var(--accent); color: var(--accent); }
+.voice-nav button:hover { background: var(--accent); color: var(--accent-ink);
+  border-color: var(--accent); }
