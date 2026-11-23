@@ -88,8 +88,8 @@
 
   /* ---------- вкладки: мышь + клавиатура (стрелки, Home, End) ---------- */
   document.querySelectorAll("[data-tabs]").forEach(function (group) {
-    var tabs = Array.prototype.slice.call(group.querySelectorAll(".tab"));
-    var tabPanels = group.querySelectorAll(".panel");
+    var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"], .tab'));
+    var tabPanels = group.querySelectorAll("[data-panel], .panel");
     if (!tabs.length) return;
 
     function activate(tab, focus) {

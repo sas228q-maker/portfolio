@@ -7,10 +7,13 @@
 [data-spotlight] { position: relative; isolation: isolate; overflow: hidden; }
 [data-spotlight]::after {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0; transition: opacity 420ms cubic-bezier(.22,.61,.36,1);
-  background: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%),
-              color-mix(in srgb, var(--accent) 26%, transparent) 0%,
-              transparent 62%);
+  opacity: 0; transition: opacity 360ms cubic-bezier(.22,.61,.36,1);
+  /* ПЯТНО ФИКСИРОВАННОГО РАДИУСА, а не на всю карточку:
+     круг 130px чуть больше курсора, не заливает текст и не даёт резких краёв */
+  background: radial-gradient(circle 130px at var(--sx, 50%) var(--sy, 50%),
+              color-mix(in srgb, var(--accent) 22%, transparent) 0%,
+              color-mix(in srgb, var(--accent) 8%, transparent) 55%,
+              transparent 100%);
 }
 [data-spotlight]:hover::after { opacity: 1; }
 [data-spotlight] > * { position: relative; z-index: 1; }
@@ -67,4 +70,75 @@
   .has-reveal .rw i { transform: none; opacity: 1; transition: none; }
   .has-border-beam::before { animation: none; opacity: 0; }
   .beam-path { transition: none; }
+}
+
+/* ==========================================================================
+   АНИМИРОВАННЫЕ ИКОНКИ
+   Реагируют на наведение на родителя (ссылку/кнопку), а не на саму иконку —
+   иначе цель слишком мелкая. Все движения на transform: дёшево и плавно.
+   ========================================================================== */
+.anim-ic { transition: transform 260ms cubic-bezier(.22,.61,.36,1),
+                       color 220ms ease; will-change: transform; }
+
+/* Telegram: самолётик улетает и возвращается */
+a:hover .anim-ic[data-anim="fly"],
+.crow:hover .anim-ic[data-anim="fly"] {
+  animation: icFly 760ms cubic-bezier(.34,1.32,.5,1);
+}
+@keyframes icFly {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  38%  { transform: translate(11px, -11px) rotate(-14deg); opacity: .35; }
+  52%  { transform: translate(-16px, 13px) rotate(-4deg); opacity: 0; }
+  60%  { transform: translate(-16px, 13px) rotate(-4deg); opacity: 0; }
+  78%  { transform: translate(3px, -3px) rotate(2deg); opacity: 1; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+}
+
+/* Телефон: коротко звонит */
+a:hover .anim-ic[data-anim="ring"],
+.crow:hover .anim-ic[data-anim="ring"] {
+  animation: icRing 620ms cubic-bezier(.36,.07,.19,.97);
+  transform-origin: 50% 60%;
+}
+@keyframes icRing {
+  0%, 100% { transform: rotate(0deg); }
+  12% { transform: rotate(-14deg); }
+  28% { transform: rotate(11deg); }
+  44% { transform: rotate(-8deg); }
+  60% { transform: rotate(6deg); }
+  76% { transform: rotate(-3deg); }
+  90% { transform: rotate(1deg); }
+}
+
+/* Пин: подпрыгивает и «втыкается» */
+.crow:hover .anim-ic[data-anim="hop"] {
+  animation: icHop 640ms cubic-bezier(.34,1.4,.5,1);
+}
+@keyframes icHop {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-7px); }
+  52%  { transform: translateY(0); }
+  66%  { transform: translateY(-3px); }
+  82%  { transform: translateY(0) scale(1.06); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Календарь/часы: «перелистывается» */
+.crow:hover .anim-ic[data-anim="flip"] {
+  animation: icFlip 720ms cubic-bezier(.22,.61,.36,1);
+  transform-origin: 50% 12%;
+}
+@keyframes icFlip {
+  0%, 100% { transform: perspective(60px) rotateX(0deg); }
+  42% { transform: perspective(60px) rotateX(-46deg); }
+  70% { transform: perspective(60px) rotateX(6deg); }
+}
+
+/* Каталог/корзина: лёгкий подскок */
+[data-add]:hover .anim-ic,
+.c-go:hover .anim-ic { transform: translateY(-2px) scale(1.08); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-ic, a:hover .anim-ic, .crow:hover .anim-ic,
+  [data-add]:hover .anim-ic, .c-go:hover .anim-ic { animation: none !important; transform: none !important; }
 }

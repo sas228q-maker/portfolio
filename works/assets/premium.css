@@ -528,7 +528,11 @@ section { position: relative; }
 }
 .row-name, .row-name small, .prod-name, .prod-name small, .citem span, .crow span,
 .ilist b, .ilist p, .live-row span, .doc h3, .doc p, .step p, .promo p {
-  overflow-wrap: anywhere;
+  /* break-word, а НЕ anywhere: anywhere рвёт слова где угодно,
+     из-за чего на телефоне текст рассыпался на 1-2 слова в строке */
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 
