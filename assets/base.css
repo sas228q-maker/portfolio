@@ -94,6 +94,22 @@ p  { margin: 0 0 14px; color: var(--muted); }
 .nav-links a { color: var(--muted); font-size: 14.6px; }
 .nav-links a:hover { color: var(--text); text-decoration: none; }
 
+/* бургер-меню (мобільні) */
+.nav-toggle {
+  display: none; margin-left: auto; width: 42px; height: 42px; flex: none;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  cursor: pointer; padding: 0; place-items: center;
+}
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; position: relative; transition: background .2s; }
+.nav-toggle span::before, .nav-toggle span::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: var(--text);
+  border-radius: 2px; transition: transform .22s;
+}
+.nav-toggle span::before { top: -6px; } .nav-toggle span::after { top: 6px; }
+.nav-toggle.is-open span { background: transparent; }
+.nav-toggle.is-open span::before { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.is-open span::after { transform: translateY(-6px) rotate(-45deg); }
+
 /* ---------- buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -308,9 +324,22 @@ p  { margin: 0 0 14px; color: var(--muted); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { display: none; }
   .section { padding: 56px 0; }
   .cta-band { padding: 32px 22px; }
+
+  /* мобільна навігація */
+  .nav-toggle { display: grid; }
+  .nav { position: relative; }
+  .nav-links {
+    display: none; position: absolute; top: calc(100% + 1px); left: -22px; right: -22px;
+    margin: 0; flex-direction: column; align-items: stretch; gap: 4px;
+    background: var(--bg-soft); border-bottom: 1px solid var(--line);
+    padding: 12px 22px 18px; box-shadow: var(--shadow);
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links a { font-size: 16.4px; padding: 11px 4px; border-bottom: 1px solid var(--line); }
+  .nav-links a:last-child { border-bottom: 0; margin-top: 8px; }
+  .nav-links .btn { align-self: flex-start; border-bottom: 0; }
 }
 @media (max-width: 620px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
