@@ -1,144 +1,146 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" class="t-avatar">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Аватар — Дубно | Велосипеди, електроскутери, мото, запчастини</title>
-<meta name="description" content="Магазин «Аватар» у Дубні: велосипеди, електроскутери, мотоцикли, мотозапчастини та дитячі товари. Сервіс і зборка. вул. Забрама, 4.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%235b8cff'/%3E%3Cstop%20offset='1'%20stop-color='%239b5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='45'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='white'%20text-anchor='middle'%3E%D0%9E%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Магазин «Аватар» у Дубні: велосипеди, електроскутери, мотоцикли, запчастини та дитячі товари. Серіс і зборка на місці.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Олександр · веб-дизайн, Дубно">
 <meta property="og:title" content="Аватар — Дубно | Велосипеди, електроскутери, мото">
-<meta property="og:description" content="Концепт сайту магазину «Аватар» у Дубні: каталог, сервіс, два магазини.">
-<meta property="og:url" content="https://sas228q-maker.github.io/portfolio/works/avatar/index.html">
+<meta property="og:description" content="Все для ваших колісних: вело, електро, мото та запчастини. Два магазини в Дубні.">
 <meta property="og:image" content="https://sas228q-maker.github.io/portfolio/assets/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0f17">
+<meta name="theme-color" content="#12161A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%2335B7BE'/%3E%3Ctext%20x='32'%20y='46'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='%2304222A'%20text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
 <style>
-  .hero { padding: 172px 0 90px; }
-  .hero h1 { font-family: "Oswald", sans-serif; font-weight: 700; text-transform: uppercase;
-    font-size: clamp(42px, 8.4vw, 92px); line-height: .98; letter-spacing: -.015em; }
+  .hero { padding: 150px 0 76px; }
+  .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 48px; align-items: center; }
+  .t-avatar h1 { font-weight: 700; letter-spacing: -.03em; }
+  .t-avatar h2 { font-weight: 600; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .specs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .specs li { font-size: 13.5px; color: var(--ink-2); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 6px 12px; }
 
-  /* колесо */
-  .wheel-zone { position: relative; display: grid; place-items: center; min-height: 480px; }
-  .wheel-ring { position: absolute; width: 460px; height: 460px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(198,242,78,.22), transparent 66%); filter: blur(30px); }
-  .wheel { width: 400px; height: 400px; max-width: 88vw; position: relative; }
-  .wheel svg { width: 100%; height: 100%; animation: spin 14s linear infinite; }
+  /* колесо — авторский акцент страницы */
+  .wheel-zone { position: relative; display: grid; place-items: center; min-height: 440px; }
+  .wheel { width: min(380px, 82vw); aspect-ratio: 1; position: relative;
+    overflow: hidden; border-radius: 50%; }
+  .wheel svg { width: 100%; height: 100%; animation: spin 24s linear infinite; }
+  .wheel-zone:hover .wheel svg { animation-duration: 3s; }
+  .wheel::after { content: ""; position: absolute; inset: 6%; border-radius: 50%;
+    border: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent);
+    animation: spin 40s linear infinite reverse; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .wheel-zone:hover svg { animation-duration: 2.4s; }
-  .wheel::after { content: ""; position: absolute; inset: 8%; border-radius: 50%;
-    border: 1px dashed color-mix(in srgb, var(--accent) 34%, transparent); animation: spin 26s linear infinite reverse; }
 
-  .spec { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: var(--r-full);
-    border: 1px solid var(--line); background: var(--surface); font-size: 13.5px; color: var(--muted); }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tab.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
-  /* категории */
-  .cat { display: block; padding: 30px; border-radius: var(--r-md); background: var(--surface);
-    border: 1px solid var(--line); transition: transform .28s, border-color .28s, background .28s; position: relative; overflow: hidden; }
-  .cat:hover { transform: translateY(-6px); border-color: var(--accent); }
-  .cat::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 130px; height: 130px;
-    border-radius: 50%; background: color-mix(in srgb, var(--accent) 10%, transparent); }
-  .cat-ic { width: 58px; height: 58px; border-radius: 17px; display: grid; place-items: center; margin-bottom: 20px;
-    background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent); position: relative; z-index: 1; }
-  .cat h3 { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .01em; position: relative; z-index: 1; }
-  .cat p, .cat .more { position: relative; z-index: 1; }
-  .cat .more { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 650; font-size: 14.5px; margin-top: 8px; }
+  /* категории — сетка с линиями, без карточек */
+  .cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 44px; }
+  .cat { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .cat-top { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .cat-top h3 { margin: 0; font-size: 18px; }
+  .cat p { margin: 0 0 6px; font-size: 14.6px; }
+  .cat .avail { font-size: 13.4px; color: var(--accent); font-variant-numeric: tabular-nums; }
 
-  /* товар */
-  .prod { border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); overflow: hidden;
-    transition: transform .28s, border-color .28s; }
-  .prod:hover { transform: translateY(-6px); border-color: var(--accent); }
-  .prod-img { aspect-ratio: 4/3; display: grid; place-items: center;
-    background: linear-gradient(150deg, var(--surface-2), color-mix(in srgb, var(--accent) 10%, var(--surface-2)));
-    color: var(--accent); position: relative; }
-  .prod-tag { position: absolute; top: 14px; left: 14px; }
-  .prod-b { padding: 20px 22px 24px; }
-  .prod-b h4 { font-family: "Oswald", sans-serif; font-size: 18px; text-transform: uppercase; margin-bottom: 6px; }
-  .prod-b p { font-size: 13.5px; margin-bottom: 14px; }
-  .prod-price { font-family: "Oswald", sans-serif; font-size: 24px; font-weight: 700; color: var(--accent); }
-  .prod-price small { font-family: var(--font-body); font-size: 13px; color: var(--muted); font-weight: 400; }
+  /* товар — строка каталога, а не карточка */
+  .prod { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center;
+    padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .prod-name { font-weight: 600; font-size: 16.5px; }
+  .prod-name small { display: block; font-weight: 400; font-size: 13.8px; color: var(--ink-2);
+    margin-top: 3px; max-width: 54ch; }
+  .prod-price { text-align: right; font-weight: 700; font-size: 17px; white-space: nowrap;
+    font-variant-numeric: tabular-nums; color: var(--accent); }
+  .prod-price small { display: block; font-weight: 400; font-size: 12.8px; color: var(--ink-2); }
 
-  .band { border-radius: var(--r-lg); border: 1px solid var(--line); padding: 44px;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, var(--surface)), var(--surface)); }
-  .band--split { display: grid; grid-template-columns: 1.25fr auto; gap: 32px; align-items: center; }
-  .band--split > div:last-child { min-width: 0; }
-  .shop { padding: 24px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); }
-  @media (max-width: 1024px) { .wheel-zone { min-height: 380px; } .wheel { width: 300px; height: 300px; } }
+  .shop-line { display: grid; grid-template-columns: 48px 1fr auto; gap: 18px; align-items: center;
+    padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .shop-line:last-child { border-bottom: 0; }
+  .shop-line h3 { margin: 0 0 3px; font-family: var(--font-body); font-size: 16.5px; font-weight: 600; }
+  .shop-line p { margin: 0; font-size: 14.5px; }
+  .shop-line .tag2 { font-size: 13px; color: var(--accent); white-space: nowrap; }
+
+  .quotes { border-top: 1px solid var(--rule); }
+  .quotes blockquote { margin: 0; padding: 24px 0; border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr 170px; gap: 22px; align-items: baseline; }
+  .quotes p { margin: 0 0 8px; color: var(--ink); font-size: 16px; }
+  .quotes footer { font-size: 14px; color: var(--ink-2); display: flex; align-items: center; gap: 9px; }
+  .q-mark { color: var(--accent); }
+
   @media (max-width: 900px) {
-    .band { padding: 28px; }
-    .band--split { grid-template-columns: 1fr; gap: 24px; }
-    .band--split > div:last-child { min-width: 0; width: 100%; }
-    .wheel-ring { width: min(420px, 88vw); height: min(420px, 88vw); }
+    .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+    .wheel-zone { min-height: 320px; }
+    .cats { grid-template-columns: 1fr; gap: 0; }
+    .quotes blockquote { grid-template-columns: 1fr; gap: 10px; }
+    .shop-line { grid-template-columns: 44px 1fr; }
+    .shop-line .tag2 { grid-column: 2; }
   }
 </style>
 </head>
-<body class="t-avatar">
+<body>
 
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a class="logo" href="#top"><span class="logo-badge"><svg class="ic"><use href="#i-wheel"></use></svg></span> Аватар</a>
-    <nav class="menu">
+    <a class="logo" href="#top">
+      <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-wheel"></use></svg></span>
+      Аватар
+    </a>
+    <nav class="menu" aria-label="Основна навігація">
       <a href="#cats">Категорії</a>
       <a href="#catalog">Каталог</a>
       <a href="#service">Сервіс</a>
       <a href="#why">Про магазин</a>
       <a href="#contact">Контакти</a>
     </nav>
-    <div class="hdr-cta">
-      <a class="hdr-phone" href="tel:+380505220283"><svg class="ic ic--sm"><use href="#i-phone"></use></svg> 050 522 02 83</a>
+    <div class="hdr-side">
+      <a class="hdr-tel" href="tel:+380505220283">
+        <svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg> 050 522 02 83
+      </a>
       <a class="btn btn--sm" href="#contact">Завітати</a>
     </div>
-    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><i></i></button>
+    <button class="burger" type="button" aria-label="Відкрити навігацію" aria-expanded="false"><i></i></button>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="glow" style="width:560px;height:560px;background:var(--accent);top:-160px;left:-180px;opacity:.16"></div>
     <div class="wrap hero-grid">
       <div>
-        <span class="badge"><svg class="ic ic--sm"><use href="#i-wheel"></use></svg> Дубно · вул. Забрама, 4</span>
-        <h1 style="margin-top:20px">Все для<br><span class="grad">твоїх колісних</span></h1>
-        <p class="lead">Велосипеди, електроскутери, мотоцикли, запчастини й аксесуари.
-        Підберемо під зріст, бюджет і стиль їзди. Збираємо та обслуговуємо на місці.</p>
+        <h1>Все для<br>твоїх колісних</h1>
+        <p class="lead">Велосипеди, електроскутери, мотоцикли та запчастини. Спитаємо, де будете
+        їздити й скільки хочете витратити, і покажемо два-три реальні варіанти — без «беріть
+        найдорожче».</p>
         <div class="hero-cta">
-          <a class="btn btn--lg" href="#catalog"><svg class="ic"><use href="#i-search"></use></svg> Дивитись каталог</a>
-          <a class="btn btn--ghost btn--lg" href="tel:+380505220283"><svg class="ic"><use href="#i-phone"></use></svg> Порадитись</a>
+          <a class="btn btn--lg" href="#catalog">
+            <svg class="ic" aria-hidden="true"><use href="#i-search"></use></svg> Дивитись каталог
+          </a>
+          <a class="btn btn--line btn--lg" href="tel:+380505220283">
+            <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Порадитись
+          </a>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px">
-          <span class="spec"><svg class="ic ic--sm"><use href="#i-bike"></use></svg> Велосипеди</span>
-          <span class="spec"><svg class="ic ic--sm"><use href="#i-scooter"></use></svg> Електроскутери</span>
-          <span class="spec"><svg class="ic ic--sm"><use href="#i-moto"></use></svg> Мотоцикли</span>
-          <span class="spec"><svg class="ic ic--sm"><use href="#i-wrench"></use></svg> Запчастини</span>
-        </div>
-        <div class="hero-facts">
-          <div class="fact"><div class="fv"><span data-count="4051">0</span></div><div class="fl">підписників в Instagram</div></div>
-          <div class="fact"><div class="fv"><span data-count="482">0</span></div><div class="fl">позицій у профілі</div></div>
-          <div class="fact"><div class="fv">2</div><div class="fl">магазини в Дубні</div></div>
-        </div>
+        <ul class="specs">
+          <li>Велосипеди</li><li>Електроскутери</li><li>Мотоцикли</li>
+          <li>Запчастини</li><li>Дитячі товари</li>
+        </ul>
       </div>
 
-      <div class="wheel-zone" data-tilt-zone>
-        <div class="wheel-ring"></div>
-        <div class="wheel" data-tilt="8">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" style="color:var(--accent)" stroke-width="2.6" stroke-linecap="round">
-            <circle cx="100" cy="100" r="88" stroke="#2a2a35" stroke-width="7"/>
-            <circle cx="100" cy="100" r="88" stroke="currentColor" stroke-width="2.4" stroke-dasharray="5 12" opacity=".85"/>
-            <circle cx="100" cy="100" r="74" stroke="currentColor" stroke-width="1.6" opacity=".5"/>
-            <g stroke="currentColor" stroke-width="1.7" opacity=".9">
-              <path d="M100 26V100M100 100l64-38M100 100l64 38M100 100v74M100 100l-64 38M100 100-64-38"/>
+      <div class="wheel-zone">
+        <div class="wheel">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.4"
+               stroke-linecap="round" aria-hidden="true" style="color:var(--accent)">
+            <circle cx="100" cy="100" r="88" stroke="var(--rule)" stroke-width="8"/>
+            <circle cx="100" cy="100" r="78" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+            <circle cx="100" cy="100" r="88" stroke="currentColor" stroke-width="2.2"
+                    stroke-dasharray="4 13" opacity=".85"/>
+            <g stroke="currentColor" stroke-width="1.8" opacity=".9">
+              <path d="M100 26V100M100 100l64-38M100 100l64 38M100 100v74M100 100l-64 38M100 100l-64-38"/>
             </g>
-            <circle cx="100" cy="100" r="15" fill="#14161c" stroke="currentColor" stroke-width="3"/>
+            <circle cx="100" cy="100" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="3"/>
             <circle cx="100" cy="100" r="5" fill="currentColor" stroke="none"/>
           </svg>
         </div>
@@ -146,222 +148,243 @@
     </div>
   </section>
 
-  <!-- БЕГУЩАЯ СТРОКА -->
-  <div class="marquee">
-    <div class="marquee-track">
-      <span><i></i> Зборка та налаштування</span><span><i></i> Гарантія на всі товари</span>
-      <span><i></i> Розстрочка</span><span><i></i> Сервіс на місці</span>
-      <span><i></i> Запчастини в наявності</span><span><i></i> Дитячі товари</span>
-    </div>
-  </div>
+  <section class="wrap rv">
+    <dl class="facts">
+      <div><dt>Магазинів у Дубні</dt><dd>Два: Аватар і Аватар Kids</dd></div>
+      <div><dt>Графік</dt><dd>Пн–Сб, 9:00 – 18:00</dd></div>
+      <div><dt>Зборка й налаштування</dt><dd>Входять у вартість при покупці в нас</dd></div>
+      <div><dt>Розстрочка</dt><dd>Можна частинами</dd></div>
+    </dl>
+  </section>
 
-  <!-- КАТЕГОРИИ -->
-  <section class="pad" id="cats">
+  <section class="band" id="cats">
     <div class="wrap">
-      <div class="head rv">
-        <span class="eyebrow">Категорії</span>
+      <div class="sechead rv">
         <h2>Що в нас є</h2>
-        <p class="lead">Не продаємо «навмання»: спитаємо, де будете їздити й скільки хочете витратити,
-        і покажемо 2–3 реальні варіанти.</p>
+        <p class="lead">Чотири напрямки. Якщо не знаєте, що саме потрібно — опишіть задачу,
+        підберемо разом.</p>
       </div>
-      <div class="grid g4">
-        <a class="cat rv" href="#catalog"><div class="cat-ic"><svg class="ic ic--lg"><use href="#i-bike"></use></svg></div>
-          <h3>Велосипеди</h3><p>Міські, гірські, дитячі. Збірка й налаштування у вартості.</p>
-          <span class="more">Дивитись <svg class="ic ic--sm"><use href="#i-arrowRight"></use></svg></span></a>
-        <a class="cat rv" href="#catalog"><div class="cat-ic"><svg class="ic ic--lg"><use href="#i-scooter"></use></svg></div>
-          <h3>Електроскутери</h3><p>Міські моделі з запасом ходу до 60 км. Тест-драйв на місці.</p>
-          <span class="more">Дивитись <svg class="ic ic--sm"><use href="#i-arrowRight"></use></svg></span></a>
-        <a class="cat rv" href="#catalog"><div class="cat-ic"><svg class="ic ic--lg"><use href="#i-moto"></use></svg></div>
-          <h3>Мотоцикли</h3><p>Мопеди, скутери, легкі мотоцикли. Документи й реєстрація.</p>
-          <span class="more">Дивитись <svg class="ic ic--sm"><use href="#i-arrowRight"></use></svg></span></a>
-        <a class="cat rv" href="#catalog"><div class="cat-ic"><svg class="ic ic--lg"><use href="#i-wrench"></use></svg></div>
-          <h3>Запчастини</h3><p>Покришки, камери, ланцюги, гальма, акумулятори, аксесуари.</p>
-          <span class="more">Дивитись <svg class="ic ic--sm"><use href="#i-arrowRight"></use></svg></span></a>
+      <div class="cats rv">
+        <div class="cat">
+          <div class="cat-top">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-bike"></use></svg></span>
+            <h3>Велосипеди</h3>
+          </div>
+          <p>Міські, гірські та дитячі. Збираємо й налаштовуємо під зріст перед видачею.</p>
+          <div class="avail">У наявності: 20", 26", 27,5"</div>
+        </div>
+        <div class="cat">
+          <div class="cat-top">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-scooter"></use></svg></span>
+            <h3>Електроскутери</h3>
+          </div>
+          <p>Міські моделі із запасом ходу до 60 км. Тест-драйв на місці перед покупкою.</p>
+          <div class="avail">Потужність: 500 Вт і 1000 Вт</div>
+        </div>
+        <div class="cat">
+          <div class="cat-top">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-moto"></use></svg></span>
+            <h3>Мотоцикли та мопеди</h3>
+          </div>
+          <p>Скутери 50 см³, мопеди 49 см³. Допомагаємо з документами й реєстрацією.</p>
+          <div class="avail">Категорія AM, від 26 800 ₴</div>
+        </div>
+        <div class="cat">
+          <div class="cat-top">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-wrench"></use></svg></span>
+            <h3>Запчастини й аксесуари</h3>
+          </div>
+          <p>Покришки, камери, ланцюги, гальма, акумулятори, велоаксесуари.</p>
+          <div class="avail">Більшість позицій — у наявності</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- КАТАЛОГ -->
-  <section class="pad bg-soft" id="catalog">
+  <section class="band band-alt" id="catalog">
     <div class="wrap">
-      <div class="head rv">
-        <span class="eyebrow">Каталог</span>
-        <h2>Популярне цього місяця</h2>
-        <p class="lead">Ціни — приклад для макета. У фінальному сайті буде ваш реальний
-        каталог із фото, і його можна буде оновлювати самому.</p>
+      <div class="sechead rv">
+        <h2>Каталог</h2>
+        <p class="lead">Ціни в прикладі — у фінальній версії буде ваш реальний каталог із фото,
+        і його можна буде оновлювати самому.</p>
       </div>
 
       <div data-tabs class="rv">
-        <div class="tabs">
-          <button class="tab is-active" data-tab="v" type="button"><svg class="ic ic--sm"><use href="#i-bike"></use></svg> Вело</button>
-          <button class="tab" data-tab="e" type="button"><svg class="ic ic--sm"><use href="#i-scooter"></use></svg> Електро</button>
-          <button class="tab" data-tab="m" type="button"><svg class="ic ic--sm"><use href="#i-moto"></use></svg> Мото</button>
-          <button class="tab" data-tab="p" type="button"><svg class="ic ic--sm"><use href="#i-wrench"></use></svg> Запчастини</button>
+        <div class="tabs" role="tablist" aria-label="Категорії каталогу">
+          <button class="tab btn btn--line btn--sm is-active" role="tab" aria-selected="true" data-tab="v" type="button">Вело</button>
+          <button class="tab btn btn--line btn--sm" role="tab" aria-selected="false" data-tab="e" type="button">Електро</button>
+          <button class="tab btn btn--line btn--sm" role="tab" aria-selected="false" data-tab="m" type="button">Мото</button>
+          <button class="tab btn btn--line btn--sm" role="tab" aria-selected="false" data-tab="p" type="button">Запчастини</button>
         </div>
 
-        <div class="panel is-active" data-panel="v">
-          <div class="grid g3">
-            <div class="prod"><div class="prod-img"><span class="prod-tag badge">Хіт</span><svg class="ic" style="width:92px;height:92px"><use href="#i-bike"></use></svg></div>
-              <div class="prod-b"><h4>Міський 26"</h4><p>7 швидкостей, крила, багажник. Для міста й парку.</p>
-                <div class="prod-price">7 200 ₴ <small>· у зборі</small></div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-bike"></use></svg></div>
-              <div class="prod-b"><h4>Гірський 27.5"</h4><p>Амортизаційна вилка, 21 швидкість, дискові гальма.</p>
-                <div class="prod-price">10 400 ₴ <small>· у зборі</small></div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-bike"></use></svg></div>
-              <div class="prod-b"><h4>Дитячий 20"</h4><p>Легка рама, обмежувач швидкості, захист ланцюга.</p>
-                <div class="prod-price">4 300 ₴ <small>· у зборі</small></div></div></div>
-          </div>
+        <div class="panel is-active" data-panel="v" role="tabpanel">
+          <div class="prod"><div class="prod-name">Міський велосипед 26"<small>7 швидкостей, крила, багажник. Для міста й парку</small></div><div class="prod-price">7 200 ₴<small>у зборі</small></div></div>
+          <div class="prod"><div class="prod-name">Гірський 27,5"<small>Амортизаційна вилка, 21 швидкість, дискові гальма</small></div><div class="prod-price">10 400 ₴<small>у зборі</small></div></div>
+          <div class="prod"><div class="prod-name">Дитячий 20"<small>Легка рама, обмежувач швидкості, захист ланцюга</small></div><div class="prod-price">4 300 ₴<small>у зборі</small></div></div>
         </div>
 
-        <div class="panel" data-panel="e">
-          <div class="grid g3">
-            <div class="prod"><div class="prod-img"><span class="prod-tag badge">Тест-драйв</span><svg class="ic" style="width:92px;height:92px"><use href="#i-scooter"></use></svg></div>
-              <div class="prod-b"><h4>Міський 500W</h4><p>Запас ходу до 45 км, складна рама, 25 км/год.</p>
-                <div class="prod-price">18 900 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-scooter"></use></svg></div>
-              <div class="prod-b"><h4>Позашляховий 1000W</h4><p>Запас ходу до 60 км, шини 10", посилена підвіска.</p>
-                <div class="prod-price">27 500 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-battery"></use></svg></div>
-              <div class="prod-b"><h4>Акумулятор 48V</h4><p>Літієвий, з зарядним пристроєм і гарантією.</p>
-                <div class="prod-price">5 400 ₴</div></div></div>
-          </div>
+        <div class="panel" data-panel="e" role="tabpanel" hidden>
+          <div class="prod"><div class="prod-name">Міський електроскутер, 500 Вт<small>Запас ходу до 45 км, складна рама, 25 км/год</small></div><div class="prod-price">18 900 ₴<small>тест-драйв</small></div></div>
+          <div class="prod"><div class="prod-name">Позашляховий, 1000 Вт<small>Запас ходу до 60 км, шини 10", посилена підвіска</small></div><div class="prod-price">27 500 ₴</div></div>
+          <div class="prod"><div class="prod-name">Акумулятор 48 В<small>Літієвий, із зарядним пристроєм і гарантією</small></div><div class="prod-price">5 400 ₴</div></div>
         </div>
 
-        <div class="panel" data-panel="m">
-          <div class="grid g3">
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-moto"></use></svg></div>
-              <div class="prod-b"><h4>Скутер 50 см³</h4><p>Економний, для міста. Категорія AM.</p>
-                <div class="prod-price">32 000 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-moto"></use></svg></div>
-              <div class="prod-b"><h4>Мопед 49 см³</h4><p>Простий у обслуговуванні, запчастини завжди в наявності.</p>
-                <div class="prod-price">26 800 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-shield"></use></svg></div>
-              <div class="prod-b"><h4>Шолом + захист</h4><p>Комплект: шолом, рукавиці, наколінники.</p>
-                <div class="prod-price">2 100 ₴</div></div></div>
-          </div>
+        <div class="panel" data-panel="m" role="tabpanel" hidden>
+          <div class="prod"><div class="prod-name">Скутер 50 см³<small>Економний, для міста. Категорія AM</small></div><div class="prod-price">32 000 ₴<small>документи</small></div></div>
+          <div class="prod"><div class="prod-name">Мопед 49 см³<small>Простий в обслуговуванні, запчастини завжди в наявності</small></div><div class="prod-price">26 800 ₴</div></div>
+          <div class="prod"><div class="prod-name">Комплект захисту<small>Шолом, рукавиці, наколінники</small></div><div class="prod-price">2 100 ₴</div></div>
         </div>
 
-        <div class="panel" data-panel="p">
-          <div class="grid g3">
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-wheel"></use></svg></div>
-              <div class="prod-b"><h4>Покришка 26"</h4><p>Посилений протектор, антипрокольний шар.</p>
-                <div class="prod-price">650 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-oil"></use></svg></div>
-              <div class="prod-b"><h4>Мастило та хімія</h4><p>Для ланцюга, підшипників, гальм.</p>
-                <div class="prod-price">від 180 ₴</div></div></div>
-            <div class="prod"><div class="prod-img"><svg class="ic" style="width:92px;height:92px"><use href="#i-gauge"></use></svg></div>
-              <div class="prod-b"><h4>Велокомп'ютер</h4><p>Швидкість, дистанція, час. Бездротовий.</p>
-                <div class="prod-price">890 ₴</div></div></div>
-          </div>
+        <div class="panel" data-panel="p" role="tabpanel" hidden>
+          <div class="prod"><div class="prod-name">Покришка 26"<small>Посилений протектор, антипрокольний шар</small></div><div class="prod-price">650 ₴</div></div>
+          <div class="prod"><div class="prod-name">Мастило та хімія<small>Для ланцюга, підшипників і гальм</small></div><div class="prod-price">від 180 ₴</div></div>
+          <div class="prod"><div class="prod-name">Велокомп'ютер<small>Швидкість, дистанція, час. Бездротовий</small></div><div class="prod-price">890 ₴</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- СЕРВИС -->
-  <section class="pad" id="service">
-    <div class="wrap">
-      <div class="band band--split rv">
-        <div>
-          <span class="eyebrow">Сервіс</span>
-          <h2 style="margin-bottom:12px">Зберемо, налаштуємо, полагодимо</h2>
-          <p class="lead" style="margin-bottom:0">Купили в нас — збірка й перше налаштування безкоштовні.
-          Привезли своє — теж допоможемо: від заміни камери до повної переборки.</p>
-        </div>
-        <div style="display:grid;gap:12px;min-width:260px">
-          <a class="btn" href="tel:+380505220283"><svg class="ic"><use href="#i-wrench"></use></svg> Записати на сервіс</a>
-          <a class="btn btn--ghost" href="https://instagram.com/avatar_dubno" target="_blank" rel="noopener">
-            <svg class="ic"><use href="#i-instagram"></use></svg> Написати в Instagram</a>
+  <section class="band" id="service">
+    <div class="wrap split split--wide">
+      <div class="rv">
+        <h2>Сервіс і зборка</h2>
+        <p>Купили в нас — зборка й перше налаштування безкоштовні. Привезли своє — теж
+        допоможемо: від заміни камери до повної переборки.</p>
+        <div class="rows" style="margin-top:20px">
+          <div class="row"><div class="row-name">Зборка й налаштування<small>Під зріст, тиск у шинах, гальма, перемикачі</small></div><span class="row-lead"></span><span class="row-val row-val--accent">0 ₴<small style="display:block;font-size:12.5px;color:var(--ink-2)">при покупці в нас</small></span></div>
+          <div class="row"><div class="row-name">Заміна камери або покришки<small>Робота без вартості запчастини</small></div><span class="row-lead"></span><span class="row-val row-val--accent">від 150 ₴</span></div>
+          <div class="row"><div class="row-name">Регулювання гальм і перемикачів<small>Передній і задній</small></div><span class="row-lead"></span><span class="row-val row-val--accent">від 200 ₴</span></div>
+          <div class="row" style="border-bottom:0"><div class="row-name">Повна переборка<small>Розбирання, чищення, мастило, зборка</small></div><span class="row-lead"></span><span class="row-val row-val--accent">від 900 ₴</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ПРО МАГАЗИН -->
-  <section class="pad bg-soft" id="why">
-    <div class="wrap">
-      <div class="head head--center rv"><span class="eyebrow">Про магазин</span><h2>Чому беруть у нас</h2></div>
-      <div class="grid g4">
-        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-shield"></use></svg></div>
-          <h3>Гарантія</h3><p>Офіційна гарантія на всі товари. З питань ремонту — телефонуйте, підкажемо одразу.</p></div>
-        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-hand"></use></svg></div>
-          <h3>Порадимо чесно</h3><p>Не продамо дорожче, ніж потрібно. Спитаємо, де їздите, і підберемо під задачу.</p></div>
-        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-wrench"></use></svg></div>
-          <h3>Свій сервіс</h3><p>Запчастини в наявності, майстер на місці. Не треба чекати тижнями.</p></div>
-        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-card"></use></svg></div>
-          <h3>Розстрочка</h3><p>Можна частинами — скажіть, який платіж вам комфортний, підберемо варіант.</p></div>
+      <div class="panel rv">
+        <h3>Записати на сервіс</h3>
+        <p class="small">Опишіть, що не так — підкажемо, скільки це коштує і скільки часу займе.</p>
+        <div style="display:grid;gap:10px;margin-top:16px">
+          <a class="btn" href="tel:+380505220283">
+            <svg class="ic" aria-hidden="true"><use href="#i-wrench"></use></svg> 050 522 02 83
+          </a>
+          <a class="btn btn--line" href="https://instagram.com/avatar_dubno" target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg> Instagram
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ВІДГУКИ -->
-  <section class="pad">
+  <section class="band band-alt" id="why">
     <div class="wrap">
-      <div class="head head--center rv"><span class="eyebrow">Відгуки</span><h2>Що кажуть покупці</h2></div>
-      <div class="grid g3">
-        <div class="card rev rv">
-          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
-          <p>Брав електроскутер для роботи. Порадили саме ту модель, яка підходить для моїх
-          поїздок — не найдорожчу.</p>
-          <div class="who"><span class="who-i">Т</span><div><b>Тарас</b><small>електроскутер</small></div></div></div>
-        <div class="card rev rv">
-          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
-          <p>Дитині взяли велосипед — зібрали при нас, підігнали по зросту. Через місяць
-          підтягнули гальма безкоштовно.</p>
-          <div class="who"><span class="who-i">О</span><div><b>Оксана</b><small>дитячий велосипед</small></div></div></div>
-        <div class="card rev rv">
-          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
-          <p>Завжди є потрібна запчастина. Приїхав за камерою — замінили на місці за 15 хвилин.</p>
-          <div class="who"><span class="who-i">С</span><div><b>Сергій</b><small>запчастини</small></div></div></div>
-      </div>
+      <div class="sechead rv"><h2>Чому беруть у нас</h2></div>
+      <ul class="ilist rv">
+        <li>
+          <span class="icon-box"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+          <div><b>Гарантія на всі товари</b><p>Офіційна, з документами. З питань ремонту телефонуйте — підкажемо одразу, без «приїжджайте, подивимось».</p></div>
+        </li>
+        <li>
+          <span class="icon-box"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-hand"></use></svg></span>
+          <div><b>Порадимо чесно</b><p>Не продамо дорожче, ніж потрібно. Спитаємо, де їздите, і підберемо під задачу, а не під чек.</p></div>
+        </li>
+        <li>
+          <span class="icon-box"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-wrench"></use></svg></span>
+          <div><b>Свій сервіс</b><p>Запчастини в наявності, майстер на місці. Не треба чекати тижнями, поки привезуть деталь.</p></div>
+        </li>
+        <li>
+          <span class="icon-box"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-card"></use></svg></span>
+          <div><b>Розстрочка</b><p>Можна частинами — скажіть, який платіж комфортний, підберемо варіант.</p></div>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- КОНТАКТИ -->
-  <section class="pad bg-soft" id="contact">
+  <section class="band">
     <div class="wrap">
-      <div class="head rv"><span class="eyebrow">Контакти</span><h2>Два магазини в Дубні</h2></div>
-      <div class="grid g2">
-        <div class="shop rv">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            <span class="cat-ic" style="width:46px;height:46px;margin:0"><svg class="ic"><use href="#i-wheel"></use></svg></span>
-            <h3 style="margin:0;font-family:'Oswald',sans-serif;text-transform:uppercase">Аватар</h3>
+      <div class="sechead rv"><h2>Відгуки</h2></div>
+      <div class="quotes rv">
+        <blockquote>
+          <div>
+            <p>Брав електроскутер для роботи. Порадили саме ту модель, яка підходить для моїх поїздок — не найдорожчу.</p>
+            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Тарас, електроскутер</footer>
           </div>
-          <div class="citem" style="padding:12px 0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-pin"></use></svg></div>
-            <div><b>Адреса</b><span>м. Дубно, вул. Забрама, 4</span></div></div>
-          <div class="citem" style="padding:12px 0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-clock"></use></svg></div>
-            <div><b>Графік</b><span>Пн–Сб 9:00 – 18:00 · Нд — вихідний</span></div></div>
-          <div class="citem" style="padding:12px 0;border:0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-phone"></use></svg></div>
-            <div><b>Телефон</b><span><a href="tel:+380505220283">+38 (050) 522-02-83</a></span></div></div>
-        </div>
-        <div class="shop rv">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            <span class="cat-ic" style="width:46px;height:46px;margin:0"><svg class="ic"><use href="#i-baby"></use></svg></span>
-            <h3 style="margin:0;font-family:'Oswald',sans-serif;text-transform:uppercase">Аватар Kids</h3>
+          <div class="small" style="color:var(--ink-2)">Електро</div>
+        </blockquote>
+        <blockquote>
+          <div>
+            <p>Дитині взяли велосипед — зібрали при нас і підігнали по зросту. Через місяць підтягнули гальма безкоштовно.</p>
+            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Оксана, дитячий велосипед</footer>
           </div>
-          <div class="citem" style="padding:12px 0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-gift"></use></svg></div>
-            <div><b>Що там</b><span>Дитячі товари, велосипеди, іграшки, аксесуари</span></div></div>
-          <div class="citem" style="padding:12px 0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-instagram"></use></svg></div>
-            <div><b>Instagram</b><span><a href="https://instagram.com/avatar_dubno" target="_blank" rel="noopener">@avatar_dubno</a></span></div></div>
-          <div class="citem" style="padding:12px 0;border:0"><div class="citem-ic" style="width:40px;height:40px"><svg class="ic ic--sm"><use href="#i-route"></use></svg></div>
-            <div><b>Як дістатись</b><span>Поруч із центральним ринком, є де припаркуватись</span></div></div>
+          <div class="small" style="color:var(--ink-2)">Вело</div>
+        </blockquote>
+        <blockquote>
+          <div>
+            <p>Завжди є потрібна запчастина. Приїхав за камерою — замінили на місці за п'ятнадцять хвилин.</p>
+            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Сергій, запчастини</footer>
+          </div>
+          <div class="small" style="color:var(--ink-2)">Сервіс</div>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-alt" id="contact">
+    <div class="wrap">
+      <div class="sechead rv">
+        <h2>Два магазини в Дубні</h2>
+        <p class="lead">Обидва на вул. Забрама, поруч із центральним ринком. Є де припаркуватись.</p>
+      </div>
+      <div class="panel rv" style="padding:6px 28px;margin-bottom:22px">
+        <div class="shop-line">
+          <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-wheel"></use></svg></span>
+          <div>
+            <h3>Аватар</h3>
+            <p>вул. Забрама, 4. Вело, електро, мото, запчастини</p>
+          </div>
+          <span class="tag2">Пн–Сб 9:00 – 18:00</span>
+        </div>
+        <div class="shop-line">
+          <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-baby"></use></svg></span>
+          <div>
+            <h3>Аватар Kids</h3>
+            <p>Дитячі товари, велосипеди, аксесуари</p>
+          </div>
+          <span class="tag2">Пн–Сб 9:00 – 18:00</span>
         </div>
       </div>
 
-      <form class="card rv" data-form novalidate style="margin-top:24px">
-        <h3 style="margin-bottom:6px">Не знаєте, що вибрати?</h3>
-        <p class="small">Опишіть, де будете їздити і скільки хочете витратити — підберемо 2–3 варіанти.</p>
-        <div class="row2">
-          <div class="field"><label for="av2-name">Ваше ім'я</label>
-            <input class="inp" id="av2-name" name="name" placeholder="Наприклад, Ігор"></div>
-          <div class="field"><label for="av2-phone">Телефон</label>
-            <input class="inp" id="av2-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" required></div>
+      <div class="split">
+        <div class="rv">
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+            <div><b>Телефон</b><span><a href="tel:+380505220283">+38 (050) 522-02-83</a></span></div>
+          </div>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg></span>
+            <div><b>Instagram</b><span><a href="https://instagram.com/avatar_dubno" target="_blank" rel="noopener">@avatar_dubno</a></span></div>
+          </div>
+          <div class="crow" style="border:0">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <div><b>Адреса</b><span>м. Дубно, вул. Забрама, 4</span></div>
+          </div>
         </div>
-        <div class="field"><label for="av2-msg">Що шукаєте</label>
-          <textarea class="inp" id="av2-msg" name="message" rows="3" placeholder="Електроскутер для поїздок на роботу, бюджет до 20 000 ₴"></textarea></div>
-        <button class="btn btn--block" type="submit">Отримати пораду</button>
-        <div class="ok-msg"></div>
-      </form>
+
+        <form class="panel rv" data-form novalidate>
+          <h3>Не знаєте, що вибрати?</h3>
+          <p class="small">Опишіть, де будете їздити і скільки хочете витратити — підберемо два-три варіанти.</p>
+          <div class="field">
+            <label for="av2-name">Ваше ім'я</label>
+            <input class="inp" id="av2-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Ігор...">
+          </div>
+          <div class="field">
+            <label for="av2-phone">Телефон</label>
+            <input class="inp" id="av2-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+          </div>
+          <div class="field">
+            <label for="av2-msg">Що шукаєте</label>
+            <textarea class="inp" id="av2-msg" name="message" rows="3" placeholder="Електроскутер для поїздок на роботу, бюджет до 20 000 ₴..."></textarea>
+          </div>
+          <button class="btn btn--block" type="submit">Отримати пораду</button>
+          <div class="status" role="status"></div>
+        </form>
+      </div>
     </div>
   </section>
 </main>
@@ -370,29 +393,34 @@
   <div class="wrap">
     <div class="ftr-grid">
       <div>
-        <a class="logo" href="#top" style="margin-bottom:14px"><span class="logo-badge"><svg class="ic"><use href="#i-wheel"></use></svg></span> Аватар</a>
-        <p class="small" style="max-width:320px">Велосипеди, електроскутери, мотоцикли, запчастини
-        та дитячі товари в Дубні. Сервіс і зборка на місці.</p>
+        <a class="logo" href="#top" style="margin-bottom:12px">
+          <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-wheel"></use></svg></span>
+          Аватар
+        </a>
+        <p class="small measure">Велосипеди, електроскутери, мотоцикли, запчастини та дитячі
+        товари в Дубні. Сервіс і зборка на місці.</p>
       </div>
-      <div><h4>Навігація</h4>
-        <a href="#cats">Категорії</a><a href="#catalog">Каталог</a><a href="#service">Сервіс</a><a href="#contact">Контакти</a></div>
-      <div><h4>Зв'язок</h4>
+      <div>
+        <h4>Розділи</h4>
+        <a href="#cats">Категорії</a><a href="#catalog">Каталог</a><a href="#service">Сервіс</a><a href="#contact">Контакти</a>
+      </div>
+      <div>
+        <h4>Зв'язок</h4>
         <a href="tel:+380505220283">050 522 02 83</a>
         <a href="https://instagram.com/avatar_dubno" target="_blank" rel="noopener">Instagram</a>
-        <a href="#contact">Два магазини</a></div>
+        <a href="#contact">Два магазини</a>
+      </div>
     </div>
     <div class="ftr-bot">
-      <span>© <span id="y">2026</span> Аватар · Дубно</span>
-      <span>Все для ваших колісних</span>
+      <span>Аватар, Дубно</span>
+      <span>Макет сайту. Каталог і ціни — приклад, замінимо на ваші.</span>
     </div>
   </div>
 </footer>
 
-<button class="up" type="button" aria-label="Догори"><svg class="ic"><use href="#i-arrowUp"></use></svg></button>
-<div class="mcta"><a class="btn btn--block" href="tel:+380505220283"><svg class="ic"><use href="#i-phone"></use></svg> 050 522 02 83</a></div>
-<div class="mock-flag"><b>Макет для «Аватар»</b> · каталог і ціни — приклад, поставимо ваші</div>
+<button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
+<div class="mcta"><a class="btn btn--block" href="tel:+380505220283"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> 050 522 02 83</a></div>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 <script src="../assets/sprite.js"></script>
 <script src="../assets/site.js"></script>
 </body>

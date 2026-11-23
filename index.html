@@ -1,336 +1,350 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" class="t-portfolio">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Олександр — сайти для бізнесу в Дубні | Портфоліо</title>
-<meta name="description" content="Роблю сайти для кафе, салонів краси, автосервісів і клінік у Дубні. Швидко, недорого, з онлайн-записом і меню.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%235b8cff'/%3E%3Cstop%20offset='1'%20stop-color='%239b5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='45'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='white'%20text-anchor='middle'%3E%D0%9E%3C/text%3E%3C/svg%3E">
+<title>Олександр — сайти для малого бізнесу в Дубні</title>
+<meta name="description" content="Роблю сайти для кафе, салонів, автосервісів і клінік у Дубні. Готові концепти для чотирьох закладів міста, макет безкоштовно.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Олександр · веб-дизайн, Дубно">
-<meta property="og:title" content="Олександр — сайти для бізнесу в Дубні | Портфоліо">
-<meta property="og:description" content="Роблю сайти для кафе, салонів краси, автосервісів і клінік у Дубні. Швидко, з онлайн-записом і меню.">
+<meta property="og:site_name" content="Олександр, веб-дизайн у Дубні">
+<meta property="og:title" content="Олександр — сайти для малого бізнесу в Дубні">
+<meta property="og:description" content="Готові концепти сайтів для чотирьох закладів Дубна. Макет безкоштовно.">
 <meta property="og:url" content="https://sas228q-maker.github.io/portfolio/">
 <meta property="og:image" content="https://sas228q-maker.github.io/portfolio/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0f17">
-<link rel="stylesheet" href="assets/base.css">
+<meta name="theme-color" content="#111318">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23D8C7A8'/%3E%3Ctext%20x='32'%20y='45'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='%2314171C'%20text-anchor='middle'%3E%D0%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="works/assets/premium.css">
 <style>
-  .works { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
-  .work {
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    overflow: hidden; box-shadow: var(--shadow-sm); transition: transform .22s, border-color .22s;
-    display: flex; flex-direction: column;
+  .hero { padding: 152px 0 64px; }
+  .t-portfolio h1 { font-size: clamp(38px, 6.6vw, 76px); line-height: 1.02; letter-spacing: -.04em; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .hero-note { margin-top: 22px; font-size: 14.4px; color: var(--ink-2); max-width: 58ch; }
+
+  /* Работы: полноширинные ряды с живым превью, а не сетка одинаковых карточек */
+  .work-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    padding: 64px 0; border-top: 1px solid var(--rule); }
+  .work-row:last-of-type { border-bottom: 1px solid var(--rule); }
+  .work-row:nth-of-type(even) .work-text { order: 2; }
+  .work-row:nth-of-type(even) .work-frame { order: 1; }
+  .work-kicker { font-size: 13.5px; color: var(--ink-2); margin-bottom: 8px; }
+  .work-row h2 { font-size: clamp(24px, 3vw, 34px); margin-bottom: 10px; }
+  .work-row p { margin-bottom: 16px; }
+  .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .work-tags li { font-size: 13px; color: var(--ink-2); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 5px 11px; }
+
+  .work-frame { position: relative; border: 1px solid var(--rule); border-radius: var(--r-lg);
+    overflow: hidden; background: var(--surface); box-shadow: var(--shadow); }
+  .work-frame-bar { display: flex; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--rule);
+    background: var(--surface-2); }
+  .work-frame-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--rule); display: block; }
+  .work-frame iframe { width: 1280px; height: 880px; border: 0; display: block;
+    transform-origin: 0 0; pointer-events: none; }
+
+  .disclosure { padding: 26px 0 0; }
+  .disclosure p { font-size: 14.4px; color: var(--ink-2); max-width: 74ch; margin: 0; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .step { border-top: 1px solid var(--rule); padding-top: 18px; }
+  .step .n { font-size: 13px; color: var(--accent); font-variant-numeric: tabular-nums;
+    margin-bottom: 8px; letter-spacing: .04em; }
+  .step h3 { font-size: 17px; margin-bottom: 6px; }
+  .step p { font-size: 14.4px; margin: 0; }
+
+  .incl { columns: 2; column-gap: 40px; }
+  .incl li { break-inside: avoid; padding: 11px 0 11px 30px; position: relative;
+    border-bottom: 1px solid var(--rule); font-size: 15px; }
+  .incl li svg { position: absolute; left: 0; top: 12px; color: var(--accent); }
+
+  @media (max-width: 1024px) {
+    .work-row { grid-template-columns: 1fr; gap: 26px; padding: 46px 0; }
+    .work-row:nth-of-type(even) .work-text,
+    .work-row:nth-of-type(even) .work-frame { order: initial; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .incl { columns: 1; }
   }
-  .work:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
-  .work-frame { position: relative; height: 320px; overflow: hidden; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
-  .work-frame iframe {
-    width: 1280px; height: 900px; border: 0; position: absolute; top: 0; left: 0;
-    transform-origin: 0 0; pointer-events: none;
+  @media (max-width: 620px) {
+    .steps { grid-template-columns: 1fr; }
   }
-  .work-frame::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--surface) 92%, transparent));
-  }
-  .work-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
-  .work-body h3 { margin-bottom: 6px; }
-  .work-tags { display: flex; gap: 7px; flex-wrap: wrap; margin: 12px 0 16px; }
-  .tag { font-size: 12px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--bg-soft); }
-  .work-body .btn { margin-top: auto; align-self: flex-start; }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
-  .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; position: relative; }
-  .step::before {
-    counter-increment: s; content: counter(s);
-    position: absolute; top: -16px; left: 22px; width: 34px; height: 34px; border-radius: 11px;
-    display: grid; place-items: center; font-weight: 800; font-size: 15px; color: #fff;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    box-shadow: 0 10px 24px -12px var(--accent);
-  }
-  .step h3 { margin-top: 12px; font-size: 17px; }
-  .step p { font-size: 14.2px; margin: 0; }
-  .includes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .note-box { margin-top: 26px; padding: 22px 26px; border-radius: var(--radius);
-    background: var(--surface); border: 1px solid var(--line);
-    border-left: 3px solid var(--accent); color: var(--muted); font-size: 14.6px; line-height: 1.65; }
-  .note-box b { color: var(--text); }
-  .work-body .tag { align-self: flex-start; margin-bottom: 10px; }
-  .contact-two { display: grid; grid-template-columns: .85fr 1.15fr; gap: 24px; align-items: start; }
-  .contact-two .card { height: 100%; }
-  .inc { display: flex; gap: 11px; align-items: flex-start; padding: 15px 18px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
-  .inc i { font-style: normal; color: var(--ok); font-weight: 800; }
-  .inc span { font-size: 14.4px; }
-  @media (max-width: 940px) { .works { grid-template-columns: 1fr; } .steps { grid-template-columns: repeat(2, 1fr); } .contact-two { grid-template-columns: 1fr; } }
-  @media (max-width: 620px) { .includes { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body class="theme-portfolio">
+<body>
 
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#top"><span class="brand-mark">О</span> Олександр · веб-дизайн</a>
-    <button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false"><span></span></button>
-    <nav class="nav-links">
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-box"></use></svg></span>
+      Олександр
+    </a>
+    <nav class="menu" aria-label="Основна навігація">
       <a href="#works">Роботи</a>
-      <a href="#services">Що роблю</a>
-      <a href="#process">Як працюю</a>
+      <a href="#what">Що входять</a>
+      <a href="#how">Як працюю</a>
       <a href="#contact">Контакти</a>
-      <a class="btn btn--sm" href="#contact">Обговорити сайт</a>
     </nav>
+    <div class="hdr-side">
+      <a class="btn btn--sm" href="https://t.me/Sanik9991" target="_blank" rel="noopener">Написати в Telegram</a>
+    </div>
+    <button class="burger" type="button" aria-label="Відкрити навігацію" aria-expanded="false"><i></i></button>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Дубно · Рівненська область</span>
-        <h1>Роблю сайти для <span class="grad-text">місцевого бізнесу</span></h1>
-        <p class="lead">Кафе, салони краси, автосервіси, стоматології. Сайт, який показує меню,
-        ціни, послуги та приймає заявки — щоб клієнти з Google знаходили вас, а не конкурента.</p>
-        <div class="hero-actions">
-          <a class="btn" href="#works">Подивитись роботи</a>
-          <a class="btn btn--ghost" href="https://t.me/Sanik9991" target="_blank" rel="noopener">Написати в Telegram</a>
-        </div>
-        <p class="hero-note">Я початківець і зараз набираю портфоліо — тому працюю швидко й за ціною,
-        яка нижча за ринкову. Першим клієнтам — окремі умови.</p>
+    <div class="wrap">
+      <h1>Роблю сайти<br>для малого бізнесу</h1>
+      <p class="lead">Дубно, Рівненська область. Кафе, салони, автосервіси, клініки — сайти,
+      які показують меню, ціни й послуги та приймають заявки. Без конструкторів і підписок.</p>
+      <div class="hero-cta">
+        <a class="btn btn--lg" href="#works">
+          <svg class="ic" aria-hidden="true"><use href="#i-box"></use></svg> Подивитись роботи
+        </a>
+        <a class="btn btn--line btn--lg" href="https://t.me/Sanik9991" target="_blank" rel="noopener">
+          <svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg> Написати в Telegram
+        </a>
       </div>
-      <div class="hero-visual">
-        <div class="hero-visual-bar"><i></i><i></i><i></i></div>
-        <div class="hero-visual-body">
-          <div class="skeleton accent w45"></div>
-          <div class="skeleton w88"></div>
-          <div class="skeleton w70"></div>
-          <div class="skeleton tall"></div>
-          <div class="skeleton w60"></div>
-        </div>
-      </div>
+      <p class="hero-note">Я початківець і зараз набираю портфоліо, тому працюю швидко й за ціною
+      нижче ринкової. Макет роблю безкоштовно — ви дивитесь і вирішуєте.</p>
     </div>
   </section>
 
-  <!-- СТАТИСТИКА -->
-  <div class="container">
-    <div class="stats reveal">
-      <div class="stat"><div class="v">4</div><div class="l">готових демо-сайти</div></div>
-      <div class="stat"><div class="v">3–5</div><div class="l">днів на сайт</div></div>
-      <div class="stat"><div class="v">100%</div><div class="l">адаптивно під телефон</div></div>
-      <div class="stat"><div class="v">0 ₴</div><div class="l">за макет до старту</div></div>
-    </div>
+  <div class="wrap">
+    <dl class="facts">
+      <div><dt>Що роблю</dt><dd>Сайти-візитки, меню, каталоги, онлайн-запис</dd></div>
+      <div><dt>Термін</dt><dd>3–5 днів від макета до публікації</dd></div>
+      <div><dt>Вартість</dt><dd>Обговорюється після макета, першим клієнтам знижка</dd></div>
+      <div><dt>Домен і хостинг</dt><dd>Підключаю, показую, як користуватись</dd></div>
+    </dl>
   </div>
 
-  <!-- РОБОТИ -->
-  <section class="section" id="works">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Портфоліо</span>
-        <h2>Концепти для реальних закладів Дубна</h2>
-        <p class="lead">Я не малюю «абстрактні шаблони». Я взяв чотири справжні заклади міста,
-        які зараз <b>не мають сайту</b>, і зробив для кожного повноцінний сайт — з їхньою назвою,
-        телефоном, Instagram і адресою. Кожен можна відкрити й покрутити на телефоні.</p>
+  <section class="band" id="works">
+    <div class="wrap">
+      <div class="sechead rv">
+        <h2>Чотири сайти для реальних закладів Дубна</h2>
+        <p class="lead">Я не малюю абстрактні шаблони. Взяв чотири заклади міста, у яких зараз
+        немає сайту, і зробив для кожного повноцінний сайт — з їхньою назвою, телефоном,
+        Instagram і адресою. Кожен можна відкрити й покрутити на телефоні.</p>
       </div>
 
-      <div class="works">
-        <article class="work reveal">
-          <div class="work-frame"><iframe src="works/mister-burger/index.html" loading="lazy" title="Містер Бургер" tabindex="-1"></iframe></div>
-          <div class="work-body">
-            <span class="tag">Стрітфуд · Дубно</span>
-            <h3>Містер Бургер</h3>
-            <p>Мережа стрітфуду. Меню з категоріями, комбо, доставка, два заклади в місті.
-            У hero — <b>об'ємний 3D-бургер</b>, що реагує на курсор.</p>
-            <div class="work-tags"><span class="tag">3D-графіка</span><span class="tag">Меню</span><span class="tag">Доставка</span></div>
-            <a class="btn btn--ghost btn--sm" href="works/mister-burger/index.html" target="_blank" rel="noopener">Відкрити сайт <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg></a>
-          </div>
-        </article>
+      <article class="work-row rv">
+        <div class="work-text">
+          <div class="work-kicker">Мережа стрітфуду, Дубно</div>
+          <h2>Містер Бургер</h2>
+          <p>Меню з категоріями, комбо, доставка й два заклади в місті. Об'ємний бургер
+          у шапці реагує на курсор — це єдиний «гучний» елемент, решта сторінки спокійна.</p>
+          <ul class="work-tags"><li>Меню з вкладками</li><li>Доставка</li><li>Два заклади</li></ul>
+          <a class="btn btn--line btn--sm" href="works/mister-burger/index.html" target="_blank" rel="noopener">Відкрити сайт</a>
+        </div>
+        <div class="work-frame">
+          <div class="work-frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <iframe src="works/mister-burger/index.html" loading="lazy" title="Містер Бургер, макет сайту" tabindex="-1" aria-hidden="true"></iframe>
+        </div>
+      </article>
 
-        <article class="work reveal">
-          <div class="work-frame"><iframe src="works/anna-vi-beauty/index.html" loading="lazy" title="Anna Vi beauty" tabindex="-1"></iframe></div>
-          <div class="work-body">
-            <span class="tag">Салон краси · Дубно</span>
-            <h3>Anna Vi beauty</h3>
-            <p>Манікюр, педикюр, нарощування вій. Світла елегантна тема, прайс, галерея робіт,
-            онлайн-запис і розповідь власниці.</p>
-            <div class="work-tags"><span class="tag">Онлайн-запис</span><span class="tag">Прайс</span><span class="tag">Галерея</span></div>
-            <a class="btn btn--ghost btn--sm" href="works/anna-vi-beauty/index.html" target="_blank" rel="noopener">Відкрити сайт <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg></a>
-          </div>
-        </article>
+      <article class="work-row rv">
+        <div class="work-text">
+          <div class="work-kicker">Студія краси, Дубно</div>
+          <h2>Anna Vi beauty</h2>
+          <p>Манікюр, педикюр, нарощування вій. Світла стримана тема, прайс без «від»,
+          портфоліо робіт і заявка на запис.</p>
+          <ul class="work-tags"><li>Прайс</li><li>Портфоліо</li><li>Онлайн-запис</li></ul>
+          <a class="btn btn--line btn--sm" href="works/anna-vi-beauty/index.html" target="_blank" rel="noopener">Відкрити сайт</a>
+        </div>
+        <div class="work-frame">
+          <div class="work-frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <iframe src="works/anna-vi-beauty/index.html" loading="lazy" title="Anna Vi beauty, макет сайту" tabindex="-1" aria-hidden="true"></iframe>
+        </div>
+      </article>
 
-        <article class="work reveal">
-          <div class="work-frame"><iframe src="works/avatar/index.html" loading="lazy" title="Аватар" tabindex="-1"></iframe></div>
-          <div class="work-body">
-            <span class="tag">Вело · мото · Дубно</span>
-            <h3>Аватар</h3>
-            <p>Велосипеди, електроскутери, мотоцикли та запчастини. Темна технічна тема,
-            каталог із вкладками, анімоване колесо, сервіс і два магазини.</p>
-            <div class="work-tags"><span class="tag">Каталог</span><span class="tag">Анімація</span><span class="tag">Сервіс</span></div>
-            <a class="btn btn--ghost btn--sm" href="works/avatar/index.html" target="_blank" rel="noopener">Відкрити сайт <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg></a>
-          </div>
-        </article>
+      <article class="work-row rv">
+        <div class="work-text">
+          <div class="work-kicker">Вело, електро та мото, Дубно</div>
+          <h2>Аватар</h2>
+          <p>Велосипеди, електроскутери, мотоцикли й запчастини. Каталог таблицями, сервіс
+          із цінами просто на сторінці, два магазини.</p>
+          <ul class="work-tags"><li>Каталог</li><li>Сервіс</li><li>Два магазини</li></ul>
+          <a class="btn btn--line btn--sm" href="works/avatar/index.html" target="_blank" rel="noopener">Відкрити сайт</a>
+        </div>
+        <div class="work-frame">
+          <div class="work-frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <iframe src="works/avatar/index.html" loading="lazy" title="Аватар, макет сайту" tabindex="-1" aria-hidden="true"></iframe>
+        </div>
+      </article>
 
-        <article class="work reveal">
-          <div class="work-frame"><iframe src="works/melan-dental/index.html" loading="lazy" title="Стоматологія Мелан" tabindex="-1"></iframe></div>
-          <div class="work-body">
-            <span class="tag">Стоматологія · Дубно</span>
-            <h3>Стоматологія «Мелан»</h3>
-            <p>Перший приватний стоматологічний кабінет міста, з 1994 року. Чистий медичний стиль,
-            історія у 30 років, лікарі, ціни, FAQ і запис на прийом.</p>
-            <div class="work-tags"><span class="tag">Довіра</span><span class="tag">FAQ</span><span class="tag">Запис</span></div>
-            <a class="btn btn--ghost btn--sm" href="works/melan-dental/index.html" target="_blank" rel="noopener">Відкрити сайт <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg></a>
-          </div>
-        </article>
-      </div>
+      <article class="work-row rv">
+        <div class="work-text">
+          <div class="work-kicker">Стоматологія, Дубно, з 1994 року</div>
+          <h2>Стоматологія «Мелан»</h2>
+          <p>Перший приватний стоматологічний кабінет міста. Історія в тридцять років,
+          лікарі, ціни, FAQ і запис на прийом.</p>
+          <ul class="work-tags"><li>Терапія й імплантація</li><li>FAQ</li><li>Запис</li></ul>
+          <a class="btn btn--line btn--sm" href="works/melan-dental/index.html" target="_blank" rel="noopener">Відкрити сайт</a>
+        </div>
+        <div class="work-frame">
+          <div class="work-frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <iframe src="works/melan-dental/index.html" loading="lazy" title="Стоматологія Мелан, макет сайту" tabindex="-1" aria-hidden="true"></iframe>
+        </div>
+      </article>
 
-      <div class="note-box reveal">
-        <b>Чому серед робіт чужі назви?</b> Це концепти — я зробив їх спеціально для цих закладів,
-        щоб показати, як міг би виглядати їхній сайт. Ніхто з них його ще не замовляв.
-        Хочете такий самий для свого закладу — напишіть, зроблю макет безкоштовно.
-      </div>
-    </div>
-  </section>
-
-  <!-- ЩО РОБЛЮ -->
-  <section class="section section--soft" id="services">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Послуги</span>
-        <h2>Що я роблю</h2>
-      </div>
-      <div class="grid grid-3">
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-box"></use></svg></div>
-          <h3>Сайт-візитка</h3>
-          <p>Одна сторінка, де зібрано все головне: послуги, ціни, фото, контакти й карта проїзду.
-          Найшвидший і найдешевший варіант.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-calendar"></use></svg></div>
-          <h3>Сайт з онлайн-записом</h3>
-          <p>Клієнт сам обирає послугу й час, а заявка приходить вам у Telegram.
-          Менше дзвінків — більше записів.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-tag"></use></svg></div>
-          <h3>Меню або каталог</h3>
-          <p>Меню з фото та цінами за категоріями, кошик або заявка на доставку,
-          акції та новинки.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"></use></svg></div>
-          <h3>Адаптив під телефон</h3>
-          <p>Понад 80% людей заходять з телефона. Усі мої сайти зручні на екрані будь-якого розміру.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-gauge"></use></svg></div>
-          <h3>Швидке завантаження</h3>
-          <p>Без важких конструкторів: сторінка відкривається за секунду навіть на слабкому мобільному інтернеті.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-search"></use></svg></div>
-          <h3>Готовність до Google</h3>
-          <p>Правильні заголовки, описи та розмітка — щоб вас знаходили за назвою закладу й послугою.</p>
-        </div>
+      <div class="disclosure rv">
+        <p><b>Чому серед робіт чужі назви.</b> Це концепти: я зробив їх спеціально для цих
+        закладів, щоб показати, як міг би виглядати їхній сайт. Ніхто з них його ще не
+        замовляв. Хочете такий самий для свого закладу — напишіть, зроблю макет безкоштовно.</p>
       </div>
     </div>
   </section>
 
-  <!-- ЯК ПРАЦЮЮ -->
-  <section class="section" id="process">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Процес</span>
+  <section class="band band-alt" id="what">
+    <div class="wrap split">
+      <div class="rv">
+        <h2>Що входять у роботу</h2>
+        <p class="lead">Не «сторінка в конструкторі», а повний цикл: від структури до
+        домену й показу, як цим користуватись.</p>
+      </div>
+      <div class="rv">
+        <ul class="incl">
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Структура й текст під ваш заклад</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Прайс, меню або каталог</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Форма заявки й кнопки зв'язку</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Адаптив під телефон і планшет</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Карта проїзду та графік роботи</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Розмітка для Google і базове SEO</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Підключення домену й публікація</li>
+          <li><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg>Правки протягом двох тижнів після запуску</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="sechead rv">
         <h2>Як я працюю</h2>
-        <p class="lead">Від першого повідомлення до готового сайту — без вашої участі в технічних деталях.</p>
+        <p class="lead">Від першого повідомлення до готового сайту без вашої участі в технічних деталях.</p>
       </div>
-      <div class="steps">
-        <div class="step reveal"><h3>Обговорюємо</h3><p>Ви розповідаєте про заклад: що показуєте, які послуги, які ціни. 15 хвилин у Telegram.</p></div>
-        <div class="step reveal"><h3>Показую макет</h3><p>Роблю макет безкоштовно й без зобов'язань. Дивитесь, кажете, що змінити.</p></div>
-        <div class="step reveal"><h3>Доопрацьовуємо</h3><p>Правлю до того стану, поки вам не сподобається. Правки на цьому етапі не коштують нічого.</p></div>
-        <div class="step reveal"><h3>Публікую</h3><p>Викладаю сайт в інтернет, підключаю домен і показую, як ним користуватись.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ЩО ВХОДИТЬ -->
-  <section class="section section--soft">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Комплект</span>
-        <h2>Що входить у роботу</h2>
-        <p class="lead">Ціну називаю після того, як зрозумію обсяг — щоб не брати зайвого й не
-        продешевити. Обговорюється індивідуально, першим клієнтам — знижка.</p>
-      </div>
-      <div class="includes">
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Дизайн під ваш заклад — кольори, фото, структура</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Прайс, меню або каталог послуг</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Форма заявки й кнопки зв'язку (Telegram, телефон)</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Адаптив під телефон і планшет</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Карта проїзду та години роботи</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Розмітка для Google і базове SEO</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Підключення домену й публікація в інтернеті</span></div>
-        <div class="inc reveal"><i><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"></use></svg></i><span>Правки протягом двох тижнів після запуску</span></div>
+      <div class="steps rv">
+        <div class="step">
+          <div class="n">Крок 1</div>
+          <h3>Обговорюємо</h3>
+          <p>Ви розповідаєте про заклад: що показуєте, які послуги, які ціни. П'ятнадцять хвилин у Telegram.</p>
+        </div>
+        <div class="step">
+          <div class="n">Крок 2</div>
+          <h3>Показую макет</h3>
+          <p>Роблю макет безкоштовно й без зобов'язань. Дивитесь, кажете, що змінити.</p>
+        </div>
+        <div class="step">
+          <div class="n">Крок 3</div>
+          <h3>Доопрацьовуємо</h3>
+          <p>Правлю до того стану, поки вам не сподобається. Правки на цьому етапі не коштують нічого.</p>
+        </div>
+        <div class="step">
+          <div class="n">Крок 4</div>
+          <h3>Публікую</h3>
+          <p>Викладаю сайт в інтернет, підключаю домен і показую, як ним користуватись.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- КОНТАКТИ -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Контакти</span>
+  <section class="band band-alt" id="contact">
+    <div class="wrap split split--wide">
+      <div class="rv">
         <h2>Покажу макет саме для вашого закладу</h2>
         <p class="lead">Безкоштовно й без зобов'язань: подивитесь, як міг би виглядати ваш сайт,
-        і вирішите самі. Достатньо одного повідомлення.</p>
-      </div>
-      <div class="contact-two">
-        <div class="card reveal">
-          <div class="contact-list">
-            <div class="contact-item"><div class="ci-ic"><svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg></div><div><b>Telegram</b>
-              <span><a href="https://t.me/Sanik9991" target="_blank" rel="noopener">@Sanik9991</a> — відповідаю найшвидше</span></div></div>
-            <div class="contact-item"><div class="ci-ic"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></div><div><b>Де я</b>
-              <span>Дубно, Рівненська область</span></div></div>
-            <div class="contact-item"><div class="ci-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></div><div><b>Коли пишу</b>
-              <span>Пн–Сб, 10:00–20:00</span></div></div>
-            <div class="contact-item"><div class="ci-ic"><svg class="ic" aria-hidden="true"><use href="#i-flame"></use></svg></div><div><b>Відповідь</b>
-              <span>Протягом години в робочий час</span></div></div>
+        і вирішите самі.</p>
+        <div style="margin-top:24px">
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg></span>
+            <div><b>Telegram</b><span><a href="https://t.me/Sanik9991" target="_blank" rel="noopener">@Sanik9991</a> — відповідаю найшвидше</span></div>
           </div>
-          <a class="btn" style="margin-top:20px" href="https://t.me/Sanik9991" target="_blank" rel="noopener">Написати в Telegram</a>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <div><b>Де я</b><span>Дубно, Рівненська область</span></div>
+          </div>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+            <div><b>Коли пишу</b><span>Пн–Сб, 10:00 – 20:00</span></div>
+          </div>
+          <div class="crow" style="border:0">
+            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-checkCircle"></use></svg></span>
+            <div><b>Відповідь</b><span>Протягом години в робочий час</span></div>
+          </div>
         </div>
-        <form class="card reveal" data-form novalidate>
-          <h3 style="margin-bottom:6px">Або залиште заявку</h3>
-          <p style="font-size:14.4px">Передзвоню або напишу в Telegram — як вам зручніше.</p>
-          <div class="field"><label for="p-name">Ваше ім'я</label>
-            <input class="input" id="p-name" name="name" placeholder="Наприклад, Олег" autocomplete="name"></div>
-          <div class="field"><label for="p-phone">Телефон або @username</label>
-            <input class="input" id="p-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" required></div>
-          <div class="field"><label for="p-type">Що за заклад</label>
-            <select class="input" id="p-type" name="type">
-              <option>Кафе / ресторан</option><option>Салон краси / барбершоп</option>
-              <option>Автосервіс / СТО</option><option>Стоматологія / клініка</option>
-              <option>Магазин</option><option>Інше</option>
-            </select></div>
-          <div class="field"><label for="p-msg">Що потрібно (не обов'язково)</label>
-            <textarea class="input" id="p-msg" name="message" rows="3" placeholder="Хочу сайт з меню і доставкою"></textarea></div>
-          <button class="btn btn--block" type="submit">Надіслати заявку</button>
-          <p class="form-note">Нічого не нав'язую: спершу показую макет, вирішуєте ви.</p>
-          <div class="form-success"></div>
-        </form>
       </div>
+
+      <form class="panel rv" data-form novalidate>
+        <h3>Або залиште заявку</h3>
+        <p class="small">Передзвоню або напишу в Telegram — як вам зручніше.</p>
+        <div class="field">
+          <label for="pf-name">Ваше ім'я</label>
+          <input class="inp" id="pf-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Олег...">
+        </div>
+        <div class="field">
+          <label for="pf-phone">Телефон</label>
+          <input class="inp" id="pf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+        </div>
+        <div class="field">
+          <label for="pf-type">Що за заклад</label>
+          <select class="inp" id="pf-type" name="type">
+            <option>Кафе або ресторан</option>
+            <option>Салон краси, барбершоп</option>
+            <option>Автосервіс, СТО</option>
+            <option>Стоматологія, клініка</option>
+            <option>Магазин</option>
+            <option>Інше</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pf-msg">Що потрібно</label>
+          <textarea class="inp" id="pf-msg" name="message" rows="3" placeholder="Хочу сайт з меню і доставкою..."></textarea>
+        </div>
+        <button class="btn btn--block" type="submit">Надіслати заявку</button>
+        <p class="formnote">Нічого не нав'язую: спершу показую макет, вирішуєте ви.</p>
+        <div class="status" role="status"></div>
+      </form>
     </div>
   </section>
-
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div><b>Олександр</b> · веб-дизайн для бізнесу в Дубні</div>
-    <div><a href="https://t.me/Sanik9991" target="_blank" rel="noopener">Telegram @Sanik9991</a></div>
-    <div>© <span data-year>2026</span></div>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:12px">
+          <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-box"></use></svg></span>
+          Олександр
+        </a>
+        <p class="small measure">Веб-дизайн для малого бізнесу в Дубні. Сайти без конструкторів
+        і щомісячних підписок.</p>
+      </div>
+      <div>
+        <h4>Розділи</h4>
+        <a href="#works">Роботи</a><a href="#what">Що входять</a><a href="#how">Як працюю</a><a href="#contact">Контакти</a>
+      </div>
+      <div>
+        <h4>Зв'язок</h4>
+        <a href="https://t.me/Sanik9991" target="_blank" rel="noopener">Telegram @Sanik9991</a>
+        <a href="#contact">Залишити заявку</a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>Олександр, Дубно, Рівненська область</span>
+      <span>Концепти закладів зроблені як пропозиція, а не як виконане замовлення.</span>
+    </div>
   </div>
 </footer>
 
+<button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
+
 <script src="works/assets/sprite.js"></script>
-<script src="assets/app.js"></script>
+<script src="works/assets/site.js"></script>
 </body>
 </html>

@@ -1,46 +1,52 @@
-/* SiteHunter — интерактив клиентских сайтов: меню, анимации, 3D-наклон, счётчики. */
+/* Интерактив сайтов SiteHunter.
+   Принципы: только transform/opacity в анимациях, клавиатура для вкладок,
+   aria-live для статусов, уважение prefers-reduced-motion. */
 (function () {
   "use strict";
 
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- шапка ---------- */
+  /* ---------- шапка и кнопка «наверх» ---------- */
   var hdr = document.querySelector(".hdr");
+  var up = document.querySelector(".up");
   function onScroll() {
-    if (hdr) hdr.classList.toggle("is-stuck", window.scrollY > 12);
-    var up = document.querySelector(".up");
+    if (hdr) hdr.classList.toggle("is-stuck", window.scrollY > 8);
     if (up) up.classList.toggle("is-on", window.scrollY > 700);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- мобильное меню ---------- */
+  if (up) {
+    up.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+  }
+
+  /* ---------- мобильное меню (Esc закрывает) ---------- */
   var burger = document.querySelector(".burger");
   var menu = document.querySelector(".menu");
   if (burger && menu) {
-    burger.addEventListener("click", function () {
-      var open = menu.classList.toggle("is-open");
-      burger.classList.toggle("is-open", open);
+    function setMenu(open) {
+      menu.classList.toggle("is-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    burger.addEventListener("click", function () {
+      setMenu(!menu.classList.contains("is-open"));
     });
     menu.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
-        menu.classList.remove("is-open");
-        burger.classList.remove("is-open");
+      if (e.target.tagName === "A") setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.classList.contains("is-open")) {
+        setMenu(false);
+        burger.focus();
       }
     });
   }
 
-  /* ---------- кнопка наверх ---------- */
-  var up = document.querySelector(".up");
-  if (up) up.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
-  });
-
   /* ---------- появление блоков ----------
-     Надёжная схема: IntersectionObserver даёт красивое появление, а
-     scroll-проверка гарантирует, что ни один блок не останется невидимым
-     (например, если страницу прокрутили слишком быстро). */
+     IntersectionObserver даёт плавность, scroll-проверка гарантирует,
+     что блок не останется невидимым при быстрой прокрутке. */
   var rvs = document.querySelectorAll(".rv");
   function revealAll() {
     var vh = window.innerHeight || 800;
@@ -58,7 +64,7 @@
         });
       }, { rootMargin: "0px 0px -6% 0px", threshold: 0.06 });
       rvs.forEach(function (el, i) {
-        el.style.transitionDelay = Math.min(i % 5, 4) * 60 + "ms";
+        el.style.transitionDelay = Math.min(i % 5, 4) * 55 + "ms";
         io.observe(el);
       });
     }
@@ -70,23 +76,81 @@
     }
     window.addEventListener("scroll", onRvScroll, { passive: true });
     window.addEventListener("resize", onRvScroll);
-    window.addEventListener("load", onRvScroll);
-
-    /* Сразу показываем то, что уже на экране, плюс подстраховка на случай
-       быстрой прокрутки, поздней загрузки шрифтов и смены раскладки. */
     revealAll();
     requestAnimationFrame(revealAll);
     [200, 600, 1400, 2600].forEach(function (d) { setTimeout(revealAll, d); });
     var guard = 0;
-    var guardId = setInterval(function () {
+    var gid = setInterval(function () {
       revealAll();
-      if (++guard > 20 || document.querySelectorAll(".rv:not(.is-in)").length === 0) {
-        clearInterval(guardId);
-      }
+      if (++guard > 20 || document.querySelectorAll(".rv:not(.is-in)").length === 0) clearInterval(gid);
     }, 700);
   }
 
-  /* ---------- счётчики ---------- */
+  /* ---------- вкладки: мышь + клавиатура (стрелки, Home, End) ---------- */
+  document.querySelectorAll("[data-tabs]").forEach(function (group) {
+    var tabs = Array.prototype.slice.call(group.querySelectorAll(".tab"));
+    var panels = group.querySelectorAll(".panel");
+    if (!tabs.length) return;
+
+    function activate(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(function (p) { p.classList.remove("is-active"); p.hidden = true; });
+      var target = group.querySelector('[data-panel="' + tab.dataset.tab + '"]');
+      if (target) { target.classList.add("is-active"); target.hidden = false; }
+      if (focus) tab.focus();
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { activate(tab, false); });
+      tab.addEventListener("keydown", function (e) {
+        var k = e.key, n = null;
+        if (k === "ArrowRight" || k === "ArrowDown") n = tabs[(i + 1) % tabs.length];
+        else if (k === "ArrowLeft" || k === "ArrowUp") n = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (k === "Home") n = tabs[0];
+        else if (k === "End") n = tabs[tabs.length - 1];
+        if (n) { e.preventDefault(); activate(n, true); }
+      });
+    });
+  });
+
+  /* ---------- формы: понятный статус, защита от двойной отправки ---------- */
+  document.querySelectorAll("form[data-form]").forEach(function (form) {
+    var status = form.querySelector(".status");
+    if (status) status.setAttribute("aria-live", "polite");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var tel = form.querySelector('input[type="tel"]');
+      if (tel && tel.value.replace(/\D/g, "").length < 9) {
+        tel.focus();
+        tel.setAttribute("aria-invalid", "true");
+        setTimeout(function () { tel.removeAttribute("aria-invalid"); }, 2200);
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Надсилаємо..."; }
+      // демонстрационный макет: реального запроса нет
+      setTimeout(function () {
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+        if (status) {
+          var nameEl = form.querySelector('input[name="name"]');
+          var who = nameEl && nameEl.value.trim() ? nameEl.value.trim() + ", " : "";
+          status.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-checkCircle"></use></svg>' +
+            "<span>" + who + "заявку прийнято. Зателефонуємо протягом 15 хвилин у робочий час.</span>";
+          status.classList.add("is-on");
+        }
+        form.reset();
+      }, 420);
+    });
+  });
+
+  /* ---------- счётчики (если на странице есть) ---------- */
   var counters = document.querySelectorAll("[data-count]");
   if (counters.length && "IntersectionObserver" in window) {
     var cio = new IntersectionObserver(function (es) {
@@ -100,65 +164,20 @@
         var t0 = null;
         function step(ts) {
           if (!t0) t0 = ts;
-          var p = Math.min(1, (ts - t0) / 1400);
-          var eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(target * eased).toLocaleString("uk-UA") + suffix;
+          var p = Math.min(1, (ts - t0) / 1200);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString("uk-UA") + suffix;
           if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.5 });
     counters.forEach(function (c) { cio.observe(c); });
   }
 
-  /* ---------- вкладки ---------- */
-  document.querySelectorAll("[data-tabs]").forEach(function (group) {
-    var tabs = group.querySelectorAll(".tab");
-    var panels = group.querySelectorAll(".panel");
-    tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        tabs.forEach(function (t) { t.classList.remove("is-active"); });
-        panels.forEach(function (p) { p.classList.remove("is-active"); });
-        tab.classList.add("is-active");
-        var t = group.querySelector('[data-panel="' + tab.dataset.tab + '"]');
-        if (t) t.classList.add("is-active");
-      });
-    });
-  });
-
-  /* ---------- формы ---------- */
-  document.querySelectorAll("form[data-form]").forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var phone = form.querySelector('[name="phone"]');
-      if (phone && phone.value.replace(/\D/g, "").length < 9) {
-        phone.focus();
-        phone.style.borderColor = "#ff5c7a";
-        setTimeout(function () { phone.style.borderColor = ""; }, 1800);
-        return;
-      }
-      var name = form.querySelector('[name="name"]');
-      var ok = form.querySelector(".ok-msg");
-      if (ok) {
-        var who = name && name.value.trim() ? name.value.trim() + ", " : "";
-        ok.textContent = "";
-        var svg = '<svg class="ic" aria-hidden="true"><use href="#i-checkCircle"></use></svg>';
-        ok.innerHTML = svg + "<span>" + who + "дякуємо! Заявку прийнято — зв'яжемося протягом 15 хвилин у робочий час.</span>";
-        ok.classList.add("is-on");
-      }
-      form.reset();
-    });
-  });
-
-  /* ---------- бегущая строка: дублируем для бесшовности ---------- */
-  document.querySelectorAll(".marquee-track").forEach(function (track) {
-    track.innerHTML = track.innerHTML + track.innerHTML;
-  });
-
-  /* ---------- 3D-наклон картинки за курсором ---------- */
+  /* ---------- 3D-наклон за курсором (один авторский момент на странице) ---------- */
   if (!reduce) {
     document.querySelectorAll("[data-tilt]").forEach(function (el) {
-      var max = parseFloat(el.dataset.tilt) || 14;
+      var max = parseFloat(el.dataset.tilt) || 12;
       var base = parseFloat(el.dataset.tiltBase || "0");
       var zone = el.closest("[data-tilt-zone]") || el.parentElement;
       if (!zone) return;
@@ -173,7 +192,7 @@
     });
   }
 
-  /* ---------- бургер: слои «дихають», поки видно ---------- */
+  /* ---------- слои 3D-бургера «дихають», поки видно ---------- */
   var b3 = document.querySelector("[data-burger3d]");
   if (b3 && !reduce && "IntersectionObserver" in window) {
     var running = false, t0 = 0, visible = false;
@@ -181,15 +200,30 @@
       if (!visible) { running = false; return; }
       if (!t0) t0 = ts;
       var t = (ts - t0) / 1000;
-      // плавне «дихання» 0…18px плюс крихітне погойдування шарів
-      var s = (Math.sin(t * 0.9) * 0.5 + 0.5) * 18;
-      b3.style.setProperty("--spread", s.toFixed(1) + "px");
+      b3.style.setProperty("--spread", ((Math.sin(t * 0.9) * 0.5 + 0.5) * 16).toFixed(1) + "px");
       requestAnimationFrame(loop);
     }
-    var bio = new IntersectionObserver(function (es) {
+    new IntersectionObserver(function (es) {
       visible = es[0].isIntersecting;
       if (visible && !running) { running = true; t0 = 0; requestAnimationFrame(loop); }
-    }, { threshold: 0.05 });
-    bio.observe(b3);
+    }, { threshold: 0.05 }).observe(b3);
   }
+
+  /* ---------- превью работ на главной портфолио ---------- */
+  function fitPreviews() {
+    var frames = document.querySelectorAll(".work-frame");
+    if (!frames.length) return;
+    frames.forEach(function (frame) {
+      var iframe = frame.querySelector("iframe");
+      if (!iframe) return;
+      var w = frame.clientWidth;
+      if (!w) return;
+      var scale = w / 1280;
+      iframe.style.transform = "scale(" + scale + ")";
+      frame.style.height = Math.round(880 * scale) + "px";
+    });
+  }
+  window.addEventListener("resize", fitPreviews);
+  window.addEventListener("load", fitPreviews);
+  fitPreviews();
 })();
