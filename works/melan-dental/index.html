@@ -34,7 +34,7 @@
   .intro-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .intro-photo { margin: 0; border-radius: var(--r-lg); overflow: hidden;
     background: var(--surface-2); border: 1px solid var(--rule); }
-  .intro-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+  .intro-photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 
   /* ---------- смуга з цифрами ---------- */
   .years { display: grid; grid-template-columns: repeat(3, 1fr);
@@ -66,7 +66,9 @@
   .tl p { margin: 0; font-size: 15px; max-width: 56ch; }
 
   /* ---------- послуги та питання: розкриття ---------- */
-  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  /* align-items: start — иначе соседняя карточка растягивается до высоты раскрытой */
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    align-items: start; }
   .svc { border: 1px solid var(--rule); border-radius: var(--r-lg);
     background: var(--surface); overflow: hidden; box-shadow: var(--shadow-sm);
     transition: border-color 240ms ease, box-shadow 240ms ease,
@@ -186,8 +188,8 @@
         </div>
       </div>
       <figure class="intro-photo rv" data-spotlight>
-        <img src="../assets/img/dental-g1.jpg" width="1200" height="1800" fetchpriority="high"
-             alt="Сучасний кабінет стоматології: ресепшн, обладнання, світле приміщення">
+        <img src="../assets/img/hero-dental.jpg" width="1000" height="1250" fetchpriority="high"
+             alt="Лікарі стоматології «Мелан» в кабінеті під час прийому">
       </figure>
     </div>
   </section>
@@ -264,10 +266,9 @@
   </section>
 
   <section class="band" id="history">
-    <div class="wrap split">
-      <div class="rv">
+    <div class="wrap stack">
+      <div class="stack-head rv">
         <h2>Як ми працювали</h2>
-        <p class="lead">Прокрутіть — луч пройде крізь роки.</p>
       </div>
       <div class="rv beam-host" data-beam>
         <div class="beam-wrap" aria-hidden="true">
@@ -335,8 +336,8 @@
   </section>
 
   <section class="band" id="doctors">
-    <div class="wrap split">
-      <div class="rv">
+    <div class="wrap stack">
+      <div class="stack-head rv">
         <h2>Лікарі</h2>
         <p class="lead">Ті, хто вас прийматиме.</p>
       </div>
@@ -362,8 +363,8 @@
   </section>
 
   <section class="band band-alt" id="faq">
-    <div class="wrap split">
-      <div class="rv">
+    <div class="wrap stack">
+      <div class="stack-head rv">
         <h2>Часті питання</h2>
         <p class="lead">Те, що питають найчастіше.</p>
       </div>

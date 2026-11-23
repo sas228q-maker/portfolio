@@ -539,3 +539,22 @@ section { position: relative; }
 /* Атрибут hidden должен побеждать любой авторский display.
    Без этого .tabs{display:flex} не скрывался при активном фильтре. */
 [hidden] { display: none !important; }
+
+
+/* ==========================================================================
+   СТЕК С ЦЕНТРИРОВАННЫМ ЗАГОЛОВКОМ
+   Было: слева заголовок с подводкой, справа блок — под левым текстом
+   оставалась пустота, а взгляд прыгал по двум колонкам.
+   Стало: заголовок по центру, содержимое под ним на всю ширину.
+   ========================================================================== */
+.stack { display: block; }
+.stack > .stack-head { text-align: center; max-width: 64ch; margin: 0 auto 34px; }
+.stack > .stack-head h2 { margin-bottom: 10px; }
+.stack > .stack-head .lead { margin-left: auto; margin-right: auto; }
+.stack > .stack-body { max-width: 980px; margin: 0 auto; }
+.stack > .stack-body--wide { max-width: none; }
+.stack .ilist { display: grid; grid-template-columns: 1fr 1fr; gap: 0 34px; }
+@media (max-width: 760px) {
+  .stack .ilist { grid-template-columns: 1fr; }
+  .stack > .stack-head { margin-bottom: 24px; }
+}
