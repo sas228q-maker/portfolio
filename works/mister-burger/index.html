@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Містер Бургер — Дубно | Стрітфуд, доставка, меню</title>
+<meta name="description" content="Містер Бургер у Дубні: соковиті бургери, комбо, снеки та напої. Два заклади в місті, доставка за 30 хвилин. Меню з цінами.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%235b8cff'/%3E%3Cstop%20offset='1'%20stop-color='%239b5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='45'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='white'%20text-anchor='middle'%3E%D0%9E%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Олександр · веб-дизайн, Дубно">
+<meta property="og:title" content="Містер Бургер — Дубно | Стрітфуд, доставка, меню">
+<meta property="og:description" content="Концепт сайту мережі стрітфуду «Містер Бургер» у Дубні: 3D-бургер, меню, доставка.">
+<meta property="og:url" content="https://USERNAME.github.io/portfolio/works/mister-burger/index.html">
+<meta property="og:image" content="https://USERNAME.github.io/portfolio/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0f17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/premium.css">
+<style>
+  /* ====== 3D-БУРГЕР ====== */
+  .b3-zone { position: relative; display: grid; place-items: center; min-height: 520px; }
+  .b3-glow { position: absolute; width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,122,24,.42), rgba(255,210,63,.14) 45%, transparent 70%);
+    filter: blur(38px); animation: breathe 5.5s ease-in-out infinite; }
+  @keyframes breathe { 0%,100%{transform:scale(1);opacity:.85} 50%{transform:scale(1.09);opacity:1} }
+
+  .b3 { perspective: 1100px; width: 380px; max-width: 92vw; }
+  .b3-stack { position: relative; height: 430px; transform-style: preserve-3d;
+    transform: rotateX(-13deg); transition: transform .35s cubic-bezier(.2,.8,.3,1);
+    animation: floaty 6s ease-in-out infinite; }
+  @keyframes floaty { 0%,100%{ translate: 0 0 } 50%{ translate: 0 -14px } }
+
+  .b3-layer { position: absolute; left: 50%; transform-style: preserve-3d;
+    translate: -50% 0; bottom: calc(var(--y) + var(--spread, 0px) * var(--k));
+    will-change: transform; }
+
+  /* верхня булочка */
+  .b3-top { width: 300px; height: 132px; z-index: 6;
+    border-radius: 150px 150px 46px 46px / 120px 120px 40px 40px;
+    background:
+      radial-gradient(circle at 28% 34%, rgba(255,255,255,.5) 0 4px, transparent 5px),
+      radial-gradient(circle at 52% 22%, rgba(255,255,255,.42) 0 3.5px, transparent 4.5px),
+      radial-gradient(circle at 74% 40%, rgba(255,255,255,.45) 0 4px, transparent 5px),
+      radial-gradient(circle at 40% 62%, rgba(255,255,255,.32) 0 3px, transparent 4px),
+      radial-gradient(circle at 64% 66%, rgba(255,255,255,.3) 0 3px, transparent 4px),
+      linear-gradient(178deg, #f0b466 0%, #e09b4c 46%, #b9762f 100%);
+    box-shadow: inset 0 -14px 26px rgba(90,45,10,.42), inset 0 16px 24px rgba(255,235,190,.4),
+      0 18px 34px -14px rgba(0,0,0,.7); }
+
+  /* салат */
+  .b3-lettuce { width: 328px; height: 40px; z-index: 5;
+    border-radius: 46% 54% 48% 52% / 92% 88% 62% 58%;
+    background: linear-gradient(180deg, #7fd14a, #3f9b2c 62%, #2c7520);
+    box-shadow: inset 0 -8px 16px rgba(0,0,0,.4), 0 8px 18px -8px rgba(0,0,0,.6); }
+
+  /* сир */
+  .b3-cheese { width: 306px; height: 30px; z-index: 4; border-radius: 10px;
+    background: linear-gradient(180deg, #ffd35c, #f5a623);
+    box-shadow: inset 0 -7px 14px rgba(150,85,0,.4), 0 8px 16px -8px rgba(0,0,0,.6); }
+  .b3-cheese::before, .b3-cheese::after { content: ""; position: absolute; top: 100%;
+    width: 20px; height: 20px; background: #f7b12e; }
+  .b3-cheese::before { left: 44px; clip-path: polygon(0 0,100% 0,72% 100%,18% 78%); }
+  .b3-cheese::after { right: 58px; clip-path: polygon(0 0,100% 0,40% 82%,0 100%); }
+
+  /* котлета */
+  .b3-patty { width: 312px; height: 56px; z-index: 3; border-radius: 28px;
+    background:
+      repeating-linear-gradient(94deg, rgba(0,0,0,.14) 0 6px, transparent 6px 15px),
+      linear-gradient(180deg, #6b4327, #43301c 58%, #2c1d10);
+    box-shadow: inset 0 -10px 20px rgba(0,0,0,.6), inset 0 10px 16px rgba(160,110,60,.35),
+      0 10px 22px -10px rgba(0,0,0,.75); }
+
+  /* томат */
+  .b3-tomato { width: 292px; height: 24px; z-index: 2; border-radius: 50%;
+    background: linear-gradient(180deg, #ef5a45, #b8281c);
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,.45), 0 6px 14px -6px rgba(0,0,0,.6); }
+
+  /* нижня булочка */
+  .b3-bottom { width: 300px; height: 78px; z-index: 1;
+    border-radius: 40px 40px 130px 130px / 30px 30px 100px 100px;
+    background: linear-gradient(180deg, #e6a95c, #c07f36 55%, #92591f);
+    box-shadow: inset 0 12px 22px rgba(255,225,180,.28), inset 0 -12px 24px rgba(70,32,5,.5),
+      0 26px 44px -18px rgba(0,0,0,.8); }
+
+  .b3-shadow { position: absolute; left: 50%; bottom: 14px; translate: -50% 0;
+    width: 320px; height: 46px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,.72), transparent 70%);
+    filter: blur(13px); z-index: 0; }
+
+  /* літаючі інгредієнти */
+  .float-i { position: absolute; border-radius: 50%; animation: orbit 7s ease-in-out infinite; }
+  @keyframes orbit { 0%,100%{ translate: 0 0 } 50%{ translate: 6px -20px } }
+  .fi-1 { width: 26px; height: 20px; left: 4%; top: 22%; background: linear-gradient(180deg,#8fd94f,#3f9b2c);
+    border-radius: 60% 40% 55% 45%; animation-delay: .2s; }
+  .fi-2 { width: 20px; height: 20px; right: 6%; top: 32%; background: radial-gradient(circle at 35% 30%, #ff8a70, #c93a26);
+    animation-delay: .9s; }
+  .fi-3 { width: 14px; height: 11px; right: 12%; bottom: 24%; background: #f0d9a8;
+    border-radius: 50%; animation-delay: 1.6s; }
+  .fi-4 { width: 18px; height: 14px; left: 10%; bottom: 28%; background: linear-gradient(180deg,#ffd35c,#f5a623);
+    border-radius: 4px; transform: rotate(-18deg); animation-delay: 2.2s; }
+
+  /* акцентні блоки */
+  .order-band { border-radius: var(--r-lg); padding: 44px; border: 1px solid var(--line);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface));
+    display: grid; grid-template-columns: 1.3fr auto; gap: 30px; align-items: center; }
+  .place { display: flex; gap: 18px; padding: 22px; border-radius: var(--r-md);
+    background: var(--surface); border: 1px solid var(--line); }
+  .place-ic { width: 50px; height: 50px; border-radius: 15px; flex: none; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+  @media (max-width: 900px) {
+    .b3-zone { min-height: 420px; } .b3-stack { height: 350px; }
+    .b3 { width: 290px; }
+    .b3-top { width: 230px; height: 104px; } .b3-lettuce { width: 252px; height: 32px; }
+    .b3-cheese { width: 236px; height: 24px; } .b3-patty { width: 240px; height: 44px; }
+    .b3-tomato { width: 224px; height: 20px; } .b3-bottom { width: 230px; height: 62px; }
+    .b3-shadow { width: 250px; }
+    .order-band { grid-template-columns: 1fr; padding: 28px; }
+  }
+</style>
+</head>
+<body class="t-burger">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top"><span class="logo-badge"><svg class="ic"><use href="#i-burger"></use></svg></span> Містер Бургер</a>
+    <nav class="menu">
+      <a href="#menu">Меню</a>
+      <a href="#about">Про нас</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#places">Заклади</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="hdr-phone" href="tel:+380668721508"><svg class="ic ic--sm"><use href="#i-phone"></use></svg> 066 872 15 08</a>
+      <a class="btn btn--sm" href="#menu">Замовити</a>
+    </div>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero hero--tall">
+    <div class="glow" style="width:520px;height:520px;background:var(--accent);top:-120px;left:-140px;opacity:.22"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><svg class="ic ic--sm"><use href="#i-flame"></use></svg> Мережа на Заході України</span>
+        <h1 style="margin-top:20px">Стрітфуд<br><span class="grad">твого міста</span></h1>
+        <p class="lead">Соковиті бургери на грилі, хрустка картопля, комбо на компанію та напої.
+        Готуємо після замовлення — не тримаємо під лампою.</p>
+        <div class="hero-cta">
+          <a class="btn btn--lg" href="#menu"><svg class="ic"><use href="#i-burger"></use></svg> Дивитись меню</a>
+          <a class="btn btn--ghost btn--lg" href="tel:+380668721508"><svg class="ic"><use href="#i-truck"></use></svg> Доставка</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact"><div class="fv"><span data-count="8639" data-suffix="">0</span></div><div class="fl">підписників в Instagram</div></div>
+          <div class="fact"><div class="fv"><span data-count="2">0</span></div><div class="fl">заклади в Дубні</div></div>
+          <div class="fact"><div class="fv"><span data-count="30" data-suffix=" хв">0</span></div><div class="fl">доставка по місту</div></div>
+        </div>
+      </div>
+
+      <div class="b3-zone" data-tilt-zone>
+        <div class="b3-glow"></div>
+        <span class="float-i fi-1"></span><span class="float-i fi-2"></span>
+        <span class="float-i fi-3"></span><span class="float-i fi-4"></span>
+        <div class="b3">
+          <div class="b3-stack" data-burger3d data-tilt="13" data-tilt-base="-13">
+            <div class="b3-shadow"></div>
+            <div class="b3-layer b3-bottom" style="--y:26px;--k:0"></div>
+            <div class="b3-layer b3-tomato" style="--y:96px;--k:.16"></div>
+            <div class="b3-layer b3-patty" style="--y:112px;--k:.34"></div>
+            <div class="b3-layer b3-cheese" style="--y:166px;--k:.52"></div>
+            <div class="b3-layer b3-lettuce" style="--y:190px;--k:.72"></div>
+            <div class="b3-layer b3-top" style="--y:222px;--k:1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span><i></i> Соковиті бургери</span><span><i></i> Свіже м'ясо щодня</span>
+      <span><i></i> Доставка 30 хвилин</span><span><i></i> Комбо вигідніше</span>
+      <span><i></i> Два заклади в Дубні</span><span><i></i> Готуємо після замовлення</span>
+    </div>
+  </div>
+
+  <!-- МЕНЮ -->
+  <section class="pad" id="menu">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">Меню</span>
+        <h2>Обери своє</h2>
+        <p class="lead">Класика, гострі варіанти та комбо на компанію. Ціни — приклад,
+        у фінальному сайті поставимо ваші.</p>
+      </div>
+
+      <div data-tabs class="rv">
+        <div class="tabs">
+          <button class="tab is-active" data-tab="b" type="button"><svg class="ic ic--sm"><use href="#i-burger"></use></svg> Бургери</button>
+          <button class="tab" data-tab="c" type="button"><svg class="ic ic--sm"><use href="#i-box"></use></svg> Комбо</button>
+          <button class="tab" data-tab="s" type="button"><svg class="ic ic--sm"><use href="#i-fries"></use></svg> Снеки</button>
+          <button class="tab" data-tab="d" type="button"><svg class="ic ic--sm"><use href="#i-cup"></use></svg> Напої</button>
+        </div>
+
+        <div class="panel is-active" data-panel="b">
+          <div class="grid g2">
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-burger"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Містер Бургер</span><span class="dish-dots"></span><span class="dish-price">165 ₴</span></div>
+              <p class="dish-desc">Яловича котлета 150 г, чедер, томат, салат, фірмовий соус</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-burger"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Дабл Чіз</span><span class="dish-dots"></span><span class="dish-price">215 ₴</span></div>
+              <p class="dish-desc">Дві котлети, подвійний чедер, маринований огірок, цибуля</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-flame"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Гострий Диявол</span><span class="dish-dots"></span><span class="dish-price">195 ₴</span></div>
+              <p class="dish-desc">Котлета з перцем чилі, халапеньйо, соус шрірача</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-leaf"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Веггі</span><span class="dish-dots"></span><span class="dish-price">145 ₴</span></div>
+              <p class="dish-desc">Котлета з нуту, гуакамоле, томат, рукола</p></div></div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="c">
+          <div class="grid g3">
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-box"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Комбо Solo</span><span class="dish-dots"></span><span class="dish-price">205 ₴</span></div>
+              <p class="dish-desc">Бургер + картопля фрі + напій 0,5 л</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-box"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Комбо Duo</span><span class="dish-dots"></span><span class="dish-price">385 ₴</span></div>
+              <p class="dish-desc">2 бургери + 2 фрі + 2 напої + соус</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-users"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Комбо Party</span><span class="dish-dots"></span><span class="dish-price">720 ₴</span></div>
+              <p class="dish-desc">4 бургери + 2 великі фрі + 4 напої + снеки</p></div></div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="s">
+          <div class="grid g3">
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-fries"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Картопля фрі</span><span class="dish-dots"></span><span class="dish-price">65 ₴</span></div>
+              <p class="dish-desc">Хрустка, з морською сіллю</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-flame"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Крильця BBQ</span><span class="dish-dots"></span><span class="dish-price">155 ₴</span></div>
+              <p class="dish-desc">6 шт, у соусі барбекю</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-cheese"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Сирні кульки</span><span class="dish-dots"></span><span class="dish-price">95 ₴</span></div>
+              <p class="dish-desc">6 шт, з часниковим соусом</p></div></div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="d">
+          <div class="grid g3">
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-cup"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Кола / Лемонад</span><span class="dish-dots"></span><span class="dish-price">45 ₴</span></div>
+              <p class="dish-desc">0,5 л, охолоджений</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-coffee"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Кава з собою</span><span class="dish-dots"></span><span class="dish-price">55 ₴</span></div>
+              <p class="dish-desc">Американо, капучино, лате</p></div></div>
+            <div class="dish"><div class="dish-img"><svg class="ic ic--xl"><use href="#i-drop"></use></svg></div>
+              <div class="dish-body"><div class="dish-top"><span class="dish-name">Молочний коктейль</span><span class="dish-dots"></span><span class="dish-price">85 ₴</span></div>
+              <p class="dish-desc">Ваніль, шоколад, полуниця</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРО НАС -->
+  <section class="pad bg-soft" id="about">
+    <div class="wrap">
+      <div class="head head--center rv">
+        <span class="eyebrow">Про нас</span>
+        <h2>Чому саме Містер Бургер</h2>
+      </div>
+      <div class="grid g4">
+        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-flame"></use></svg></div>
+          <h3>Свіже м'ясо</h3><p>Котлети формуємо щодня з охолодженої яловичини, не з заморожених напівфабрикатів.</p></div>
+        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-clock"></use></svg></div>
+          <h3>Швидко</h3><p>Готуємо за 7–10 хвилин. Доставка по Дубні — у середньому 30 хвилин.</p></div>
+        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-leaf"></use></svg></div>
+          <h3>Свіжа випічка</h3><p>Булочки отримуємо щоранку. Те, що не продали за день, не йде на наступний.</p></div>
+        <div class="card rv"><div class="card-ic"><svg class="ic ic--lg"><use href="#i-shield"></use></svg></div>
+          <h3>Чесно про склад</h3><p>Скажемо, що в кожному бургері та скільки він важить. Без «секретних» соусів навмання.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДОСТАВКА -->
+  <section class="pad" id="delivery">
+    <div class="wrap">
+      <div class="order-band rv">
+        <div>
+          <span class="eyebrow">Доставка</span>
+          <h2 style="margin-bottom:12px">Привеземо гарячим за 30 хвилин</h2>
+          <p class="lead" style="margin-bottom:0">Замовляйте телефоном або в Instagram. Безкоштовно
+          від 400 ₴, по Дубні та найближчих вулицях.</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <a class="btn btn--lg" href="tel:+380668721508"><svg class="ic"><use href="#i-phone"></use></svg> 066 872 15 08</a>
+          <a class="btn btn--ghost" href="https://instagram.com/mister__burger__" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-instagram"></use></svg> Написати в Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗАКЛАДИ -->
+  <section class="pad bg-soft" id="places">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">Заклади</span>
+        <h2>Два заклади в Дубні</h2>
+        <p class="lead">Обидва працюють щодня. Обери, де зручніше — або замов доставку.</p>
+      </div>
+      <div class="grid g2">
+        <div class="place rv">
+          <div class="place-ic"><svg class="ic ic--lg"><use href="#i-pin"></use></svg></div>
+          <div><h3>Стометрівка</h3>
+            <p style="margin:0">майдан Незалежності, 11<br>Дубно, Рівненська область</p>
+            <p class="small" style="margin:8px 0 0;color:var(--accent)">Щодня 10:00 – 22:00</p></div>
+        </div>
+        <div class="place rv">
+          <div class="place-ic"><svg class="ic ic--lg"><use href="#i-pin"></use></svg></div>
+          <div><h3>Грушевського</h3>
+            <p style="margin:0">вул. Михайла Грушевського (біля Хмільників)<br>Дубно, Рівненська область</p>
+            <p class="small" style="margin:8px 0 0;color:var(--accent)">Щодня 10:00 – 22:00</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВІДГУКИ -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head head--center rv"><span class="eyebrow">Відгуки</span><h2>Що кажуть гості</h2></div>
+      <div class="grid g3">
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Найсмачніші бургери в місті. Беремо комбо Party на всю сім'ю — вистачає з головою.</p>
+          <div class="who"><span class="who-i">А</span><div><b>Андрій</b><small>постійний гість</small></div></div></div>
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Замовляли доставку — привезли за 25 хвилин, усе гаряче. Картопля реально хрустка.</p>
+          <div class="who"><span class="who-i">М</span><div><b>Марія</b><small>доставка</small></div></div></div>
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Гострий Диявол — вогонь. Нарешті є де поїсти по-справжньому гострого.</p>
+          <div class="who"><span class="who-i">В</span><div><b>Влад</b><small>бургер «Гострий Диявол»</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТИ -->
+  <section class="pad bg-soft" id="contact">
+    <div class="wrap">
+      <div class="head rv"><span class="eyebrow">Контакти</span><h2>Замовити або спитати</h2></div>
+      <div class="grid g2">
+        <div class="card rv">
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-phone"></use></svg></div>
+            <div><b>Телефон</b><span><a href="tel:+380668721508">+38 (066) 872-15-08</a></span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-pin"></use></svg></div>
+            <div><b>Адреси</b><span>майдан Незалежності, 11 · вул. Грушевського (біля Хмільників)</span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-clock"></use></svg></div>
+            <div><b>Години роботи</b><span>Щодня 10:00 – 22:00</span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-instagram"></use></svg></div>
+            <div><b>Instagram</b><span><a href="https://instagram.com/mister__burger__" target="_blank" rel="noopener">@mister__burger__</a></span></div></div>
+        </div>
+        <form class="card rv" data-form novalidate>
+          <h3 style="margin-bottom:6px">Замовлення або питання</h3>
+          <p class="small">Залиште номер — передзвонимо й підтвердимо замовлення.</p>
+          <div class="field"><label for="mb-name">Ваше ім'я</label>
+            <input class="inp" id="mb-name" name="name" placeholder="Наприклад, Олег" autocomplete="name"></div>
+          <div class="field"><label for="mb-phone">Телефон</label>
+            <input class="inp" id="mb-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" autocomplete="tel" required></div>
+          <div class="field"><label for="mb-msg">Що замовити</label>
+            <textarea class="inp" id="mb-msg" name="message" rows="3" placeholder="2 × Містер Бургер, комбо Solo…"></textarea></div>
+          <button class="btn btn--block" type="submit">Надіслати</button>
+          <div class="ok-msg"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:14px"><span class="logo-badge"><svg class="ic"><use href="#i-burger"></use></svg></span> Містер Бургер</a>
+        <p class="small" style="max-width:320px">Мережа закладів харчування на Заході України:
+        Рівненська, Тернопільська, Хмельницька області.</p>
+      </div>
+      <div><h4>Навігація</h4>
+        <a href="#menu">Меню</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#places">Заклади</a></div>
+      <div><h4>Контакти</h4>
+        <a href="tel:+380668721508">066 872 15 08</a>
+        <a href="https://instagram.com/mister__burger__" target="_blank" rel="noopener">Instagram</a>
+        <a href="#contact">Зворотний зв'язок</a></div>
+    </div>
+    <div class="ftr-bot">
+      <span>© <span id="y">2026</span> Містер Бургер · Дубно</span>
+      <span>Сайт зроблено з любов'ю до бургерів</span>
+    </div>
+  </div>
+</footer>
+
+<button class="up" type="button" aria-label="Догори"><svg class="ic"><use href="#i-arrowUp"></use></svg></button>
+<div class="mcta"><a class="btn btn--block" href="tel:+380668721508"><svg class="ic"><use href="#i-phone"></use></svg> Замовити: 066 872 15 08</a></div>
+<div class="mock-flag"><b>Макет для «Містер Бургер»</b> · меню й ціни — приклад, замінимо на ваші</div>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+<script src="../assets/sprite.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

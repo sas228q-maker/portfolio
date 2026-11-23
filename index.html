@@ -51,6 +51,11 @@
   .step h3 { margin-top: 12px; font-size: 17px; }
   .step p { font-size: 14.2px; margin: 0; }
   .includes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .note-box { margin-top: 26px; padding: 22px 26px; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); color: var(--muted); font-size: 14.6px; line-height: 1.65; }
+  .note-box b { color: var(--text); }
+  .work-body .tag { align-self: flex-start; margin-bottom: 10px; }
   .contact-two { display: grid; grid-template-columns: .85fr 1.15fr; gap: 24px; align-items: start; }
   .contact-two .card { height: 100%; }
   .inc { display: flex; gap: 11px; align-items: flex-start; padding: 15px 18px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
@@ -121,51 +126,66 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Портфоліо</span>
-        <h2>Чотири готові сайти під різні ніші</h2>
-        <p class="lead">Кожен можна відкрити, покрутити на телефоні — це справжні робочі сторінки,
-        а не картинки. Для вашого закладу зроблю такий самий, але з вашим меню, цінами та фото.</p>
+        <h2>Концепти для реальних закладів Дубна</h2>
+        <p class="lead">Я не малюю «абстрактні шаблони». Я взяв чотири справжні заклади міста,
+        які зараз <b>не мають сайту</b>, і зробив для кожного повноцінний сайт — з їхньою назвою,
+        телефоном, Instagram і адресою. Кожен можна відкрити й покрутити на телефоні.</p>
       </div>
 
       <div class="works">
         <article class="work reveal">
-          <div class="work-frame"><iframe src="demo-beauty/index.html" loading="lazy" title="Демо: салон краси" tabindex="-1"></iframe></div>
+          <div class="work-frame"><iframe src="works/mister-burger/index.html" loading="lazy" title="Містер Бургер" tabindex="-1"></iframe></div>
           <div class="work-body">
-            <h3>Салон краси та барбершоп</h3>
-            <p>Онлайн-запис, прайс на послуги, картки майстрів, галерея робіт і відгуки.</p>
+            <span class="tag">Стрітфуд · Дубно</span>
+            <h3>Містер Бургер</h3>
+            <p>Мережа стрітфуду. Меню з категоріями, комбо, доставка, два заклади в місті.
+            У hero — <b>об'ємний 3D-бургер</b>, що реагує на курсор.</p>
+            <div class="work-tags"><span class="tag">3D-графіка</span><span class="tag">Меню</span><span class="tag">Доставка</span></div>
+            <a class="btn btn--ghost btn--sm" href="works/mister-burger/index.html" target="_blank" rel="noopener">Відкрити сайт →</a>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="work-frame"><iframe src="works/anna-vi-beauty/index.html" loading="lazy" title="Anna Vi beauty" tabindex="-1"></iframe></div>
+          <div class="work-body">
+            <span class="tag">Салон краси · Дубно</span>
+            <h3>Anna Vi beauty</h3>
+            <p>Манікюр, педикюр, нарощування вій. Світла елегантна тема, прайс, галерея робіт,
+            онлайн-запис і розповідь власниці.</p>
             <div class="work-tags"><span class="tag">Онлайн-запис</span><span class="tag">Прайс</span><span class="tag">Галерея</span></div>
-            <a class="btn btn--ghost btn--sm" href="demo-beauty/index.html" target="_blank" rel="noopener">Відкрити демо →</a>
+            <a class="btn btn--ghost btn--sm" href="works/anna-vi-beauty/index.html" target="_blank" rel="noopener">Відкрити сайт →</a>
           </div>
         </article>
 
         <article class="work reveal">
-          <div class="work-frame"><iframe src="demo-cafe/index.html" loading="lazy" title="Демо: кав'ярня" tabindex="-1"></iframe></div>
+          <div class="work-frame"><iframe src="works/avatar/index.html" loading="lazy" title="Аватар" tabindex="-1"></iframe></div>
           <div class="work-body">
-            <h3>Кав'ярня та ресторан</h3>
-            <p>Меню з категоріями, бронювання столика, доставка, години роботи й контакти.</p>
-            <div class="work-tags"><span class="tag">Меню</span><span class="tag">Бронювання</span><span class="tag">Доставка</span></div>
-            <a class="btn btn--ghost btn--sm" href="demo-cafe/index.html" target="_blank" rel="noopener">Відкрити демо →</a>
+            <span class="tag">Вело · мото · Дубно</span>
+            <h3>Аватар</h3>
+            <p>Велосипеди, електроскутери, мотоцикли та запчастини. Темна технічна тема,
+            каталог із вкладками, анімоване колесо, сервіс і два магазини.</p>
+            <div class="work-tags"><span class="tag">Каталог</span><span class="tag">Анімація</span><span class="tag">Сервіс</span></div>
+            <a class="btn btn--ghost btn--sm" href="works/avatar/index.html" target="_blank" rel="noopener">Відкрити сайт →</a>
           </div>
         </article>
 
         <article class="work reveal">
-          <div class="work-frame"><iframe src="demo-auto/index.html" loading="lazy" title="Демо: автосервіс" tabindex="-1"></iframe></div>
+          <div class="work-frame"><iframe src="works/melan-dental/index.html" loading="lazy" title="Стоматологія Мелан" tabindex="-1"></iframe></div>
           <div class="work-body">
-            <h3>Автосервіс та СТО</h3>
-            <p>Прайс на ремонт, калькулятор вартості, запис на сервіс і фото виконаних робіт.</p>
-            <div class="work-tags"><span class="tag">Калькулятор</span><span class="tag">Запис</span><span class="tag">Прайс</span></div>
-            <a class="btn btn--ghost btn--sm" href="demo-auto/index.html" target="_blank" rel="noopener">Відкрити демо →</a>
+            <span class="tag">Стоматологія · Дубно</span>
+            <h3>Стоматологія «Мелан»</h3>
+            <p>Перший приватний стоматологічний кабінет міста, з 1994 року. Чистий медичний стиль,
+            історія у 30 років, лікарі, ціни, FAQ і запис на прийом.</p>
+            <div class="work-tags"><span class="tag">Довіра</span><span class="tag">FAQ</span><span class="tag">Запис</span></div>
+            <a class="btn btn--ghost btn--sm" href="works/melan-dental/index.html" target="_blank" rel="noopener">Відкрити сайт →</a>
           </div>
         </article>
+      </div>
 
-        <article class="work reveal">
-          <div class="work-frame"><iframe src="demo-dental/index.html" loading="lazy" title="Демо: стоматологія" tabindex="-1"></iframe></div>
-          <div class="work-body">
-            <h3>Стоматологія та клініка</h3>
-            <p>Послуги з цінами, лікарі, запис на прийом, переваги клініки та відповіді на питання.</p>
-            <div class="work-tags"><span class="tag">Запис на прийом</span><span class="tag">Лікарі</span><span class="tag">Ціни</span></div>
-            <a class="btn btn--ghost btn--sm" href="demo-dental/index.html" target="_blank" rel="noopener">Відкрити демо →</a>
-          </div>
-        </article>
+      <div class="note-box reveal">
+        <b>Чому серед робіт чужі назви?</b> Це концепти — я зробив їх спеціально для цих закладів,
+        щоб показати, як міг би виглядати їхній сайт. Ніхто з них його ще не замовляв.
+        Хочете такий самий для свого закладу — напишіть, зроблю макет безкоштовно.
       </div>
     </div>
   </section>

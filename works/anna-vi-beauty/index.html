@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anna Vi beauty — Дубно | Манікюр, педикюр, вії</title>
+<meta name="description" content="Студія Anna Vi beauty у Дубні: манікюр, педикюр, нарощування вій. Онлайн-запис, прайс, галерея робіт. вул. Стара, 2б.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%235b8cff'/%3E%3Cstop%20offset='1'%20stop-color='%239b5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='45'%20font-size='34'%20font-family='Arial'%20font-weight='bold'%20fill='white'%20text-anchor='middle'%3E%D0%9E%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Олександр · веб-дизайн, Дубно">
+<meta property="og:title" content="Anna Vi beauty — Дубно | Манікюр, педикюр, вії">
+<meta property="og:description" content="Концепт сайту студії Anna Vi beauty у Дубні: онлайн-запис, прайс, галерея робіт.">
+<meta property="og:url" content="https://USERNAME.github.io/portfolio/works/anna-vi-beauty/index.html">
+<meta property="og:image" content="https://USERNAME.github.io/portfolio/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0f17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/premium.css">
+<style>
+  .hero { padding: 176px 0 96px; }
+  .hero h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1.02; }
+  .hero em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+  .b-1 { width: 480px; height: 480px; background: #e8c9a8; top: -100px; right: -120px; }
+  .b-2 { width: 360px; height: 360px; background: #d9a48c; bottom: -80px; left: -100px; opacity: .4; }
+
+  /* картка-візитка власниці */
+  .owner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 44px; align-items: center; }
+  .owner-plate { position: relative; aspect-ratio: 4/5; border-radius: var(--r-lg); overflow: hidden;
+    background: linear-gradient(160deg, #f0ddc9, #dcb193 55%, #b98466); display: grid; place-items: center;
+    border: 1px solid var(--line); }
+  .owner-plate .mono { font-family: var(--font-display); font-size: 120px; color: #fff; opacity: .9; line-height: 1; }
+  .owner-plate::after { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(255,255,255,.45); border-radius: 20px; }
+  .sign { font-family: var(--font-display); font-style: italic; font-size: 30px; color: var(--accent); margin-top: 18px; }
+
+  /* прайс */
+  .price-row { display: flex; align-items: baseline; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .price-row:last-child { border-bottom: 0; }
+  .price-row .pn { font-family: var(--font-display); font-size: 23px; font-weight: 600; }
+  .price-row .pn small { display: block; font-family: var(--font-body); font-size: 14px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+  .price-row .pd { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-5px); }
+  .price-row .pv { font-family: var(--font-display); font-size: 25px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+
+  /* галерея-портфоліо */
+  .gal-2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .work-card { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+  .work-card .wc-img { aspect-ratio: 1; display: grid; place-items: center; color: #fff; }
+  .work-card .wc-b { padding: 16px 20px 20px; }
+  .work-card .wc-b b { font-size: 15px; }
+  .work-card .wc-b span { display: block; font-size: 13px; color: var(--muted); }
+  .n1 { background: linear-gradient(150deg,#e9b7a4,#c97f66); }
+  .n2 { background: linear-gradient(150deg,#dcc7b0,#b39477); }
+  .n3 { background: linear-gradient(150deg,#e3a8bd,#b16687); }
+  .n4 { background: linear-gradient(150deg,#cbb8d6,#8e739f); }
+  .n5 { background: linear-gradient(150deg,#f0d3b0,#c69a63); }
+  .n6 { background: linear-gradient(150deg,#bfd4c6,#7d9c8a); }
+
+  .note-strip { display: flex; align-items: center; gap: 14px; padding: 20px 26px; border-radius: var(--r-md);
+    background: var(--surface-2); border: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+  @media (max-width: 1024px) {
+    .owner { grid-template-columns: 1fr; gap: 30px; }
+    .gal-2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) { .gal-2 { grid-template-columns: 1fr; } .owner-plate .mono { font-size: 84px; } }
+</style>
+</head>
+<body class="t-beauty theme-light">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top"><span class="logo-badge"><svg class="ic"><use href="#i-flower"></use></svg></span> Anna Vi beauty</a>
+    <nav class="menu">
+      <a href="#services">Послуги</a>
+      <a href="#works">Роботи</a>
+      <a href="#owner">Про студію</a>
+      <a href="#book">Запис</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="hdr-phone" href="tel:+380632419777"><svg class="ic ic--sm"><use href="#i-phone"></use></svg> 063 241 97 77</a>
+      <a class="btn btn--sm" href="#book">Записатися</a>
+    </div>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="blob b-1"></span><span class="blob b-2"></span>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Дубно · вул. Стара, 2б</span>
+        <h1>Доглянуті руки<br>та <em>виразний погляд</em></h1>
+        <p class="lead" style="margin-top:22px">Манікюр, педикюр і нарощування вій у невеликій студії,
+        де вас пам'ятають на ім'я. Працюю за записом — без поспіху й черг.</p>
+        <div class="hero-cta">
+          <a class="btn btn--lg" href="#book"><svg class="ic"><use href="#i-calendar"></use></svg> Записатися онлайн</a>
+          <a class="btn btn--ghost btn--lg" href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-instagram"></use></svg> Мої роботи</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact"><div class="fv"><span data-count="3592">0</span></div><div class="fl">підписників в Instagram</div></div>
+          <div class="fact"><div class="fv"><span data-count="1517">0</span></div><div class="fl">фото робіт у профілі</div></div>
+          <div class="fact"><div class="fv">1 : 1</div><div class="fl">один клієнт — один майстер</div></div>
+        </div>
+      </div>
+
+      <div style="position:relative" data-tilt-zone>
+        <div class="card" style="padding:0;overflow:hidden" data-tilt="9">
+          <div style="aspect-ratio:1;display:grid;place-items:center;background:linear-gradient(150deg,#f2e2d1,#d9ae90 60%,#b98366)">
+            <svg style="width:44%;height:44%;color:#fff;opacity:.92" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="2.6"/><path d="M12 9.4c0-3 1-5.4 3-5.4s2.4 2.6.6 5.4M14.6 12c3 0 5.4 1 5.4 3s-2.6 2.4-5.4.6M12 14.6c0 3-1 5.4-3 5.4s-2.4-2.6-.6-5.4M9.4 12c-3 0-5.4-1-5.4-3s2.6-2.4 5.4-.6"/>
+            </svg>
+          </div>
+          <div style="padding:24px 26px 26px">
+            <span class="chip chip--accent">Запис відкрито</span>
+            <h3 style="margin:14px 0 6px">Вільні місця цього тижня</h3>
+            <p style="margin:0;font-size:14.5px">Напишіть у Direct або залиште заявку — підберемо час під вас.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОСЛУГИ -->
+  <section class="pad bg-soft" id="services">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">Послуги та ціни</span>
+        <h2>Що я роблю</h2>
+        <p class="lead">Ціни без «від» і без доплат, про які ви дізнаєтесь у кріслі.
+        Точну вартість кажу до початку роботи.</p>
+      </div>
+      <div class="grid g2" style="gap:0 54px">
+        <div class="rv">
+          <div class="price-row"><div><span class="pn">Манікюр<small>апаратний або комбінований</small></span></div><span class="pd"></span><span class="pv">350 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Манікюр + гель-лак<small>з покриттям і дизайном на 1 нігті</small></span></div><span class="pd"></span><span class="pv">450 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Педикюр<small>апаратний, з обробкою стоп</small></span></div><span class="pd"></span><span class="pv">500 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Зміцнення / нарощування<small>гель або полігель</small></span></div><span class="pd"></span><span class="pv">550 ₴</span></div>
+        </div>
+        <div class="rv">
+          <div class="price-row"><div><span class="pn">Нарощування вій<small>класика, 2D або 3D</small></span></div><span class="pd"></span><span class="pv">450 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Корекція вій<small>через 2–3 тижні після нарощування</small></span></div><span class="pd"></span><span class="pv">350 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Ламінування вій<small>з фарбуванням</small></span></div><span class="pd"></span><span class="pv">400 ₴</span></div>
+          <div class="price-row"><div><span class="pn">Зняття покриття<small>своє або нарощене</small></span></div><span class="pd"></span><span class="pv">150 ₴</span></div>
+        </div>
+      </div>
+      <div class="note-strip rv" style="margin-top:34px">
+        <svg class="ic ic--lg" style="color:var(--accent)"><use href="#i-sparkle"></use></svg>
+        <span>Стерилізація інструментів після кожного клієнта, одноразові файли та рукавички.
+        Працюю лише з сертифікованими матеріалами.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- РОБОТИ -->
+  <section class="pad" id="works">
+    <div class="wrap">
+      <div class="head head--center rv">
+        <span class="eyebrow">Портфоліо</span>
+        <h2>Найкращі роботи</h2>
+        <p class="lead">Понад 1500 фото в Instagram — тут кілька улюблених.
+        У фінальному сайті поставимо ваші реальні знімки.</p>
+      </div>
+      <div class="gal-2">
+        <div class="work-card rv"><div class="wc-img n1"><svg class="ic" style="width:44px;height:44px"><use href="#i-hand"></use></svg></div>
+          <div class="wc-b"><b>Ніжний нюд</b><span>манiкюр + гель-лак</span></div></div>
+        <div class="work-card rv"><div class="wc-img n3"><svg class="ic" style="width:44px;height:44px"><use href="#i-eye"></use></svg></div>
+          <div class="wc-b"><b>Класика 1D</b><span>нарощування вій</span></div></div>
+        <div class="work-card rv"><div class="wc-img n2"><svg class="ic" style="width:44px;height:44px"><use href="#i-polish"></use></svg></div>
+          <div class="wc-b"><b>Френч з лінією</b><span>дизайн</span></div></div>
+        <div class="work-card rv"><div class="wc-img n4"><svg class="ic" style="width:44px;height:44px"><use href="#i-sparkle"></use></svg></div>
+          <div class="wc-b"><b>Об'єм 3D</b><span>нарощування вій</span></div></div>
+        <div class="work-card rv"><div class="wc-img n5"><svg class="ic" style="width:44px;height:44px"><use href="#i-drop"></use></svg></div>
+          <div class="wc-b"><b>Молочний градієнт</b><span>покриття</span></div></div>
+        <div class="work-card rv"><div class="wc-img n6"><svg class="ic" style="width:44px;height:44px"><use href="#i-heart"></use></svg></div>
+          <div class="wc-b"><b>Педикюр + покриття</b><span>догляд стоп</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРО СТУДІЮ -->
+  <section class="pad bg-soft" id="owner">
+    <div class="wrap owner">
+      <div class="owner-plate rv"><span class="mono">AV</span></div>
+      <div class="rv">
+        <span class="eyebrow">Про студію</span>
+        <h2>Мене звати Іванна</h2>
+        <p class="lead">Anna Vi beauty — це маленька студія, а не конвеєр. Я приймаю одного
+        клієнта за раз, тому можу приділити час формі нігтів, стану кутикули й тому,
+        як ви проводите руки щодня.</p>
+        <p>Працюю з 2019 року. За цей час зібрала понад 1500 фото робіт — за ними видно,
+        що стиль у мене спокійний: нюд, молочні відтінки, тонка лінія. Якщо хочете
+        щось яскраве — теж зробимо, але попереджаю: дуже яскраве я люблю не менше.</p>
+        <p>Вії роблю з розрахунком на те, як ви живете: якщо плаваєте в басейні або часто
+        трете очі, підберу варіант, який тримається довше.</p>
+        <div class="sign">Іванна</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+          <span class="chip"><svg class="ic ic--sm"><use href="#i-award"></use></svg> Сертифікована майстриня</span>
+          <span class="chip"><svg class="ic ic--sm"><use href="#i-shield"></use></svg> Стерильність</span>
+          <span class="chip"><svg class="ic ic--sm"><use href="#i-clock"></use></svg> За записом</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗАПИС -->
+  <section class="pad" id="book">
+    <div class="wrap grid g2" style="align-items:start">
+      <div class="rv">
+        <span class="eyebrow">Онлайн-запис</span>
+        <h2>Запишіться на зручний час</h2>
+        <p class="lead">Заповніть форму — я напишу або зателефоную, щоб підтвердити час.
+        Або напишіть одразу в Telegram чи Instagram.</p>
+        <div style="display:grid;gap:12px;margin-top:26px;max-width:420px">
+          <a class="btn" href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-send"></use></svg> Написати в Telegram</a>
+          <a class="btn btn--ghost" href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-instagram"></use></svg> Написати в Instagram</a>
+        </div>
+        <div class="citem" style="margin-top:26px;border:0;padding:0">
+          <div class="citem-ic"><svg class="ic"><use href="#i-clock"></use></svg></div>
+          <div><b>Графік</b><span>Пн–Сб за записом · Нд — вихідний</span></div>
+        </div>
+      </div>
+      <form class="card rv" data-form novalidate>
+        <h3 style="margin-bottom:6px">Заявка на запис</h3>
+        <p class="small">Надсилаю підтвердження протягом години.</p>
+        <div class="field"><label for="av-name">Ваше ім'я</label>
+          <input class="inp" id="av-name" name="name" placeholder="Наприклад, Олена" autocomplete="name"></div>
+        <div class="field"><label for="av-phone">Телефон</label>
+          <input class="inp" id="av-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" autocomplete="tel" required></div>
+        <div class="field"><label for="av-svc">Послуга</label>
+          <select class="inp" id="av-svc" name="service">
+            <option>Манікюр</option><option>Манікюр + гель-лак</option><option>Педикюр</option>
+            <option>Зміцнення / нарощування нігтів</option><option>Нарощування вій</option>
+            <option>Корекція вій</option><option>Ламінування вій</option>
+          </select></div>
+        <div class="row2">
+          <div class="field"><label for="av-date">Бажана дата</label>
+            <input class="inp" id="av-date" name="date" type="date"></div>
+          <div class="field"><label for="av-time">Час</label>
+            <select class="inp" id="av-time" name="time">
+              <option>09:00</option><option>11:00</option><option>13:00</option>
+              <option>15:00</option><option>17:00</option><option>18:30</option>
+            </select></div>
+        </div>
+        <button class="btn btn--block" type="submit">Записатися</button>
+        <div class="ok-msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ВІДГУКИ -->
+  <section class="pad bg-soft">
+    <div class="wrap">
+      <div class="head head--center rv"><span class="eyebrow">Відгуки</span><h2>Що кажуть клієнтки</h2></div>
+      <div class="grid g3">
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Іванна єдина, до кого я ходжу вже третій рік. Жодного разу не було, щоб нігті
+          «підвели» через тиждень.</p>
+          <div class="who"><span class="who-i">О</span><div><b>Оксана</b><small>манікюр</small></div></div></div>
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Вії носяться довго й виглядають природно. Кілька разів питали, чи це свої.</p>
+          <div class="who"><span class="who-i">М</span><div><b>Марта</b><small>нарощування вій</small></div></div></div>
+        <div class="card rev rv">
+          <div class="stars"><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg><svg class="ic"><use href="#i-star"></use></svg></div>
+          <p>Затишно, чисто, без поспіху. Запис через сайт — дуже зручно, не треба чекати
+          відповіді в Direct.</p>
+          <div class="who"><span class="who-i">І</span><div><b>Ірина</b><small>педикюр</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТИ -->
+  <section class="pad" id="contact">
+    <div class="wrap">
+      <div class="head rv"><span class="eyebrow">Контакти</span><h2>Як мене знайти</h2></div>
+      <div class="grid g2">
+        <div class="card rv">
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-pin"></use></svg></div>
+            <div><b>Адреса</b><span>м. Дубно, вул. Стара, 2б</span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-phone"></use></svg></div>
+            <div><b>Телефон</b><span><a href="tel:+380632419777">+38 (063) 241-97-77</a></span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-send"></use></svg></div>
+            <div><b>Telegram</b><span><a href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">@anna_vi_beauty</a></span></div></div>
+          <div class="citem"><div class="citem-ic"><svg class="ic"><use href="#i-instagram"></use></svg></div>
+            <div><b>Instagram</b><span><a href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">@anna.vi_beauty</a></span></div></div>
+        </div>
+        <div class="pseudo-map rv"><div>
+          <div class="pin"><svg class="ic ic--lg"><use href="#i-pin"></use></svg></div>
+          <b style="display:block;font-size:18px;font-family:var(--font-display)">Anna Vi beauty</b>
+          <span style="color:var(--muted);font-size:14.5px">м. Дубно, вул. Стара, 2б</span>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:14px"><span class="logo-badge"><svg class="ic"><use href="#i-flower"></use></svg></span> Anna Vi beauty</a>
+        <p class="small" style="max-width:320px">Студія манікюру, педикюру та нарощування вій у Дубні.
+        Один клієнт — один майстер, за записом.</p>
+      </div>
+      <div><h4>Навігація</h4>
+        <a href="#services">Послуги</a><a href="#works">Роботи</a><a href="#owner">Про студію</a><a href="#book">Запис</a></div>
+      <div><h4>Зв'язок</h4>
+        <a href="tel:+380632419777">063 241 97 77</a>
+        <a href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+    <div class="ftr-bot">
+      <span>© <span id="y">2026</span> Anna Vi beauty · Дубно</span>
+      <span>Запис займає 30 секунд</span>
+    </div>
+  </div>
+</footer>
+
+<button class="up" type="button" aria-label="Догори"><svg class="ic"><use href="#i-arrowUp"></use></svg></button>
+<div class="mcta"><a class="btn btn--block" href="#book"><svg class="ic"><use href="#i-calendar"></use></svg> Записатися онлайн</a></div>
+<div class="mock-flag"><b>Макет для Anna Vi beauty</b> · ціни й фото — приклад, поставимо ваші</div>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+<script src="../assets/sprite.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
