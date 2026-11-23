@@ -86,6 +86,13 @@
     resize();
     window.addEventListener("resize", resize);
 
+    /* хук: сцене нужно пересчитать что-то своё при смене размера
+       (например, сдвиг камеры на широком экране) */
+    if (opts.onResize) {
+      opts.onResize(ctx);
+      window.addEventListener("resize", function () { opts.onResize(ctx); });
+    }
+
     /* --- вращение мышью и пальцем --- */
     var px = 0, py = 0, idleTimer = 0;
 

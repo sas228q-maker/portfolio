@@ -30,6 +30,28 @@
       radial-gradient(40% 40% at 18% 82%, rgba(232,163,61,.06), transparent 72%),
       var(--bg);
   }
+  /* атмосфера: то же фото, приглушённое и размытое, чтобы не спорить с 3D */
+  .stage-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url("../assets/img/black-burger-bg.jpg");
+    background-size: cover; background-position: 62% 46%;
+    /* размытие не используем (запрещено стандартом): глубину даёт
+       плотность затемнения и градиент поверх фото */
+    opacity: .42;
+  }
+  .stage-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(92deg,
+      var(--bg) 0%, rgba(20,17,15,.94) 34%,
+      rgba(20,17,15,.62) 66%, rgba(20,17,15,.88) 100%);
+  }
+  /* мягкое световое пятно отделяет объект от фотофона (градиент, без блюра) */
+  .stage-glow {
+    position: absolute; z-index: 0; left: 66%; top: 45%; translate: -50% -50%;
+    width: min(820px, 78vw); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(232,163,61,.26), rgba(232,163,61,.10) 44%, transparent 72%);
+  }
   .stage-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
     touch-action: pan-y; cursor: grab; z-index: 1; }
   .stage-canvas:active { cursor: grabbing; }
@@ -82,6 +104,22 @@
     background: radial-gradient(circle at 38% 32%, #E8B066, #C4802F 58%, #8F571E 100%);
     box-shadow: 0 40px 90px -30px rgba(0,0,0,.85);
   }
+
+
+  /* ---------- витрина с фото ---------- */
+  .signature { position: relative; overflow: hidden; background: #0C0A09;
+    display: grid; align-items: end; min-height: min(78vh, 720px); }
+  .signature picture, .signature img { position: absolute; inset: 0; width: 100%;
+    height: 100%; object-fit: cover; object-position: 50% 46%; display: block; }
+  .signature::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(78deg, rgba(12,10,9,.94) 0%, rgba(12,10,9,.72) 40%,
+                rgba(12,10,9,.20) 72%, rgba(12,10,9,.55) 100%); }
+  .signature-txt { position: relative; z-index: 2; max-width: var(--w); margin: 0 auto;
+    width: 100%; padding: 0 var(--gut) clamp(40px, 7vh, 78px); }
+  .signature-txt h2 { font-family: "Oswald", sans-serif; text-transform: uppercase;
+    font-size: clamp(30px, 5vw, 62px); margin: 0 0 12px; max-width: 14ch; }
+  .signature-txt p { font-size: clamp(15px, 1.5vw, 18px); color: #E4DCD0;
+    max-width: 42ch; margin: 0 0 22px; }
 
   /* ---------- меню-борд: крупные цены, без карточек ---------- */
   .board { background: var(--surface); border-top: 1px solid var(--rule);
@@ -230,6 +268,8 @@
 
   <!-- ЭТАП: настоящий 3D-бургер на WebGL -->
   <section class="stage">
+    <div class="stage-bg" aria-hidden="true"></div>
+    <div class="stage-glow" aria-hidden="true"></div>
     <canvas class="stage-canvas" data-burger3d-canvas
             aria-label="Тривимірна модель бургера. Потягніть, щоб обертати"></canvas>
 
@@ -276,11 +316,17 @@
           <button class="board-tab" role="tab" aria-selected="false" data-tab="c" type="button">Комбо</button>
           <button class="board-tab" role="tab" aria-selected="false" data-tab="s" type="button">Снеки</button>
           <button class="board-tab" role="tab" aria-selected="false" data-tab="n" type="button">Напої</button>
+          <button class="board-tab" role="tab" aria-selected="false" data-tab="d" type="button">Десерти</button>
         </div>
       </div>
 
       <div class="board-list">
         <div class="board-panel is-active" data-panel="b" role="tabpanel">
+          <div class="brow">
+            <div><h3>Чорний Містер</h3><p>Фірмова чорна булочка, яловича котлета 150 г, чедер, соус</p></div>
+            <div class="price">185<small>₴</small></div>
+            <button class="add" type="button" data-add="Чорний Містер" data-price="185" aria-label="Додати Чорний Містер">+</button>
+          </div>
           <div class="brow">
             <div><h3>Містер Бургер</h3><p>Яловича котлета 150 г, чедер, томат, салат, фірмовий соус</p></div>
             <div class="price">165<small>₴</small></div>
@@ -292,9 +338,19 @@
             <button class="add" type="button" data-add="Дабл Чіз" data-price="215" aria-label="Додати Дабл Чіз">+</button>
           </div>
           <div class="brow">
+            <div><h3>Подвійний Бекон</h3><p>Дві котлети, бекон, копчений чедер, соус BBQ</p></div>
+            <div class="price">235<small>₴</small></div>
+            <button class="add" type="button" data-add="Подвійний Бекон" data-price="235" aria-label="Додати Подвійний Бекон">+</button>
+          </div>
+          <div class="brow">
             <div><h3>Гострий Диявол</h3><p>Котлета з чилі, халапеньйо, соус шрірача</p></div>
             <div class="price">195<small>₴</small></div>
             <button class="add" type="button" data-add="Гострий Диявол" data-price="195" aria-label="Додати Гострий Диявол">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Чікен Кранч</h3><p>Куряче філе в паніровці, айсберг, часниковий соус</p></div>
+            <div class="price">175<small>₴</small></div>
+            <button class="add" type="button" data-add="Чікен Кранч" data-price="175" aria-label="Додати Чікен Кранч">+</button>
           </div>
           <div class="brow">
             <div><h3>Веггі</h3><p>Котлета з нуту, гуакамоле, томат, рукола</p></div>
@@ -302,7 +358,6 @@
             <button class="add" type="button" data-add="Веггі" data-price="145" aria-label="Додати Веггі">+</button>
           </div>
         </div>
-
         <div class="board-panel" data-panel="c" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Комбо Solo</h3><p>Бургер, картопля фрі, напій 0,5 л</p></div>
@@ -319,8 +374,17 @@
             <div class="price">720<small>₴</small></div>
             <button class="add" type="button" data-add="Комбо Party" data-price="720" aria-label="Додати Комбо Party">+</button>
           </div>
+          <div class="brow">
+            <div><h3>Комбо Сніданок</h3><p>Бургер з яйцем, кава, круасан</p></div>
+            <div class="price">175<small>₴</small></div>
+            <button class="add" type="button" data-add="Комбо Сніданок" data-price="175" aria-label="Додати Комбо Сніданок">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Комбо Дитяче</h3><p>Міні-бургер, нагетси, сік, іграшка</p></div>
+            <div class="price">155<small>₴</small></div>
+            <button class="add" type="button" data-add="Комбо Дитяче" data-price="155" aria-label="Додати Комбо Дитяче">+</button>
+          </div>
         </div>
-
         <div class="board-panel" data-panel="s" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Картопля фрі</h3><p>Хрустка, з морською сіллю</p></div>
@@ -328,36 +392,102 @@
             <button class="add" type="button" data-add="Картопля фрі" data-price="65" aria-label="Додати Картопля фрі">+</button>
           </div>
           <div class="brow">
+            <div><h3>Картопля по-селянськи</h3><p>Часточки з паприкою та розмарином</p></div>
+            <div class="price">75<small>₴</small></div>
+            <button class="add" type="button" data-add="Картопля по-селянськи" data-price="75" aria-label="Додати Картопля по-селянськи">+</button>
+          </div>
+          <div class="brow">
             <div><h3>Крильця BBQ</h3><p>Шість штук у соусі барбекю</p></div>
             <div class="price">155<small>₴</small></div>
             <button class="add" type="button" data-add="Крильця BBQ" data-price="155" aria-label="Додати Крильця BBQ">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Цибулеві кільця</h3><p>Вісім штук, соус ранч</p></div>
+            <div class="price">85<small>₴</small></div>
+            <button class="add" type="button" data-add="Цибулеві кільця" data-price="85" aria-label="Додати Цибулеві кільця">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Нагетси</h3><p>Дев'ять штук, два соуси</p></div>
+            <div class="price">125<small>₴</small></div>
+            <button class="add" type="button" data-add="Нагетси" data-price="125" aria-label="Додати Нагетси">+</button>
           </div>
           <div class="brow">
             <div><h3>Сирні кульки</h3><p>Шість штук, часниковий соус</p></div>
             <div class="price">95<small>₴</small></div>
             <button class="add" type="button" data-add="Сирні кульки" data-price="95" aria-label="Додати Сирні кульки">+</button>
           </div>
+          <div class="brow">
+            <div><h3>Салат Цезар</h3><p>Курка, пармезан, сухарики</p></div>
+            <div class="price">145<small>₴</small></div>
+            <button class="add" type="button" data-add="Салат Цезар" data-price="145" aria-label="Додати Салат Цезар">+</button>
+          </div>
         </div>
-
         <div class="board-panel" data-panel="n" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Кола, лемонад</h3><p>0,5 л, охолоджені</p></div>
             <div class="price">45<small>₴</small></div>
-            <button class="add" type="button" data-add="Кола" data-price="45" aria-label="Додати Кола">+</button>
+            <button class="add" type="button" data-add="Кола, лемонад" data-price="45" aria-label="Додати Кола, лемонад">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Домашній лимонад</h3><p>М'ята, лайм, апельсин</p></div>
+            <div class="price">65<small>₴</small></div>
+            <button class="add" type="button" data-add="Домашній лимонад" data-price="65" aria-label="Додати Домашній лимонад">+</button>
           </div>
           <div class="brow">
             <div><h3>Кава з собою</h3><p>Американо, капучино, лате</p></div>
             <div class="price">55<small>₴</small></div>
-            <button class="add" type="button" data-add="Кава" data-price="55" aria-label="Додати Кава">+</button>
+            <button class="add" type="button" data-add="Кава з собою" data-price="55" aria-label="Додати Кава з собою">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Чай</h3><p>Чорний, зелений, фруктовий</p></div>
+            <div class="price">40<small>₴</small></div>
+            <button class="add" type="button" data-add="Чай" data-price="40" aria-label="Додати Чай">+</button>
           </div>
           <div class="brow">
             <div><h3>Молочний коктейль</h3><p>Ваніль, шоколад або полуниця</p></div>
             <div class="price">85<small>₴</small></div>
-            <button class="add" type="button" data-add="Коктейль" data-price="85" aria-label="Додати Коктейль">+</button>
+            <button class="add" type="button" data-add="Молочний коктейль" data-price="85" aria-label="Додати Молочний коктейль">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Вода</h3><p>0,5 л, негазована або газована</p></div>
+            <div class="price">30<small>₴</small></div>
+            <button class="add" type="button" data-add="Вода" data-price="30" aria-label="Додати Вода">+</button>
+          </div>
+        </div>
+        <div class="board-panel" data-panel="d" role="tabpanel" hidden>
+          <div class="brow">
+            <div><h3>Чізкейк</h3><p>Класичний або з ягодами</p></div>
+            <div class="price">95<small>₴</small></div>
+            <button class="add" type="button" data-add="Чізкейк" data-price="95" aria-label="Додати Чізкейк">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Брауні</h3><p>Теплий, з морозивом</p></div>
+            <div class="price">85<small>₴</small></div>
+            <button class="add" type="button" data-add="Брауні" data-price="85" aria-label="Додати Брауні">+</button>
+          </div>
+          <div class="brow">
+            <div><h3>Морозиво</h3><p>Три кульки на вибір</p></div>
+            <div class="price">55<small>₴</small></div>
+            <button class="add" type="button" data-add="Морозиво" data-price="55" aria-label="Додати Морозиво">+</button>
           </div>
         </div>
       </div>
       <p class="formnote">Ціни в прикладі — у фінальній версії поставимо ваші.</p>
+    </div>
+  </section>
+
+
+  <!-- ВИТРИНА: фирменная чёрная булочка -->
+  <section class="signature" id="signature">
+    <picture>
+      <source media="(max-width: 700px)" srcset="../assets/img/black-burger-hero-900.jpg">
+      <img src="../assets/img/black-burger-hero.jpg" width="1900" height="1266" loading="lazy"
+           alt="Фірмовий бургер на чорній булочці з котлетою, сиром чедер, салатом і томатом">
+    </picture>
+    <div class="signature-txt">
+      <h2>Чорна булочка</h2>
+      <p>Активоване вугілля в тісті. На смак не впливає — це колір, а не присмак.</p>
+      <a class="btn" href="#menu">Спробувати</a>
     </div>
   </section>
 
@@ -505,7 +635,7 @@
     </div>
     <div class="ftr-bot">
       <span>Містер Бургер, Дубно</span>
-      <span>Макет сайту. Меню і ціни — приклад, замінимо на ваші.</span>
+      <span>Макет сайту. Меню, ціни та фото — приклад, замінимо на ваші.</span>
     </div>
   </div>
 </footer>
