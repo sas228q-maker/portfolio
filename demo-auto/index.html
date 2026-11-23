@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>СТО «Мотор» — Дубно | Ремонт авто, калькулятор, запис</title>
+<meta name="description" content="Автосервіс «Мотор» у Дубні: діагностика, ходова, заміна масла, шиномонтаж, кузовний ремонт. Прайс, калькулятор вартості, запис онлайн.">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .price-list { display: grid; gap: 12px; }
+  .price-row { display: flex; align-items: baseline; gap: 14px; padding: 15px 19px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+  .price-row .pr-name { font-weight: 650; }
+  .price-row .pr-name small { display: block; font-weight: 400; font-size: 13.2px; color: var(--muted); }
+  .price-row .pr-dots { flex: 1; border-bottom: 1px dashed var(--line); transform: translateY(-4px); }
+  .price-row .pr-val { font-weight: 750; color: var(--accent); white-space: nowrap; }
+  .calc { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; align-items: start; }
+  .calc-list { display: grid; gap: 10px; }
+  .calc-opt { display: flex; align-items: center; gap: 12px; padding: 14px 17px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); cursor: pointer; transition: border-color .18s; }
+  .calc-opt:hover { border-color: var(--accent); }
+  .calc-opt input { width: 19px; height: 19px; accent-color: var(--accent); cursor: pointer; flex: none; }
+  .calc-opt .co-txt { flex: 1; font-size: 14.6px; }
+  .calc-opt .co-price { color: var(--muted); font-size: 13.6px; white-space: nowrap; }
+  .calc-total { text-align: center; padding: 34px 24px; }
+  .calc-total .ct-label { font-size: 13.4px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; }
+  .calc-total .ct-sum { font-size: 44px; font-weight: 800; letter-spacing: -1.6px; margin: 8px 0 4px;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .book-wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items: start; }
+  @media (max-width: 940px) { .calc, .book-wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="theme-auto">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#top"><span class="brand-mark">М</span> <span data-var="name">СТО «Мотор»</span></a>
+    <nav class="nav-links">
+      <a href="#services">Послуги</a>
+      <a href="#calc">Калькулятор</a>
+      <a href="#works">Роботи</a>
+      <a href="#book">Запис</a>
+      <a class="btn btn--sm" href="#book">Записатися</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Дубно · вул. Львівська</span>
+        <h1>Ремонт авто <span class="grad-text">без сюрпризів у чеку</span></h1>
+        <p class="lead">Діагностика, ходова частина, заміна масла, шиномонтаж, кузовний ремонт.
+        Перед роботою узгоджуємо вартість — ви знаєте суму до того, як ми почнемо.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#book">Записатися на ремонт</a>
+          <a class="btn btn--ghost" href="tel:+380000000000" data-var-href="phone"><span data-var="phone">+38 (000) 000-00-00</span></a>
+        </div>
+        <p class="hero-note">Працюємо Пн–Сб 8:00–19:00. Діагностика при ремонті — безкоштовно.</p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-bar"><i></i><i></i><i></i></div>
+        <div class="hero-visual-body">
+          <div class="skeleton accent w45"></div>
+          <div class="skeleton w88"></div>
+          <div class="skeleton tall"></div>
+          <div class="skeleton w60"></div>
+          <div class="skeleton w70"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat"><div class="v">12</div><div class="l">років на ринку</div></div>
+      <div class="stat"><div class="v">6</div><div class="l">постів у боксі</div></div>
+      <div class="stat"><div class="v">1 рік</div><div class="l">гарантія на роботи</div></div>
+      <div class="stat"><div class="v">0 ₴</div><div class="l">діагностика при ремонті</div></div>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Послуги та ціни</span>
+        <h2>Що ми робимо</h2>
+        <p class="lead">Нижче — базові ціни. Точну суму називаємо після огляду авто, до початку робіт.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="price-list reveal">
+          <div class="price-row"><span class="pr-name">Комп'ютерна діагностика<small>зчитування й розшифровка помилок</small></span><span class="pr-dots"></span><span class="pr-val">від 400 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Заміна масла та фільтрів<small>робота, без вартості матеріалів</small></span><span class="pr-dots"></span><span class="pr-val">від 350 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Ходова частина<small>діагностика + ремонт</small></span><span class="pr-dots"></span><span class="pr-val">від 600 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Заміна гальмівних колодок<small>передня або задня вісь</small></span><span class="pr-dots"></span><span class="pr-val">від 500 ₴</span></div>
+        </div>
+        <div class="price-list reveal">
+          <div class="price-row"><span class="pr-name">Шиномонтаж<small>комплект 4 колеса, R13–R17</small></span><span class="pr-dots"></span><span class="pr-val">від 600 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Розвал-сходження<small>3D-стенд</small></span><span class="pr-dots"></span><span class="pr-val">від 700 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Заміна ременя ГРМ<small>з роликами</small></span><span class="pr-dots"></span><span class="pr-val">від 1500 ₴</span></div>
+          <div class="price-row"><span class="pr-name">Кузовний ремонт<small>ціна після огляду</small></span><span class="pr-dots"></span><span class="pr-val">за оглядом</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="calc">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Калькулятор</span>
+        <h2>Порахуйте вартість заздалегідь</h2>
+        <p class="lead">Позначте, що потрібно — і побачите приблизну суму. Це орієнтир,
+        фінальну ціну підтверджуємо після огляду.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="calc-list" data-calc="300">
+          <label class="calc-opt"><input type="checkbox" data-price="400"><span class="co-txt">Комп'ютерна діагностика</span><span class="co-price">+400 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="350"><span class="co-txt">Заміна масла та фільтрів</span><span class="co-price">+350 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="900"><span class="co-txt">Ремонт ходової частини</span><span class="co-price">+900 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="500"><span class="co-txt">Заміна гальмівних колодок</span><span class="co-price">+500 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="600"><span class="co-txt">Шиномонтаж (4 колеса)</span><span class="co-price">+600 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="700"><span class="co-txt">Розвал-сходження</span><span class="co-price">+700 ₴</span></label>
+          <label class="calc-opt"><input type="checkbox" data-price="1500"><span class="co-txt">Заміна ременя ГРМ</span><span class="co-price">+1500 ₴</span></label>
+        </div>
+        <div class="card calc-total">
+          <div class="ct-label">Орієнтовна вартість</div>
+          <div class="ct-sum" data-calc-out>300 грн</div>
+          <p style="font-size:13.4px;margin:0">Огляд і підйомник включено у вартість робіт</p>
+          <a class="btn btn--block" style="margin-top:20px" href="#book">Записатися з цим списком</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="works">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Портфоліо</span><h2>Наші роботи</h2>
+        <p class="lead">Фото до/після — те, що найбільше переконує власника авто.</p></div>
+      <div class="gallery reveal">
+        <div class="gallery-item g1"><span>Заміна ГРМ</span></div>
+        <div class="gallery-item g6"><span>Ремонт ходової</span></div>
+        <div class="gallery-item g3"><span>Кузовний ремонт</span></div>
+        <div class="gallery-item g4"><span>Шиномонтаж</span></div>
+        <div class="gallery-item g5"><span>Діагностика</span></div>
+        <div class="gallery-item g2"><span>Фарбування</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Переваги</span><h2>Чому нам довіряють</h2></div>
+      <div class="grid grid-3">
+        <div class="card reveal"><div class="card-icon">🔧</div><h3>Ціна до роботи</h3>
+          <p>Узгоджуємо вартість до початку. Якщо знайшли щось додатково — телефонуємо й питаємо.</p></div>
+        <div class="card reveal"><div class="card-icon">🛡</div><h3>Гарантія 1 рік</h3>
+          <p>На всі виконані роботи. Гарантія письмова, а не «на словах».</p></div>
+        <div class="card reveal"><div class="card-icon">📦</div><h3>Свої запчастини</h3>
+          <p>Підбираємо за VIN: оригінал або якісний аналог — на ваш вибір і бюджет.</p></div>
+        <div class="card reveal"><div class="card-icon">⏱</div><h3>Не тримаємо авто</h3>
+          <p>Більшість робіт — у день звернення. Про довгі ремонти попереджаємо заздалегідь.</p></div>
+        <div class="card reveal"><div class="card-icon">📸</div><h3>Фотозвіт</h3>
+          <p>Надсилаємо фото в Telegram: що зняли, що замінили, у якому стані було.</p></div>
+        <div class="card reveal"><div class="card-icon">🚗</div><h3>Підмінне авто</h3>
+          <p>Якщо ремонт триває більше доби — дамо авто на час робіт.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="book">
+    <div class="container">
+      <div class="book-wrap">
+        <div class="reveal">
+          <span class="eyebrow">Запис</span>
+          <h2>Запишіться на ремонт</h2>
+          <p class="lead">Опишіть проблему — ми зателефонуємо, уточнимо деталі й підберемо час.
+          Якщо не знаєте, що саме зламалось — просто напишіть симптоми.</p>
+          <div style="margin-top:20px">
+            <div class="contact-item" style="margin-bottom:13px"><div class="ci-ic">🕘</div><div><b>Години роботи</b><span>Пн–Сб 8:00–19:00 · Нд — вихідний</span></div></div>
+            <div class="contact-item"><div class="ci-ic">📍</div><div><b>Адреса</b><span data-var="address">м. Дубно, вул. Львівська, 73</span></div></div>
+          </div>
+        </div>
+        <form class="card reveal" data-form novalidate>
+          <div class="field"><label for="a-name">Ваше ім'я</label>
+            <input class="input" id="a-name" name="name" placeholder="Наприклад, Тарас" autocomplete="name"></div>
+          <div class="field"><label for="a-phone">Телефон</label>
+            <input class="input" id="a-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" autocomplete="tel" required></div>
+          <div class="field"><label for="a-car">Марка та модель авто</label>
+            <input class="input" id="a-car" name="car" placeholder="Наприклад, Volkswagen Passat 2014"></div>
+          <div class="field"><label for="a-svc">Що потрібно</label>
+            <select class="input" id="a-svc" name="service">
+              <option>Діагностика</option><option>Заміна масла</option><option>Ходова частина</option>
+              <option>Гальма</option><option>Шиномонтаж</option><option>Кузовний ремонт</option>
+              <option>Не знаю — потрібна порада</option>
+            </select></div>
+          <div class="field"><label for="a-msg">Опишіть проблему</label>
+            <textarea class="input" id="a-msg" name="message" rows="3" placeholder="Стукіт спереду при проїзді нерівностей…"></textarea></div>
+          <button class="btn btn--block" type="submit">Записатися</button>
+          <div class="form-success"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="contact">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Контакти</span><h2>Як нас знайти</h2></div>
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <div class="contact-list">
+            <div class="contact-item"><div class="ci-ic">📍</div><div><b>Адреса</b><span data-var="address">м. Дубно, вул. Львівська, 73</span></div></div>
+            <div class="contact-item"><div class="ci-ic">📞</div><div><b>Телефон</b><span data-var="phone">+38 (000) 000-00-00</span></div></div>
+            <div class="contact-item"><div class="ci-ic">🕘</div><div><b>Години роботи</b><span>Пн–Сб 8:00–19:00 · Нд вихідний</span></div></div>
+            <div class="contact-item"><div class="ci-ic">📷</div><div><b>Instagram</b><span data-var="instagram">@sto.motor.dubno</span></div></div>
+          </div>
+          <a class="btn" style="margin-top:20px" href="#book">Записатися на ремонт</a>
+        </div>
+        <div class="map-fake reveal"><div><div class="map-pin">📍</div>
+          <b data-var="name">СТО «Мотор»</b><span data-var="address">м. Дубно, вул. Львівська, 73</span></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><b data-var="name">СТО «Мотор»</b> · Дубно</div>
+    <div><a href="tel:+380000000000" data-var-href="phone"><span data-var="phone">+38 (000) 000-00-00</span></a></div>
+    <div>© <span data-year>2026</span></div>
+  </div>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn--block" href="#book">Записатися на ремонт</a></div>
+<div class="demo-flag"><b>Демо-сайт</b> · <a href="../index.html">← усі роботи</a></div>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>
