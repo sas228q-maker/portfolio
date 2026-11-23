@@ -102,6 +102,29 @@
     .place-row { grid-template-columns: 38px 1fr; }
     .place-row .hrs { grid-column: 2; }
   }
+
+  /* корзина: позиции и сумма (як у True Burger і W Burger) */
+  .row { align-items: center; }
+  .ord-add { display: inline-flex; align-items: center; gap: 7px; margin-left: 14px;
+    padding: 8px 14px; border-radius: 6px; border: 1px solid var(--rule);
+    background: transparent; color: var(--ink); font-size: 13.6px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: border-color 160ms, background 160ms, color 160ms; }
+  .ord-add:hover { border-color: var(--accent); color: var(--accent); }
+  .ord-add.is-added { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .ord-bar { display: none; }
+  .ord-bar.is-on { display: block; margin-bottom: 20px; padding: 16px 18px; border-radius: var(--r);
+    border: 1px solid var(--rule); background: var(--surface-2); }
+  .ord-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+    font-size: 14.6px; margin-bottom: 10px; }
+  .ord-head b { font-variant-numeric: tabular-nums; }
+  .ord-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .ord-list li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; }
+  .ord-list li span { flex: 1; min-width: 0; color: var(--ink-2); }
+  .ord-list li b { font-variant-numeric: tabular-nums; }
+  .ord-x { border: 0; background: transparent; color: var(--ink-2); cursor: pointer;
+    font-size: 17px; line-height: 1; padding: 0 4px; }
+  .ord-x:hover { color: var(--accent); }
+  .ord-note { margin: 10px 0 0; font-size: 13px; color: var(--ink-2); }
 </style>
 </head>
 <body>
@@ -181,7 +204,7 @@
         вказано повністю.</p>
       </div>
 
-      <div data-tabs class="rv">
+      <div data-tabs data-order class="rv">
         <div class="tabs" role="tablist" aria-label="Категорії меню">
           <button class="tab btn btn--line btn--sm is-active" role="tab" aria-selected="true" data-tab="b" type="button">Бургери</button>
           <button class="tab btn btn--line btn--sm" role="tab" aria-selected="false" data-tab="c" type="button">Комбо</button>
@@ -192,37 +215,37 @@
         <div class="panel is-active" data-panel="b" role="tabpanel">
           <div class="split split--wide">
             <div class="rows">
-              <div class="row"><div class="row-name">Містер Бургер<small>Яловича котлета 150 г, чедер, томат, салат, фірмовий соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">165 ₴</span></div>
-              <div class="row"><div class="row-name">Дабл Чіз<small>Дві котлети, подвійний чедер, маринований огірок, цибуля</small></div><span class="row-lead"></span><span class="row-val row-val--accent">215 ₴</span></div>
+              <div class="row"><div class="row-name">Містер Бургер<small>Яловича котлета 150 г, чедер, томат, салат, фірмовий соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">165 ₴</span><button class="ord-add" type="button" data-add="Містер Бургер" data-price="165" aria-label="Додати Містер Бургер до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+              <div class="row"><div class="row-name">Дабл Чіз<small>Дві котлети, подвійний чедер, маринований огірок, цибуля</small></div><span class="row-lead"></span><span class="row-val row-val--accent">215 ₴</span><button class="ord-add" type="button" data-add="Дабл Чіз" data-price="215" aria-label="Додати Дабл Чіз до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
             </div>
             <div class="rows">
-              <div class="row"><div class="row-name">Гострий Диявол<small>Котлета з чилі, халапеньйо, соус шрірача</small></div><span class="row-lead"></span><span class="row-val row-val--accent">195 ₴</span></div>
-              <div class="row"><div class="row-name">Веггі<small>Котлета з нуту, гуакамоле, томат, рукола</small></div><span class="row-lead"></span><span class="row-val row-val--accent">145 ₴</span></div>
+              <div class="row"><div class="row-name">Гострий Диявол<small>Котлета з чилі, халапеньйо, соус шрірача</small></div><span class="row-lead"></span><span class="row-val row-val--accent">195 ₴</span><button class="ord-add" type="button" data-add="Гострий Диявол" data-price="195" aria-label="Додати Гострий Диявол до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+              <div class="row"><div class="row-name">Веггі<small>Котлета з нуту, гуакамоле, томат, рукола</small></div><span class="row-lead"></span><span class="row-val row-val--accent">145 ₴</span><button class="ord-add" type="button" data-add="Веггі" data-price="145" aria-label="Додати Веггі до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
             </div>
           </div>
         </div>
 
         <div class="panel" data-panel="c" role="tabpanel" hidden>
           <div class="rows">
-            <div class="row"><div class="row-name">Комбо Solo<small>Бургер, картопля фрі, напій 0,5 л</small></div><span class="row-lead"></span><span class="row-val row-val--accent">205 ₴</span></div>
-            <div class="row"><div class="row-name">Комбо Duo<small>Два бургери, дві картоплі, два напої, соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">385 ₴</span></div>
-            <div class="row"><div class="row-name">Комбо Party<small>Чотири бургери, велика картопля, чотири напої, снеки</small></div><span class="row-lead"></span><span class="row-val row-val--accent">720 ₴</span></div>
+            <div class="row"><div class="row-name">Комбо Solo<small>Бургер, картопля фрі, напій 0,5 л</small></div><span class="row-lead"></span><span class="row-val row-val--accent">205 ₴</span><button class="ord-add" type="button" data-add="Комбо Solo" data-price="205" aria-label="Додати Комбо Solo до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Комбо Duo<small>Два бургери, дві картоплі, два напої, соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">385 ₴</span><button class="ord-add" type="button" data-add="Комбо Duo" data-price="385" aria-label="Додати Комбо Duo до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Комбо Party<small>Чотири бургери, велика картопля, чотири напої, снеки</small></div><span class="row-lead"></span><span class="row-val row-val--accent">720 ₴</span><button class="ord-add" type="button" data-add="Комбо Party" data-price="720" aria-label="Додати Комбо Party до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
           </div>
         </div>
 
         <div class="panel" data-panel="s" role="tabpanel" hidden>
           <div class="rows">
-            <div class="row"><div class="row-name">Картопля фрі<small>Хрустка, з морською сіллю</small></div><span class="row-lead"></span><span class="row-val row-val--accent">65 ₴</span></div>
-            <div class="row"><div class="row-name">Крильця BBQ<small>Шість штук у соусі барбекю</small></div><span class="row-lead"></span><span class="row-val row-val--accent">155 ₴</span></div>
-            <div class="row"><div class="row-name">Сирні кульки<small>Шість штук, часниковий соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">95 ₴</span></div>
+            <div class="row"><div class="row-name">Картопля фрі<small>Хрустка, з морською сіллю</small></div><span class="row-lead"></span><span class="row-val row-val--accent">65 ₴</span><button class="ord-add" type="button" data-add="Картопля фрі" data-price="65" aria-label="Додати Картопля фрі до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Крильця BBQ<small>Шість штук у соусі барбекю</small></div><span class="row-lead"></span><span class="row-val row-val--accent">155 ₴</span><button class="ord-add" type="button" data-add="Крильця BBQ" data-price="155" aria-label="Додати Крильця BBQ до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Сирні кульки<small>Шість штук, часниковий соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">95 ₴</span><button class="ord-add" type="button" data-add="Сирні кульки" data-price="95" aria-label="Додати Сирні кульки до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
           </div>
         </div>
 
         <div class="panel" data-panel="n" role="tabpanel" hidden>
           <div class="rows">
-            <div class="row"><div class="row-name">Кола, лемонад<small>0,5 л, охолоджені</small></div><span class="row-lead"></span><span class="row-val row-val--accent">45 ₴</span></div>
-            <div class="row"><div class="row-name">Кава з собою<small>Американо, капучино, лате</small></div><span class="row-lead"></span><span class="row-val row-val--accent">55 ₴</span></div>
-            <div class="row"><div class="row-name">Молочний коктейль<small>Ваніль, шоколад або полуниця</small></div><span class="row-lead"></span><span class="row-val row-val--accent">85 ₴</span></div>
+            <div class="row"><div class="row-name">Кола, лемонад<small>0,5 л, охолоджені</small></div><span class="row-lead"></span><span class="row-val row-val--accent">45 ₴</span><button class="ord-add" type="button" data-add="Кола, лемонад" data-price="45" aria-label="Додати Кола, лемонад до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Кава з собою<small>Американо, капучино, лате</small></div><span class="row-lead"></span><span class="row-val row-val--accent">55 ₴</span><button class="ord-add" type="button" data-add="Кава з собою" data-price="55" aria-label="Додати Кава з собою до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
+            <div class="row"><div class="row-name">Молочний коктейль<small>Ваніль, шоколад або полуниця</small></div><span class="row-lead"></span><span class="row-val row-val--accent">85 ₴</span><button class="ord-add" type="button" data-add="Молочний коктейль" data-price="85" aria-label="Додати Молочний коктейль до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
           </div>
         </div>
       </div>
@@ -354,6 +377,14 @@
       </div>
 
       <form class="panel rv" data-form novalidate>
+        <div class="ord-bar" data-order-bar aria-live="polite">
+          <div class="ord-head">
+            <span>У замовленні <b data-order-qty>0</b> поз.</span>
+            <b data-order-sum>0 ₴</b>
+          </div>
+          <ul class="ord-list" data-order-list></ul>
+          <p class="ord-note">Натисніть «Додати» біля позиції в меню — склад і сума з'являться тут.</p>
+        </div>
         <h3>Замовлення або питання</h3>
         <p class="small">Залиште номер — передзвонимо й підтвердимо замовлення.</p>
         <div class="field">

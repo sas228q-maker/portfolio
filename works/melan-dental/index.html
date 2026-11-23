@@ -74,6 +74,26 @@
     .doc .years { grid-column: 2; }
     .quotes blockquote { grid-template-columns: 1fr; gap: 10px; }
   }
+
+  /* акції: у ADent головна будується навколо них */
+  .promo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .promo { display: flex; flex-direction: column; padding: 26px; border-radius: var(--r-lg);
+    border: 1px solid var(--rule); background: var(--surface); }
+  .promo .tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .promo h3 { font-size: 18px; margin-bottom: 8px; }
+  .promo p { font-size: 14.4px; margin-bottom: 16px; }
+  .promo .when { margin-top: auto; font-size: 13.4px; color: var(--ink-2); }
+  .promo-note { margin-top: 16px; font-size: 13.4px; color: var(--ink-2); }
+  /* конкретика приёма: что именно происходит и сколько занимает */
+  .intake { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 44px; }
+  .intake div { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline;
+    padding: 15px 0; border-bottom: 1px solid var(--rule); }
+  .intake b { font-weight: 600; font-size: 15.4px; }
+  .intake b small { display: block; font-weight: 400; font-size: 13.6px; color: var(--ink-2); margin-top: 3px; }
+  .intake span { font-size: 13.6px; color: var(--accent); white-space: nowrap;
+    font-variant-numeric: tabular-nums; }
+  @media (max-width: 860px) { .promo-grid, .intake { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -85,6 +105,7 @@
       Стоматологія «Мелан»
     </a>
     <nav class="menu" aria-label="Основна навігація">
+      <a href="#promo">Акції</a>
       <a href="#services">Послуги</a>
       <a href="#about">Про клініку</a>
       <a href="#doctors">Лікарі</a>
@@ -139,7 +160,41 @@
     </dl>
   </section>
 
-  <section class="band" id="services">
+  <section class="band" id="promo">
+    <div class="wrap">
+      <div class="sechead rv">
+        <h2>Акції цього місяця</h2>
+        <p class="lead">Ми не робимо знижок «на все» — вони знецінюють і роботу, і довіру.
+        Натомість даємо вигоду тим, хто приходить вчасно і приводить родину.</p>
+      </div>
+      <div class="promo-grid rv">
+        <div class="promo">
+          <span class="tag">Родинам</span>
+          <h3>Другий прийом зі знижкою</h3>
+          <p>Якщо приводите дитину або когось із рідних у той самий день — друга консультація
+          й огляд без оплати.</p>
+          <span class="when">Постійно, до кінця року</span>
+        </div>
+        <div class="promo">
+          <span class="tag">Профілактика</span>
+          <h3>Чистка плюс огляд</h3>
+          <p>Професійна чистка з обов'язковим оглядом усіх зубів і складанням плану, якщо
+          щось знайдемо.</p>
+          <span class="when">Для нових пацієнтів</span>
+        </div>
+        <div class="promo">
+          <span class="tag">Дітям</span>
+          <h3>Перший візит — знайомство</h3>
+          <p>Приймаємо дитину від трьох років, показуємо кабінет і даємо звикнути. Без лікування
+          й без оплати.</p>
+          <span class="when">Щодня в робочі години</span>
+        </div>
+      </div>
+      <p class="promo-note">Умови в прикладі — у фінальній версії поставимо ваші дійсні акції.</p>
+    </div>
+  </section>
+
+  <section class="band band-alt" id="services">
     <div class="wrap">
       <div class="sechead rv">
         <h2>Послуги й вартість</h2>
@@ -298,6 +353,24 @@
     </div>
   </section>
 
+  <section class="band band-alt" id="intake">
+    <div class="wrap">
+      <div class="sechead rv">
+        <h2>Що саме входить у прийом</h2>
+        <p class="lead">Щоб не було сюрпризів: ось із чого складається звичайний візит
+        і скільки це займає часу.</p>
+      </div>
+      <div class="intake rv">
+        <div><b>Огляд і знімок<small>Дивимось усі зуби, а не лише той, що болить</small></b><span>15 хв</span></div>
+        <div><b>Письмовий план<small>Етапи, терміни й вартість кожного кроку</small></b><span>10 хв</span></div>
+        <div><b>Анестезія<small>Сучасна, підбираємо за вашою чутливістю</small></b><span>5 хв</span></div>
+        <div><b>Лікування<small>З перервами, якщо потрібно</small></b><span>30–60 хв</span></div>
+        <div><b>Контрольний огляд<small>Перевіряємо прикус і край пломби</small></b><span>5 хв</span></div>
+        <div><b>Гарантія<small>Письмова, один рік на виконані роботи</small></b><span>одразу</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="faq">
     <div class="wrap" style="max-width:880px">
       <div class="sechead rv"><h2>Часті запитання</h2></div>
@@ -410,7 +483,7 @@
       </div>
       <div>
         <h4>Розділи</h4>
-        <a href="#services">Послуги</a><a href="#about">Про клініку</a><a href="#doctors">Лікарі</a><a href="#faq">Питання</a>
+        <a href="#promo">Акції</a><a href="#services">Послуги</a><a href="#intake">Прийом</a><a href="#doctors">Лікарі</a><a href="#faq">Питання</a>
       </div>
       <div>
         <h4>Зв'язок</h4>

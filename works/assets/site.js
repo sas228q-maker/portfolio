@@ -226,4 +226,135 @@
   window.addEventListener("resize", fitPreviews);
   window.addEventListener("load", fitPreviews);
   fitPreviews();
+
+  /* ---------- сборщик заказа: позиции, количество, сумма ----------
+     Референсы True Burger и W Burger работают как магазин: можно набрать
+     позиции и увидеть сумму. Добавляем то же, без бэкенда. */
+  var orderRoot = document.querySelector("[data-order]");
+  if (orderRoot) {
+    var bag = {};
+    var bar = document.querySelector("[data-order-bar]");
+    var qtyEl = document.querySelector("[data-order-qty]");
+    var sumEl = document.querySelector("[data-order-sum]");
+    var listEl = document.querySelector("[data-order-list]");
+    var msgEl = document.querySelector("#mb-msg") || document.querySelector('textarea[name="message"]');
+
+    var render = function () {
+      var names = Object.keys(bag), qty = 0, sum = 0;
+      names.forEach(function (n) { qty += bag[n].qty; sum += bag[n].qty * bag[n].price; });
+
+      if (qtyEl) qtyEl.textContent = qty;
+      if (sumEl) sumEl.textContent = sum.toLocaleString("uk-UA") + " ₴";
+      if (bar) bar.classList.toggle("is-on", qty > 0);
+
+      if (listEl) {
+        listEl.innerHTML = names.map(function (n) {
+          return '<li><span>' + bag[n].qty + ' × ' + n + '</span><b>' +
+            (bag[n].qty * bag[n].price).toLocaleString("uk-UA") + ' ₴</b>' +
+            '<button type="button" class="ord-x" data-remove="' + n +
+            '" aria-label="Прибрати ' + n + ' з замовлення">×</button></li>';
+        }).join("");
+      }
+      if (msgEl && names.length) {
+        msgEl.value = names.map(function (n) { return bag[n].qty + " × " + n; }).join(", ");
+      }
+      document.querySelectorAll("[data-add]").forEach(function (btn) {
+        var n = btn.getAttribute("data-add");
+        var inBag = !!bag[n];
+        btn.classList.toggle("is-added", inBag);
+        btn.setAttribute("aria-label", (inBag ? "Ще одну " : "Додати ") + n);
+        var label = btn.querySelector("[data-add-label]");
+        if (label) label.textContent = inBag ? "Ще одну" : "Додати";
+      });
+      if (bar) bar.setAttribute("aria-live", "polite");
+    };
+
+    /* делегируем на документ: список заказа находится в форме, ВНЕ контейнера
+       меню, поэтому обработчик на orderRoot его не видел */
+    document.addEventListener("click", function (e) {
+      var add = e.target.closest("[data-add]");
+      if (add) {
+        var n = add.getAttribute("data-add");
+        var p = parseFloat(add.getAttribute("data-price")) || 0;
+        if (!bag[n]) bag[n] = { price: p, qty: 0 };
+        bag[n].qty++;
+        render();
+        return;
+      }
+      var rm = e.target.closest("[data-remove]");
+      if (rm) {
+        var key = rm.getAttribute("data-remove");
+        if (bag[key] && --bag[key].qty <= 0) delete bag[key];
+        render();
+      }
+    });
+    render();
+  }
+
+  /* ---------- подбор модели по бюджету и задаче ----------
+     APEX в референсе делает квиз «найдите байк за 10 секунд». Покупатель
+     не знает моделей, но знает бюджет и где будет ездить.
+     Пока фильтр пуст — работают обычные вкладки категорий. Как только
+     выбран бюджет или задача, вкладки скрываются и показываются ВСЕ
+     подходящие позиции из всех категорий. */
+  var picker = document.querySelector("[data-picker]");
+  if (picker) {
+    var bsel = picker.querySelector('[name="budget"]');
+    var tsel = picker.querySelector('[name="task"]');
+    var countEl = document.querySelector("[data-picker-count]");
+    var totalEl = document.querySelector("[data-picker-total]");
+    var countWrap = document.querySelector("[data-picker-count-wrap]");
+    var items = document.querySelectorAll("[data-model]");
+    var group = picker.parentElement.querySelector("[data-tabs]");
+    var tabsEl = group ? group.querySelector(".tabs") : null;
+    var panels = group ? Array.prototype.slice.call(group.querySelectorAll(".panel")) : [];
+    var lastTab = 0;
+
+    var apply = function () {
+      var filtering = !!(bsel.value || tsel.value);
+
+      if (group && panels.length) {
+        if (filtering) {
+          var cur = panels.findIndex(function (p) { return p.classList.contains("is-active"); });
+          if (cur >= 0) lastTab = cur;
+          panels.forEach(function (p) { p.hidden = false; p.classList.add("is-active"); });
+        } else {
+          panels.forEach(function (p, i) {
+            var on = i === lastTab;
+            p.classList.toggle("is-active", on);
+            p.hidden = !on;
+          });
+        }
+      }
+      if (tabsEl) tabsEl.hidden = filtering;
+
+      var shown = 0;
+      items.forEach(function (el) {
+        var ok = true;
+        if (filtering) {
+          var okB = !bsel.value || (el.getAttribute("data-budget") || "").indexOf(bsel.value) >= 0;
+          var okT = !tsel.value || (el.getAttribute("data-task") || "").indexOf(tsel.value) >= 0;
+          ok = okB && okT;
+        }
+        el.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (countEl) countEl.textContent = shown;
+      if (totalEl) totalEl.textContent = items.length;
+      // при пустом фильтре показана одна категория — счётчик по всем 12 только путал бы
+      if (countWrap) countWrap.hidden = !filtering;
+    };
+
+    bsel.addEventListener("change", apply);
+    tsel.addEventListener("change", apply);
+    // клик по вкладке сбрасывает фильтр — иначе непонятно, что показано
+    if (tabsEl) {
+      tabsEl.addEventListener("click", function () {
+        bsel.value = "";
+        tsel.value = "";
+        apply();
+      });
+    }
+    apply();
+  }
 })();

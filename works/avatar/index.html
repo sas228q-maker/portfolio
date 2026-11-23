@@ -79,6 +79,20 @@
     .shop-line { grid-template-columns: 44px 1fr; }
     .shop-line .tag2 { grid-column: 2; }
   }
+
+  /* підбір моделі: покупець знає бюджет і задачу, а не назви моделей */
+  .picker { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: end;
+    padding: 22px 24px; border: 1px solid var(--rule); border-radius: var(--r-lg);
+    position: relative; z-index: 1;
+    background: var(--surface); margin-bottom: 22px; }
+  .picker .field { margin-bottom: 0; }
+  .picker-count { font-size: 14px; color: var(--ink-2); padding-bottom: 15px; white-space: nowrap; }
+  .picker-count b { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .spec-line { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 7px; }
+  .spec-line span { font-size: 12.6px; color: var(--ink-2); border: 1px solid var(--rule);
+    border-radius: 5px; padding: 3px 9px; font-variant-numeric: tabular-nums; }
+  .prod[hidden] { display: none; }
+  @media (max-width: 760px) { .picker { grid-template-columns: 1fr; } .picker-count { padding-bottom: 0; } }
 </style>
 </head>
 <body>
@@ -209,6 +223,29 @@
         і його можна буде оновлювати самому.</p>
       </div>
 
+      <form class="picker rv" data-picker>
+        <div class="field">
+          <label for="pk-budget">Бюджет</label>
+          <select class="inp" id="pk-budget" name="budget">
+            <option value="">Будь-який</option>
+            <option value="low">до 10 000 ₴</option>
+            <option value="mid">10 000 – 25 000 ₴</option>
+            <option value="high">понад 25 000 ₴</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pk-task">Де будете їздити</label>
+          <select class="inp" id="pk-task" name="task">
+            <option value="">Будь-де</option>
+            <option value="city">Місто й парк</option>
+            <option value="offroad">Ґрунтівки та бездоріжжя</option>
+            <option value="kids">Для дитини</option>
+            <option value="work">На роботу щодня</option>
+          </select>
+        </div>
+        <div class="picker-count" data-picker-count-wrap hidden>Підходить: <b data-picker-count>0</b> з <span data-picker-total>0</span></div>
+      </form>
+
       <div data-tabs class="rv">
         <div class="tabs" role="tablist" aria-label="Категорії каталогу">
           <button class="tab btn btn--line btn--sm is-active" role="tab" aria-selected="true" data-tab="v" type="button">Вело</button>
@@ -218,27 +255,27 @@
         </div>
 
         <div class="panel is-active" data-panel="v" role="tabpanel">
-          <div class="prod"><div class="prod-name">Міський велосипед 26"<small>7 швидкостей, крила, багажник. Для міста й парку</small></div><div class="prod-price">7 200 ₴<small>у зборі</small></div></div>
-          <div class="prod"><div class="prod-name">Гірський 27,5"<small>Амортизаційна вилка, 21 швидкість, дискові гальма</small></div><div class="prod-price">10 400 ₴<small>у зборі</small></div></div>
-          <div class="prod"><div class="prod-name">Дитячий 20"<small>Легка рама, обмежувач швидкості, захист ланцюга</small></div><div class="prod-price">4 300 ₴<small>у зборі</small></div></div>
+          <div class="prod" data-model data-budget="low" data-task="city work"><div class="prod-name">Міський велосипед 26"<small>7 швидкостей, крила, багажник. Для міста й парку</small><div class="spec-line"><span>Колеса 26&quot;</span><span>7 швидкостей</span><span>Крила й багажник</span></div></div><div class="prod-price">7 200 ₴<small>у зборі</small></div></div>
+          <div class="prod" data-model data-budget="mid" data-task="offroad"><div class="prod-name">Гірський 27,5"<small>Амортизаційна вилка, 21 швидкість, дискові гальма</small><div class="spec-line"><span>Колеса 27,5&quot;</span><span>21 швидкість</span><span>Дискові гальма</span><span>Амортизація</span></div></div><div class="prod-price">10 400 ₴<small>у зборі</small></div></div>
+          <div class="prod" data-model data-budget="low" data-task="kids"><div class="prod-name">Дитячий 20"<small>Легка рама, обмежувач швидкості, захист ланцюга</small><div class="spec-line"><span>Колеса 20&quot;</span><span>Обмежувач швидкості</span><span>Захист ланцюга</span></div></div><div class="prod-price">4 300 ₴<small>у зборі</small></div></div>
         </div>
 
         <div class="panel" data-panel="e" role="tabpanel" hidden>
-          <div class="prod"><div class="prod-name">Міський електроскутер, 500 Вт<small>Запас ходу до 45 км, складна рама, 25 км/год</small></div><div class="prod-price">18 900 ₴<small>тест-драйв</small></div></div>
-          <div class="prod"><div class="prod-name">Позашляховий, 1000 Вт<small>Запас ходу до 60 км, шини 10", посилена підвіска</small></div><div class="prod-price">27 500 ₴</div></div>
-          <div class="prod"><div class="prod-name">Акумулятор 48 В<small>Літієвий, із зарядним пристроєм і гарантією</small></div><div class="prod-price">5 400 ₴</div></div>
+          <div class="prod" data-model data-budget="mid" data-task="city work"><div class="prod-name">Міський електроскутер, 500 Вт<small>Запас ходу до 45 км, складна рама, 25 км/год</small><div class="spec-line"><span>500 Вт</span><span>до 45 км</span><span>25 км/год</span><span>Складна рама</span></div></div><div class="prod-price">18 900 ₴<small>тест-драйв</small></div></div>
+          <div class="prod" data-model data-budget="high" data-task="offroad"><div class="prod-name">Позашляховий, 1000 Вт<small>Запас ходу до 60 км, шини 10", посилена підвіска</small><div class="spec-line"><span>1000 Вт</span><span>до 60 км</span><span>Шини 10&quot;</span><span>Посилений амортизатор</span></div></div><div class="prod-price">27 500 ₴</div></div>
+          <div class="prod" data-model data-budget="mid" data-task="city work offroad"><div class="prod-name">Акумулятор 48 В<small>Літієвий, із зарядним пристроєм і гарантією</small><div class="spec-line"><span>48 В</span><span>Літієвий</span><span>Із зарядним пристроєм</span></div></div><div class="prod-price">5 400 ₴</div></div>
         </div>
 
         <div class="panel" data-panel="m" role="tabpanel" hidden>
-          <div class="prod"><div class="prod-name">Скутер 50 см³<small>Економний, для міста. Категорія AM</small></div><div class="prod-price">32 000 ₴<small>документи</small></div></div>
-          <div class="prod"><div class="prod-name">Мопед 49 см³<small>Простий в обслуговуванні, запчастини завжди в наявності</small></div><div class="prod-price">26 800 ₴</div></div>
-          <div class="prod"><div class="prod-name">Комплект захисту<small>Шолом, рукавиці, наколінники</small></div><div class="prod-price">2 100 ₴</div></div>
+          <div class="prod" data-model data-budget="high" data-task="city work"><div class="prod-name">Скутер 50 см³<small>Економний, для міста. Категорія AM</small><div class="spec-line"><span>50 см³</span><span>Категорія AM</span><span>Документи</span></div></div><div class="prod-price">32 000 ₴<small>документи</small></div></div>
+          <div class="prod" data-model data-budget="high" data-task="city work"><div class="prod-name">Мопед 49 см³<small>Простий в обслуговуванні, запчастини завжди в наявності</small><div class="spec-line"><span>49 см³</span><span>Просте обслуговування</span></div></div><div class="prod-price">26 800 ₴</div></div>
+          <div class="prod" data-model data-budget="low" data-task="city offroad work"><div class="prod-name">Комплект захисту<small>Шолом, рукавиці, наколінники</small><div class="spec-line"><span>Шолом</span><span>Рукавиці</span><span>Наколінники</span></div></div><div class="prod-price">2 100 ₴</div></div>
         </div>
 
         <div class="panel" data-panel="p" role="tabpanel" hidden>
-          <div class="prod"><div class="prod-name">Покришка 26"<small>Посилений протектор, антипрокольний шар</small></div><div class="prod-price">650 ₴</div></div>
-          <div class="prod"><div class="prod-name">Мастило та хімія<small>Для ланцюга, підшипників і гальм</small></div><div class="prod-price">від 180 ₴</div></div>
-          <div class="prod"><div class="prod-name">Велокомп'ютер<small>Швидкість, дистанція, час. Бездротовий</small></div><div class="prod-price">890 ₴</div></div>
+          <div class="prod" data-model data-budget="low" data-task="city offroad kids"><div class="prod-name">Покришка 26"<small>Посилений протектор, антипрокольний шар</small><div class="spec-line"><span>26&quot;</span><span>Антипрокольний шар</span></div></div><div class="prod-price">650 ₴</div></div>
+          <div class="prod" data-model data-budget="low" data-task="city offroad work"><div class="prod-name">Мастило та хімія<small>Для ланцюга, підшипників і гальм</small><div class="spec-line"><span>Для ланцюга</span><span>Для підшипників</span><span>Для гальм</span></div></div><div class="prod-price">від 180 ₴</div></div>
+          <div class="prod" data-model data-budget="low" data-task="city work"><div class="prod-name">Велокомп'ютер<small>Швидкість, дистанція, час. Бездротовий</small><div class="spec-line"><span>Швидкість</span><span>Дистанція</span><span>Бездротовий</span></div></div><div class="prod-price">890 ₴</div></div>
         </div>
       </div>
     </div>

@@ -62,6 +62,20 @@
     .plate { aspect-ratio: 3 / 2; }
   }
   @media (max-width: 560px) { .gal { grid-template-columns: 1fr; } }
+
+  /* крупное поле бренд-цвета: у всех трёх референсов салонов
+     фирменный цвет занимает большие площади, а не только акценты */
+  .field-band { background: var(--accent); color: #fff; }
+  .field-band h2 { color: #fff; }
+  .field-band p, .field-band .lead { color: rgba(255, 255, 255, .88); }
+  .field-band .sign { color: #fff; }
+  .promise { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 34px; }
+  .promise div { border-top: 1px solid rgba(255, 255, 255, .3); padding-top: 16px; }
+  .promise b { display: block; margin-bottom: 5px; color: #fff; }
+  .promise span { font-size: 14.4px; color: rgba(255, 255, 255, .84); }
+  .consult { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px;
+    border: 1px solid var(--rule); border-radius: var(--r); background: var(--surface-2); }
+  @media (max-width: 760px) { .promise { grid-template-columns: 1fr; gap: 18px; } }
 </style>
 </head>
 <body>
@@ -77,6 +91,7 @@
       <a href="#works">Роботи</a>
       <a href="#about">Про студію</a>
       <a href="#book">Запис</a>
+      <a href="#faq">Питання</a>
       <a href="#contact">Контакти</a>
     </nav>
     <div class="hdr-side">
@@ -120,6 +135,19 @@
       <div><dt>Адреса</dt><dd>Дубно, вул. Стара, 2б</dd></div>
       <div><dt>Підтвердження</dt><dd>Протягом години в робочий час</dd></div>
     </dl>
+  </section>
+
+  <section class="band field-band">
+    <div class="wrap">
+      <h2>Спокійний стиль, який тримається три тижні</h2>
+      <p class="lead">Я не роблю «яскраво, бо так модно». Підбираю форму й відтінок під ваші руки
+      та спосіб життя, тому покриття не скошується на третій день, а вії не заважають вмиватись.</p>
+      <div class="promise">
+        <div><b>Один клієнт за раз</b><span>Ніяких паралельних крісел — увесь час ваш.</span></div>
+        <div><b>Ціна без «від»</b><span>Називаю до початку роботи, доплат у процесі немає.</span></div>
+        <div><b>Догляд додому</b><span>Поясню, що робити між візитами, щоб трималось довше.</span></div>
+      </div>
+    </div>
   </section>
 
   <section class="band" id="prices">
@@ -221,6 +249,12 @@
         <h2>Запис на прийом</h2>
         <p class="lead">Найшвидше — залишити заявку або написати в Telegram. Відповідаю протягом
         години в робочий час.</p>
+        <div class="consult" style="margin-top:20px">
+          <svg class="ic ic--lg" style="color:var(--accent)" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+          <div><b>Не знаєте, що обрати?</b>
+            <p style="margin:4px 0 0;font-size:14.6px">Напишіть фото своїх рук або очей — безкоштовно
+            підберу форму, довжину й відтінок. Це ні до чого не зобов'язує.</p></div>
+        </div>
         <div style="display:grid;gap:10px;margin-top:24px;max-width:400px">
           <a class="btn" href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">
             <svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg> Telegram
@@ -284,6 +318,45 @@
     </div>
   </section>
 
+  <section class="band band-alt" id="faq">
+    <div class="wrap" style="max-width:880px">
+      <div class="sechead rv"><h2>Питання та відповіді</h2></div>
+      <div class="rv">
+        <details class="faq" open>
+          <summary>Скільки тримається покриття?</summary>
+          <p>Гель-лак — три-чотири тижні за звичайного догляду. Якщо працюєте руками або часто
+          миєте посуд без рукавичок, може бути трохи менше — скажу про це заздалегідь і
+          підберу міцніше покриття.</p>
+        </details>
+        <details class="faq">
+          <summary>Чи можна з нарощеними віями в басейн?</summary>
+          <p>Можна, але хлор прискорює розклеювання. Якщо плаваєте регулярно, зроблю
+          скромніший об'єм — він тримається довше за пишний.</p>
+        </details>
+        <details class="faq">
+          <summary>Чи буде боляче під час нарощування вій?</summary>
+          <p>Ні. Ви лежите із заплющеними очима, процедура займає близько двох годин, багато
+          клієнток засинають. Якщо відчуєте найменший дискомфорт — скажіть одразу.</p>
+        </details>
+        <details class="faq">
+          <summary>Що робити перед першим візитом?</summary>
+          <p>Нічого особливого. Не знімайте старе покриття самостійно — зроблю це я.
+          Для вій приходьте без макіяжу очей, якщо зручно.</p>
+        </details>
+        <details class="faq">
+          <summary>Чи можна перенести запис?</summary>
+          <p>Так, напишіть хоча б за три години. Я працюю сама, тому перенесення
+          попереджає, що час можна віддати іншій клієнтці.</p>
+        </details>
+        <details class="faq">
+          <summary>Чи є протипоказання для манікюру?</summary>
+          <p>Гострі запалення шкіри, грибок або відкриті рани на руках — у такому разі
+          переносимо візит. Якщо є сумніви, напишіть, обговоримо до запису.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="contact">
     <div class="wrap">
       <div class="sechead rv"><h2>Контакти</h2></div>
@@ -330,7 +403,7 @@
       </div>
       <div>
         <h4>Розділи</h4>
-        <a href="#prices">Послуги</a><a href="#works">Роботи</a><a href="#about">Про студію</a><a href="#book">Запис</a>
+        <a href="#prices">Послуги</a><a href="#works">Роботи</a><a href="#about">Про студію</a><a href="#book">Запис</a><a href="#faq">Питання</a>
       </div>
       <div>
         <h4>Зв'язок</h4>
