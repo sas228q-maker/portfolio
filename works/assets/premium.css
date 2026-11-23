@@ -558,3 +558,24 @@ section { position: relative; }
   .stack .ilist { grid-template-columns: 1fr; }
   .stack > .stack-head { margin-bottom: 24px; }
 }
+
+
+/* ==========================================================================
+   ЗАГОЛОВОК СЕКЦИИ ПО ЦЕНТРУ
+   Раньше он стоял слева, а содержимое уходило вправо — под текстом
+   оставалась пустота. Теперь заголовок по центру, блок под ним.
+   ========================================================================== */
+.sechead { text-align: center; max-width: 64ch; margin: 0 auto 34px; }
+.sechead h2 { margin-bottom: 10px; }
+.sechead .lead { margin-left: auto; margin-right: auto; }
+/* акцентная черта растёт от центра, а не от левого края */
+.sechead h2::before { left: 50%; transform: translateX(-50%) scaleX(0); transform-origin: center; }
+.sechead.rv.is-in h2::before { animation: growLineCenter 620ms cubic-bezier(.22,.61,.36,1) 120ms both; }
+@keyframes growLineCenter {
+  from { transform: translateX(-50%) scaleX(0); }
+  to { transform: translateX(-50%) scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sechead.rv.is-in h2::before { animation: none; transform: translateX(-50%) scaleX(1); }
+}
+@media (max-width: 760px) { .sechead { margin-bottom: 24px; } }
