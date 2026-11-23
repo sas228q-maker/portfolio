@@ -76,6 +76,23 @@
   .consult { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px;
     border: 1px solid var(--rule); border-radius: var(--r); background: var(--surface-2); }
   @media (max-width: 760px) { .promise { grid-template-columns: 1fr; gap: 18px; } }
+
+  .shade-wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 46px; align-items: center; }
+  .shade-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .shade { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--rule);
+    background: var(--c); cursor: pointer; padding: 0; position: relative;
+    transition: transform 220ms cubic-bezier(.22,.61,.36,1), box-shadow 220ms ease; }
+  .shade:hover { transform: scale(1.08); }
+  .shade[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
+  .shade-preview { aspect-ratio: 1; border-radius: var(--r-lg); display: grid;
+    place-items: center; text-align: center; border: 1px solid var(--rule);
+    background: var(--c); transition: background 420ms cubic-bezier(.22,.61,.36,1);
+    box-shadow: inset 0 0 90px rgba(0,0,0,.14); }
+  .shade-preview span { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 40px);
+    font-weight: 600; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+  .shade-preview small { display: block; margin-top: 6px; font-size: 13px;
+    color: rgba(255,255,255,.85); }
+  @media (max-width: 860px) { .shade-wrap { grid-template-columns: 1fr; gap: 28px; } }
 </style>
 </head>
 <body>
@@ -128,18 +145,6 @@
     </div>
   </section>
 
-  <section class="wrap rv">
-    <dl class="facts">
-      <div><dt>Прийом</dt><dd>Тільки за попереднім записом</dd></div>
-      <div><dt>Графік</dt><dd>Пн–Сб, з 9:00 до 19:00</dd></div>
-      <div><dt>Адреса</dt><dd>Дубно, вул. Стара, 2б</dd></div>
-      <div><dt>Підтвердження</dt><dd>Протягом години в робочий час</dd></div>
-    </dl>
-  </section>
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span><i></i><b>один клієнт за раз</b></span><span><i></i><b>стерилізація після кожного</b></span><span><i></i><b>запис на зручний час</b></span><span><i></i><b>безкоштовний підбір форми</b></span><span><i></i><b>прайс без «від»</b></span></div>
-  </div>
-
 
   <section class="band field-band">
     <div class="wrap">
@@ -189,6 +194,28 @@
           <span style="font-size:15px;color:var(--ink-2)">Інструменти проходять повний цикл стерилізації після кожного клієнта.
           Файли й рукавички — одноразові. Працюю лише із сертифікованими матеріалами.</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="shades">
+    <div class="wrap shade-wrap">
+      <div class="rv">
+        <h2>Палітра</h2>
+        <p class="lead">Оберіть відтінок — покажу, як він виглядає в покритті. Це не каталог
+        на продаж: так ви побачите напрямок ще до візиту.</p>
+        <div class="shade-list" role="group" aria-label="Відтінки покриття">
+          <button type="button" class="shade" data-shade="Нюд" data-color="#D9B8A4" style="--c:#D9B8A4" aria-label="Відтінок Нюд"></button>
+          <button type="button" class="shade" data-shade="Молочний" data-color="#EFE6DC" style="--c:#EFE6DC" aria-label="Відтінок Молочний"></button>
+          <button type="button" class="shade" data-shade="Пудра" data-color="#E4C2C6" style="--c:#E4C2C6" aria-label="Відтінок Пудра"></button>
+          <button type="button" class="shade" data-shade="Теракота" data-color="#C07A5E" style="--c:#C07A5E" aria-label="Відтінок Теракота"></button>
+          <button type="button" class="shade" data-shade="Слива" data-color="#7C4A5E" style="--c:#7C4A5E" aria-label="Відтінок Слива"></button>
+          <button type="button" class="shade" data-shade="Графіт" data-color="#4A4550" style="--c:#4A4550" aria-label="Відтінок Графіт"></button>
+        </div>
+      </div>
+      <div class="shade-preview rv" data-shade-preview style="--c:#D9B8A4">
+        <span data-shade-name>Нюд</span>
+        <small>натисніть на кружечок зліва</small>
       </div>
     </div>
   </section>
@@ -289,6 +316,11 @@
         <div class="field">
           <label for="av-phone">Телефон</label>
           <input class="inp" id="av-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+        </div>
+        <div class="field">
+          <label for="av-tg">Telegram (не обов'язково)</label>
+          <input class="inp" id="av-tg" name="telegram" type="text"
+                 placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="av-svc">Послуга</label>

@@ -133,6 +133,7 @@
       "Ім'я: " + (get("name") || "не вказано"),
       "Телефон: " + get("phone")
     ];
+    if (get("telegram")) lines.push("Telegram: " + get("telegram"));
     if (get("service")) lines.push("Послуга: " + get("service"));
     if (get("type")) lines.push("Заклад: " + get("type"));
     if (get("guests")) lines.push("Осіб: " + get("guests"));
@@ -395,89 +396,113 @@
     render();
   }
 
-  /* ---------- подбор модели по бюджету и задаче ----------
-     APEX в референсе делает квиз «найдите байк за 10 секунд». Покупатель
-     не знает моделей, но знает бюджет и где будет ездить.
-     Пока фильтр пуст — работают обычные вкладки категорий. Как только
-     выбран бюджет или задача, вкладки скрываются и показываются ВСЕ
-     подходящие позиции из всех категорий. */
-  var picker = document.querySelector("[data-picker]");
-  if (picker) {
-    var bsel = picker.querySelector('[name="budget"]');
-    var tsel = picker.querySelector('[name="task"]');
-    var countEl = document.querySelector("[data-picker-count]");
-    var totalEl = document.querySelector("[data-picker-total]");
-    var countWrap = document.querySelector("[data-picker-count-wrap]");
-    var resetEl = document.querySelector("[data-picker-reset]");
-    var items = document.querySelectorAll("[data-model]");
-    var group = picker.parentElement.querySelector("[data-tabs]");
-    var tabsEl = group ? group.querySelector(".tabs") : null;
-    var pickPanels = group ? Array.prototype.slice.call(group.querySelectorAll(".panel")) : [];
-    var lastTab = 0;
-    var wasFiltering = false;
+  /* ---------- каталог: фильтры и сортировка ----------
+     Покупатель не знает моделей, но знает бюджет и где будет ездить.
+     Категория, бюджет, задача — фильтры; плюс сортировка по цене и названию. */
+  var catGrid = document.querySelector("[data-cat-grid]");
+  if (catGrid) {
+    var fCat = document.querySelector("#c-cat");
+    var fBudget = document.querySelector("#c-budget");
+    var fTask = document.querySelector("#c-task");
+    var fSort = document.querySelector("#c-sort");
+    var cntEl = document.querySelector("[data-cat-count]");
+    var emptyEl = document.querySelector("[data-cat-empty]");
+    var resetBtn = document.querySelector("[data-cat-reset]");
+    var cards = Array.prototype.slice.call(catGrid.querySelectorAll("[data-model]"));
+    var originalOrder = cards.slice();
 
-    var apply = function () {
-      var filtering = !!(bsel.value || tsel.value);
-
-      /* Панелями управляем ТОЛЬКО на переходах режима.
-         Если трогать их постоянно, обработчик вкладок и этот код начинают
-         перебивать друг друга — выбранная вкладка откатывалась назад. */
-      if (group && pickPanels.length) {
-        if (filtering && !wasFiltering) {
-          var cur = pickPanels.findIndex(function (p) { return p.classList.contains("is-active"); });
-          if (cur >= 0) lastTab = cur;
-          pickPanels.forEach(function (p) { p.hidden = false; p.classList.add("is-active"); });
-        } else if (!filtering && wasFiltering) {
-          pickPanels.forEach(function (p, i) {
-            var on = i === lastTab;
-            p.classList.toggle("is-active", on);
-            p.hidden = !on;
-          });
-        }
-      }
-      wasFiltering = filtering;
-      if (tabsEl) tabsEl.hidden = filtering;
+    var updateCatalog = function () {
+      var filtering = !!(fCat.value || fBudget.value || fTask.value || fSort.value);
+      if (resetBtn) resetBtn.hidden = !filtering;
 
       var shown = 0;
-      items.forEach(function (el) {
-        var ok = true;
-        if (filtering) {
-          var okB = !bsel.value || (el.getAttribute("data-budget") || "").indexOf(bsel.value) >= 0;
-          var okT = !tsel.value || (el.getAttribute("data-task") || "").indexOf(tsel.value) >= 0;
-          ok = okB && okT;
-        }
+      cards.forEach(function (el) {
+        var okCat = !fCat.value || el.getAttribute("data-cat") === fCat.value;
+        var okBudget = !fBudget.value || el.getAttribute("data-budget") === fBudget.value;
+        var okTask = !fTask.value ||
+          (el.getAttribute("data-task") || "").indexOf(fTask.value) >= 0;
+        var ok = okCat && okBudget && okTask;
         el.hidden = !ok;
         if (ok) shown++;
       });
-      if (countEl) countEl.textContent = shown;
-      if (totalEl) totalEl.textContent = items.length;
-      // при пустом фильтре показана одна категория — счётчик по всем 12 только путал бы
-      if (countWrap) countWrap.hidden = !filtering;
-      if (resetEl) resetEl.hidden = !filtering;
+
+      /* Сортировка: переставляем настоящие узлы в DOM, чтобы работали
+         и hover, и скринридер, и порядок табуляции. */
+      var mode = fSort.value;
+      var toSort = mode ? cards.slice() : originalOrder.slice();
+      if (mode) {
+        toSort.sort(function (a, b) {
+          if (mode === "name") {
+            return a.getAttribute("data-name").localeCompare(b.getAttribute("data-name"), "uk");
+          }
+          var pa = +a.getAttribute("data-price") || 0;
+          var pb = +b.getAttribute("data-price") || 0;
+          return mode === "asc" ? pa - pb : pb - pa;
+        });
+      }
+      toSort.forEach(function (el) { catGrid.appendChild(el); });
+
+      if (cntEl) cntEl.textContent = shown;
+      if (emptyEl) emptyEl.hidden = shown > 0;
     };
 
-    bsel.addEventListener("change", apply);
-    tsel.addEventListener("change", apply);
-    /* Клик по вкладке во время активного фильтра: сбрасываем фильтр и
-       остаёмся на той вкладке, которую выбрал человек. */
-    if (resetEl) {
-      resetEl.addEventListener("click", function () {
-        bsel.value = "";
-        tsel.value = "";
-        apply();
+    [fCat, fBudget, fTask, fSort].forEach(function (el) {
+      if (el) el.addEventListener("change", updateCatalog);
+    });
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        fCat.value = ""; fBudget.value = ""; fTask.value = ""; fSort.value = "";
+        updateCatalog();
       });
     }
-    if (tabsEl) {
-      tabsEl.addEventListener("click", function (e) {
-        if (!wasFiltering) return;                 // обычный режим — не мешаем вкладкам
-        var btn = e.target.closest(".tab");
-        var idx = btn ? Array.prototype.indexOf.call(tabsEl.querySelectorAll(".tab"), btn) : -1;
-        if (idx >= 0) lastTab = idx;
-        bsel.value = "";
-        tsel.value = "";
-        apply();
+    updateCatalog();
+  }
+
+  /* ---------- дерево: линия растёт по мере прокрутки ----------
+     Причины «чому нас обирають» раскрываются по очереди, а не вываливаются
+     сразу сеткой прямоугольников. */
+  var tree = document.querySelector("[data-tree]");
+  if (tree) {
+    var stemFill = tree.querySelector(".tree-stem i");
+    var treeNodes = Array.prototype.slice.call(tree.querySelectorAll(".tree-node"));
+
+    var updateTree = function () {
+      var r = tree.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      var total = r.height || 1;
+      /* линия «догоняет» взгляд: заполняется, пока секция проходит экран */
+      var passed = Math.min(total, Math.max(0, vh * 0.62 - r.top));
+      if (stemFill) stemFill.style.height = (passed / total * 100).toFixed(1) + "%";
+
+      var lineY = r.top + passed;
+      treeNodes.forEach(function (node) {
+        var nr = node.getBoundingClientRect();
+        node.classList.toggle("is-on", nr.top + 14 <= lineY);
       });
-    }
-    apply();
+    };
+
+    window.addEventListener("scroll", updateTree, { passive: true });
+    window.addEventListener("resize", updateTree);
+    window.addEventListener("load", updateTree);
+    updateTree();
+  }
+  /* ---------- палитра оттенков (салон красоты) ----------
+     Клик по кружку меняет превью: посетитель видит направление до визита. */
+  var shadePreview = document.querySelector("[data-shade-preview]");
+  if (shadePreview) {
+    var shadeName = shadePreview.querySelector("[data-shade-name]");
+    var shadeBtns = Array.prototype.slice.call(document.querySelectorAll(".shade"));
+    var pickShade = function (btn) {
+      shadePreview.style.setProperty("--c", btn.getAttribute("data-color"));
+      if (shadeName) shadeName.textContent = btn.getAttribute("data-shade");
+      shadeBtns.forEach(function (b) {
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+      });
+    };
+    shadeBtns.forEach(function (btn) {
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", function () { pickShade(btn); });
+    });
+    if (shadeBtns.length) pickShade(shadeBtns[0]);
   }
 })();

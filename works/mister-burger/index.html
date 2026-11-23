@@ -125,6 +125,8 @@
     font-size: 17px; line-height: 1; padding: 0 4px; }
   .ord-x:hover { color: var(--accent); }
   .ord-note { margin: 10px 0 0; font-size: 13px; color: var(--ink-2); }
+
+  .hero-facts-line { margin-top: 20px; font-size: 14.4px; color: var(--ink-2); }
 </style>
 </head>
 <body>
@@ -168,6 +170,7 @@
             <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Замовити
           </a>
         </div>
+        <p class="hero-facts-line">Доставка 30 хвилин, два заклади в Дубні, безкоштовно від 400 ₴</p>
       </div>
 
       <div class="b3-zone" data-tilt-zone>
@@ -186,18 +189,6 @@
       </div>
     </div>
   </section>
-
-  <section class="wrap rv">
-    <dl class="facts">
-      <div><dt>Доставка по Дубні</dt><dd>30 хвилин</dd></div>
-      <div><dt>Години роботи</dt><dd>10:00 – 22:00, щодня</dd></div>
-      <div><dt>Закладів у місті</dt><dd>Два: Стометрівка і Грушевського</dd></div>
-      <div><dt>Безкоштовна доставка</dt><dd>від 400 ₴</dd></div>
-    </dl>
-  </section>
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span><i></i><b>котлети формуємо щоранку</b></span><span><i></i><b>доставка 30 хвилин</b></span><span><i></i><b>безкоштовно від 400 ₴</b></span><span><i></i><b>два заклади в Дубні</b></span><span><i></i><b>готуємо після замовлення</b></span></div>
-  </div>
 
 
   <section class="band" id="menu">
@@ -398,6 +389,11 @@
         <div class="field">
           <label for="mb-phone">Телефон</label>
           <input class="inp" id="mb-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+        </div>
+        <div class="field">
+          <label for="mb-tg">Telegram (не обов'язково)</label>
+          <input class="inp" id="mb-tg" name="telegram" type="text"
+                 placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="mb-msg">Що замовити</label>

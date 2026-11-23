@@ -94,6 +94,43 @@
   .intake span { font-size: 13.6px; color: var(--accent); white-space: nowrap;
     font-variant-numeric: tabular-nums; }
   @media (max-width: 860px) { .promo-grid, .intake { grid-template-columns: 1fr; } }
+
+  /* послуги: чіткий акцент на головному, розкриття по кліку */
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .svc { border: 1px solid var(--rule); border-radius: var(--r-lg);
+    background: var(--surface); overflow: hidden;
+    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms cubic-bezier(.22,.61,.36,1); }
+  .svc:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+    box-shadow: var(--shadow-lift); }
+  .svc summary { display: flex; align-items: center; gap: 14px; padding: 20px 22px;
+    cursor: pointer; list-style: none; }
+  .svc summary::-webkit-details-marker { display: none; }
+  .svc-name { flex: 1; min-width: 0; font-size: 17px; font-weight: 600; }
+  .svc-price { font-size: 15.5px; font-weight: 700; color: var(--accent);
+    font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .svc-mark { position: relative; width: 22px; height: 22px; flex: none; }
+  .svc-mark::before, .svc-mark::after { content: ""; position: absolute; left: 50%; top: 50%;
+    background: var(--accent); border-radius: 2px; transform: translate(-50%, -50%);
+    transition: transform 240ms cubic-bezier(.22,.61,.36,1); }
+  .svc-mark::before { width: 14px; height: 2px; }
+  .svc-mark::after { width: 2px; height: 14px; }
+  .svc[open] .svc-mark::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .svc-list { margin: 0; padding: 0 22px 20px 22px; list-style: none; display: grid; gap: 8px; }
+  .svc-list li { position: relative; padding-left: 20px; font-size: 14.6px; color: var(--ink-2); }
+  .svc-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px;
+    height: 2px; background: var(--accent); border-radius: 2px; }
+  /* головні послуги — з акцентною заливкою, їх видно з першого погляду */
+  .svc--accent { background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+    border-color: color-mix(in srgb, var(--accent) 46%, var(--rule)); }
+  .svc--accent .svc-name { font-size: 17.5px; }
+  .svc-note { margin-top: 18px; font-size: 13.6px; color: var(--ink-2); }
+
+  /* контраст блоків на світлому: тінь замість невидимих рамок */
+  .panel, .promo, .doc, .year-plate { box-shadow: var(--shadow-sm); }
+  .band-alt .panel, .band-alt .promo { background: var(--surface); }
+  .intake div { border-bottom-color: color-mix(in srgb, var(--rule) 80%, var(--ink)); }
+
+  @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -150,18 +187,6 @@
     </div>
   </section>
 
-  <section class="wrap rv">
-    <dl class="facts">
-      <div><dt>Графік</dt><dd>Пн–Пт 9:00 – 18:00, Сб — за записом</dd></div>
-      <div><dt>Гарантія</dt><dd>Письмова, один рік на роботи</dd></div>
-      <div><dt>План лікування</dt><dd>Безкоштовно після огляду</dd></div>
-      <div><dt>Оплата</dt><dd>Можна частинами за етапами</dd></div>
-    </dl>
-  </section>
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span><i></i><b>письмовий план лікування</b></span><span><i></i><b>гарантія 1 рік</b></span><span><i></i><b>приймаємо дітей від 3 років</b></span><span><i></i><b>гострий біль — поза чергою</b></span><span><i></i><b>з 1994 року</b></span></div>
-  </div>
-
 
   <section class="band" id="promo">
     <div class="wrap">
@@ -197,33 +222,64 @@
     </div>
   </section>
 
-  <section class="band band-alt" id="services">
+  <section class="band" id="services">
     <div class="wrap">
       <div class="sechead rv">
         <h2>Послуги й вартість</h2>
-        <p class="lead">Ціни вказані за одиницю роботи. Точну вартість називаємо після огляду
-        й фіксуємо письмово — щоб вона не змінювалась у процесі.</p>
+        <p class="lead">Натисніть на послугу — розкриється, що входить і скільки це триває.</p>
       </div>
-      <div class="split split--wide rv">
-        <div class="panel">
-          <h3 style="margin-bottom:16px">Терапія й гігієна</h3>
-          <div class="rows" style="border-top:0">
-            <div class="row"><div class="row-name">Огляд і консультація<small>Зі знімком за потреби, входить у вартість лікування</small></div><span class="row-lead"></span><span class="row-val">150 ₴</span></div>
-            <div class="row"><div class="row-name">Лікування карієсу<small>Пломба з композиту, підбір за кольором емалі</small></div><span class="row-lead"></span><span class="row-val">від 900 ₴</span></div>
-            <div class="row"><div class="row-name">Лікування каналів<small>Ендодонтія з контролем на знімках</small></div><span class="row-lead"></span><span class="row-val">від 1 800 ₴</span></div>
-            <div class="row" style="border-bottom:0"><div class="row-name">Професійна чистка<small>Ультразвук, Air Flow, полірування, фторування</small></div><span class="row-lead"></span><span class="row-val">від 1 200 ₴</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3 style="margin-bottom:16px">Протезування й імплантація</h3>
-          <div class="rows" style="border-top:0">
-            <div class="row"><div class="row-name">Коронка<small>Металокераміка або цирконій, за одиницю</small></div><span class="row-lead"></span><span class="row-val">від 4 500 ₴</span></div>
-            <div class="row"><div class="row-name">Імплант<small>Встановлення, далі коронка за планом</small></div><span class="row-lead"></span><span class="row-val">від 14 000 ₴</span></div>
-            <div class="row"><div class="row-name">Знімний протез<small>Виготовляємо у власній лабораторії</small></div><span class="row-lead"></span><span class="row-val">за планом</span></div>
-            <div class="row" style="border-bottom:0"><div class="row-name">Відбілювання<small>Кабінетне, із захистом емалі</small></div><span class="row-lead"></span><span class="row-val">від 3 500 ₴</span></div>
-          </div>
-        </div>
+      <div class="svc-grid rv">
+        <details class="svc svc--accent" open>
+          <summary>
+            <span class="svc-name">Лікування карієсу</span>
+            <span class="svc-price">від 900 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Пломба з композиту</li><li>Підбір за кольором емалі</li><li>1 візит, 40–60 хв</li></ul>
+        </details>
+        <details class="svc svc--accent">
+          <summary>
+            <span class="svc-name">Професійна чистка</span>
+            <span class="svc-price">від 1 200 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Ультразвук і Air Flow</li><li>Полірування та фторування</li><li>1 година</li></ul>
+        </details>
+        <details class="svc svc--accent">
+          <summary>
+            <span class="svc-name">Імплантація</span>
+            <span class="svc-price">від 14 000 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Встановлення імпланта</li><li>Консультація щодо типу</li><li>Коронка за планом</li></ul>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="svc-name">Лікування каналів</span>
+            <span class="svc-price">від 1 800 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Ендодонтія з контролем на знімках</li><li>1–2 візити</li></ul>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="svc-name">Коронки та протези</span>
+            <span class="svc-price">від 4 500 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Металокераміка або цирконій</li><li>Власна лабораторія</li><li>За одиницю</li></ul>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="svc-name">Дитячий прийом</span>
+            <span class="svc-price">від 600 ₴</span>
+            <span class="svc-mark" aria-hidden="true"></span>
+          </summary>
+          <ul class="svc-list"><li>Від 3 років</li><li>Перший візит — знайомство</li><li>Без лікування</li></ul>
+        </details>
       </div>
+      <p class="svc-note">Ціни вказані за одиницю роботи. Точну суму фіксуємо письмово
+        в плані лікування після огляду.</p>
     </div>
   </section>
 
@@ -322,6 +378,11 @@
         <div class="field">
           <label for="md-phone">Телефон</label>
           <input class="inp" id="md-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+        </div>
+        <div class="field">
+          <label for="md-tg">Telegram (не обов'язково)</label>
+          <input class="inp" id="md-tg" name="telegram" type="text"
+                 placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="md-svc">Що турбує</label>

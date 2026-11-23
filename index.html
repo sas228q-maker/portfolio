@@ -72,6 +72,15 @@
   @media (max-width: 620px) {
     .steps { grid-template-columns: 1fr; }
   }
+
+  /* вступ короткими фразами, не таблицею */
+  .hero-points { list-style: none; margin: 26px 0 4px; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; max-width: 640px; }
+  .hero-points li { position: relative; padding-left: 20px; font-size: 15px;
+    color: var(--ink-2); line-height: 1.5; }
+  .hero-points li::before { content: ""; position: absolute; left: 0; top: .62em;
+    width: 9px; height: 2px; background: var(--accent); border-radius: 2px; }
+  @media (max-width: 640px) { .hero-points { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -102,6 +111,12 @@
     <div class="wrap">
       <h1>Роблю сайти<br>для малого бізнесу</h1>
       <p class="lead">Кафе, салони, автосервіси, клініки. Меню, ціни, замовлення і заявки — все на одній сторінці, без конструкторів і підписок.</p>
+      <ul class="hero-points">
+        <li>Сайти-візитки, меню, каталоги, онлайн-запис</li>
+        <li>3–5 днів від макета до публікації</li>
+        <li>Вартість — після макета, першим клієнтам знижка</li>
+        <li>Домен і хостинг підключаю сам</li>
+      </ul>
       <div class="hero-cta">
         <a class="btn btn--hero" href="#works">
           <svg class="ic" aria-hidden="true"><use href="#i-box"></use></svg> Подивитись роботи
@@ -110,22 +125,8 @@
           <svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg> Написати в Telegram
         </a>
       </div>
-      <p class="hero-note">Я початківець і зараз набираю портфоліо, тому працюю швидко й за ціною
-      нижче ринкової. Макет роблю безкоштовно — ви дивитесь і вирішуєте.</p>
     </div>
   </section>
-
-  <div class="wrap">
-    <dl class="facts">
-      <div><dt>Що роблю</dt><dd>Сайти-візитки, меню, каталоги, онлайн-запис</dd></div>
-      <div><dt>Термін</dt><dd>3–5 днів від макета до публікації</dd></div>
-      <div><dt>Вартість</dt><dd>Обговорюється після макета, першим клієнтам знижка</dd></div>
-      <div><dt>Домен і хостинг</dt><dd>Підключаю, показую, як користуватись</dd></div>
-    </dl>
-  </div>
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span><i></i><b>4 концепти для закладів Дубна</b></span><span><i></i><b>макет безкоштовно</b></span><span><i></i><b>3–5 днів на сайт</b></span><span><i></i><b>адаптив під телефон</b></span><span><i></i><b>домен і публікація</b></span></div>
-  </div>
 
 
   <section class="band" id="works">
@@ -294,6 +295,11 @@
         <div class="field">
           <label for="pf-phone">Телефон</label>
           <input class="inp" id="pf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+38 (0__) ___-__-__...">
+        </div>
+        <div class="field">
+          <label for="pf-tg">Telegram (не обов'язково)</label>
+          <input class="inp" id="pf-tg" name="telegram" type="text"
+                 placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="pf-type">Що за заклад</label>
