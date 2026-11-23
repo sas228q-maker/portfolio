@@ -26,9 +26,14 @@
 }
 
 /* ---------- 3. Text reveal по словам ---------- */
-.has-reveal .rw { display: inline-block; overflow: hidden; vertical-align: bottom; }
+/* Маска появления обязана быть ВЫШЕ глифов: при плотном межстрочном
+   (.84–.92) буквы выходят за строку и обрезались сверху и снизу.
+   Расширяем бокс маски, отрицательным отступом компенсируем layout —
+   визуальный межстрочный интервал не меняется. */
+.has-reveal .rw { display: inline-block; overflow: hidden; vertical-align: bottom;
+  padding: .3em 0; margin: -.3em 0; }
 .has-reveal .rw i {
-  display: inline-block; font-style: normal;
+  display: inline-block; font-style: normal; line-height: 1.15;
   transform: translateY(105%); opacity: 0;
   transition: transform 720ms cubic-bezier(.22,.61,.36,1), opacity 720ms ease;
 }
