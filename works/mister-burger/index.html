@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Містер Бургер — Дубно">
 <meta property="og:description" content="Бургери на грилі, комбо та напої. Два заклади в Дубні, доставка за 30 хвилин.">
-<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/assets/og.png">
+<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/works/assets/img/burger-hero.jpg">
 <meta name="theme-color" content="#14110F">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23E8A33D'/%3E%3Ctext%20x='32'%20y='46'%20font-size='36'%20font-family='Arial'%20font-weight='bold'%20fill='%231A130A'%20text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,116 +18,84 @@
 <link rel="stylesheet" href="../assets/craft.css">
 <style>
   /* ============================================================
-     ЭТА СТРАНИЦА УСТРОЕНА ИНАЧЕ, ЧЕМ ОСТАЛЬНЫЕ:
-     не «заголовок + лид + две кнопки», а полноэкранная 3D-сцена,
-     где бургер — главный объект, а текст живёт по краям сцены.
+     БУРГЕРНАЯ. Основа — фотография, а не текст.
+     Экран открывается кадром еды во всю ширину, заголовок лежит
+     поверх снимка внизу. Ниже — перетаскиваемая фото-стрічка,
+     которая и есть главный интерактив страницы.
      ============================================================ */
 
-  .stage {
-    position: relative; min-height: 100svh; overflow: hidden;
-    background:
-      radial-gradient(58% 52% at 62% 44%, rgba(232,163,61,.13), transparent 70%),
-      radial-gradient(40% 40% at 18% 82%, rgba(232,163,61,.06), transparent 72%),
-      var(--bg);
-  }
-  /* атмосфера: то же фото, приглушённое и размытое, чтобы не спорить с 3D */
-  .stage-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background-image: url("../assets/img/black-burger-bg.jpg");
-    background-size: cover; background-position: 62% 46%;
-    /* размытие не используем (запрещено стандартом): глубину даёт
-       плотность затемнения и градиент поверх фото */
-    opacity: .42;
-  }
-  .stage-bg::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(92deg,
-      var(--bg) 0%, rgba(20,17,15,.94) 34%,
-      rgba(20,17,15,.62) 66%, rgba(20,17,15,.88) 100%);
-  }
-  /* мягкое световое пятно отделяет объект от фотофона (градиент, без блюра) */
-  .stage-glow {
-    position: absolute; z-index: 0; left: 66%; top: 45%; translate: -50% -50%;
-    width: min(820px, 78vw); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(circle at 50% 50%,
-      rgba(232,163,61,.26), rgba(232,163,61,.10) 44%, transparent 72%);
-  }
-  .stage-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
-    touch-action: pan-y; cursor: grab; z-index: 1; }
-  .stage-canvas:active { cursor: grabbing; }
+  .cover { position: relative; min-height: 100svh; display: grid; overflow: hidden;
+    background: #0E0C0B; }
+  .cover-img { position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 42%; }
+  .cover::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(14,12,11,.72) 0%, rgba(14,12,11,.18) 34%,
+                rgba(14,12,11,.62) 70%, rgba(14,12,11,.96) 100%); }
+  .cover-in { position: relative; z-index: 2; display: grid;
+    grid-template-rows: auto 1fr auto; padding: 104px var(--gut) 26px;
+    max-width: var(--w); margin: 0 auto; width: 100%; }
 
-  /* сетка-оверлей: текст по краям, центр отдан бургеру */
-  .stage-ui {
-    position: relative; z-index: 2; pointer-events: none;
-    display: grid; grid-template-rows: auto 1fr auto;
-    padding: 96px var(--gut) 28px; max-width: var(--w); margin: 0 auto; width: 100%;
-    min-height: 100svh;
-  }
-  .stage-ui a, .stage-ui button { pointer-events: auto; }
+  .cover-top { display: flex; align-items: center; justify-content: space-between;
+    gap: 18px; flex-wrap: wrap; }
+  .cover-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px;
+    letter-spacing: .16em; text-transform: uppercase; color: #D8CFC2; }
+  .cover-tag i { width: 25px; height: 2px; background: var(--accent); display: block; }
 
-  .stage-brand { display: flex; align-items: center; gap: 12px; font-size: 13.5px;
-    letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); }
-  .stage-brand i { width: 26px; height: 1px; background: var(--accent); display: block; }
-
-  .stage-mid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: end; gap: 20px; padding-bottom: 20px; }
-  .stage-title { align-self: end; }
-  .stage h1 {
+  .cover-bot { align-self: end; display: grid;
+    grid-template-columns: minmax(0, 1fr) auto; gap: 26px; align-items: end; }
+  .cover h1 {
     font-family: "Oswald", sans-serif; font-weight: 700; text-transform: uppercase;
-    font-size: clamp(40px, 7.4vw, 96px); line-height: .9; letter-spacing: -.01em;
-    margin: 0 0 14px; max-width: 9ch;
+    font-size: clamp(46px, 9.4vw, 132px); line-height: .86; letter-spacing: -.015em;
+    margin: 0 0 16px; max-width: 11ch;
   }
-  .stage-note { font-size: clamp(15px, 1.3vw, 17.5px); color: var(--ink-2);
-    max-width: 30ch; margin: 0; }
-  .stage-cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-    margin-top: 22px; }
+  .cover p { font-size: clamp(15px, 1.4vw, 18px); color: #DED6C9; max-width: 32ch;
+    margin: 0 0 22px; }
+  .cover-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
-  .stage-foot { display: flex; align-items: flex-end; justify-content: space-between;
-    gap: 20px; flex-wrap: wrap; }
-  .stage-hint { display: inline-flex; align-items: center; gap: 10px; font-size: 13px;
-    color: var(--ink-2); transition: opacity 400ms ease; }
-  .stage-hint.is-hidden { opacity: 0; }
-  .stage-hint .dot { width: 20px; height: 20px; border-radius: 50%;
-    border: 1px solid var(--rule); display: grid; place-items: center; }
-  .stage-hint .dot::after { content: ""; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); animation: hintPulse 2.4s ease-in-out infinite; }
-  @keyframes hintPulse { 0%,100% { transform: scale(1); opacity: .55 } 50% { transform: scale(1.5); opacity: 1 } }
+  .cover-facts { display: grid; gap: 12px; text-align: right; }
+  .cover-facts div { font-size: 13.5px; color: #C8BFB2; }
+  .cover-facts b { display: block; font-family: "Oswald", sans-serif; font-size: 23px;
+    font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
 
-  .stage-ticks { display: flex; gap: 22px; font-size: 13px; color: var(--ink-2); }
-  .stage-ticks b { color: var(--ink); font-weight: 600; }
+  /* ---------- фото-стрічка: тянется мышью ---------- */
+  .rail-sec { padding: 76px 0 84px; background: var(--bg); }
+  .rail-head { display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+  .rail-head h2 { margin: 0; font-family: "Oswald", sans-serif; text-transform: uppercase;
+    font-size: clamp(26px, 3.6vw, 42px); }
+  .rail-nav { display: flex; gap: 8px; }
+  .rail-nav button { width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--rule); background: transparent; color: var(--ink);
+    cursor: pointer; display: grid; place-items: center;
+    transition: border-color 200ms, color 200ms, transform 200ms; }
+  .rail-nav button:hover { border-color: var(--accent); color: var(--accent);
+    transform: scale(1.06); }
+  .rail-nav button:first-child svg { transform: rotate(180deg); }
 
-  /* если WebGL нет — показываем аккуратную подложку вместо пустоты */
-  .no-webgl .stage-canvas { display: none; }
-  .no-webgl .stage::after {
-    content: ""; position: absolute; left: 62%; top: 46%; translate: -50% -50%;
-    width: min(420px, 62vw); aspect-ratio: 1; border-radius: 50%; z-index: 1;
-    background: radial-gradient(circle at 38% 32%, #E8B066, #C4802F 58%, #8F571E 100%);
-    box-shadow: 0 40px 90px -30px rgba(0,0,0,.85);
+  .rail {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 4px 0 18px; cursor: grab; scrollbar-width: none;
   }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail.is-drag { cursor: grabbing; scroll-snap-type: none; }
+  .rail figure { flex: 0 0 auto; width: min(78vw, 460px); margin: 0;
+    scroll-snap-align: start; position: relative; border-radius: var(--r-lg);
+    overflow: hidden; background: var(--surface); }
+  .rail img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+    transition: transform 700ms cubic-bezier(.22,.61,.36,1); pointer-events: none; }
+  .rail figure:hover img { transform: scale(1.045); }
+  .rail figcaption { position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 46px 20px 16px; font-size: 14px; color: #EFE7DA;
+    background: linear-gradient(transparent, rgba(10,8,7,.88)); }
+  .rail figcaption b { display: block; font-weight: 600; font-size: 15.5px; }
 
-
-  /* ---------- витрина с фото ---------- */
-  .signature { position: relative; overflow: hidden; background: #0C0A09;
-    display: grid; align-items: end; min-height: min(78vh, 720px); }
-  .signature picture, .signature img { position: absolute; inset: 0; width: 100%;
-    height: 100%; object-fit: cover; object-position: 50% 46%; display: block; }
-  .signature::after { content: ""; position: absolute; inset: 0;
-    background: linear-gradient(78deg, rgba(12,10,9,.94) 0%, rgba(12,10,9,.72) 40%,
-                rgba(12,10,9,.20) 72%, rgba(12,10,9,.55) 100%); }
-  .signature-txt { position: relative; z-index: 2; max-width: var(--w); margin: 0 auto;
-    width: 100%; padding: 0 var(--gut) clamp(40px, 7vh, 78px); }
-  .signature-txt h2 { font-family: "Oswald", sans-serif; text-transform: uppercase;
-    font-size: clamp(30px, 5vw, 62px); margin: 0 0 12px; max-width: 14ch; }
-  .signature-txt p { font-size: clamp(15px, 1.5vw, 18px); color: #E4DCD0;
-    max-width: 42ch; margin: 0 0 22px; }
-
-  /* ---------- меню-борд: крупные цены, без карточек ---------- */
+  /* ---------- меню-борд ---------- */
   .board { background: var(--surface); border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule); padding: 72px 0 84px; }
   .board-head { display: flex; align-items: flex-end; justify-content: space-between;
     gap: 24px; flex-wrap: wrap; margin-bottom: 26px; }
   .board-head h2 { margin: 0; font-family: "Oswald", sans-serif; text-transform: uppercase;
-    font-size: clamp(28px, 4vw, 46px); letter-spacing: 0; }
+    font-size: clamp(28px, 4vw, 46px); }
   .board-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
   .board-tab { padding: 9px 16px; border-radius: 6px; border: 1px solid var(--rule);
     background: transparent; color: var(--ink-2); font-size: 14px; font-weight: 600;
@@ -135,43 +103,31 @@
   .board-tab:hover { color: var(--ink); border-color: var(--accent); }
   .board-tab.is-active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
-  /* панель — реальная сетка, а не display:contents:
-     у contents нет собственного бокса, поэтому элемент «невидим»
-     для скринридеров и для автотестов */
   .board-panel { display: none; }
   .board-panel.is-active { display: grid; grid-template-columns: 1fr 1fr;
     column-gap: 56px; align-items: start; }
-  @media (max-width: 980px) {
-    .board-panel.is-active { grid-template-columns: 1fr; column-gap: 0; }
-  }
-
   .brow { display: grid; grid-template-columns: 1fr auto auto; gap: 14px;
     align-items: center; padding: 20px 0; border-bottom: 1px solid var(--rule);
     transition: background 200ms ease, padding-left 200ms ease; }
   .brow:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); padding-left: 12px; }
   .brow h3 { margin: 0 0 4px; font-family: var(--font-body); font-size: 17px;
-    font-weight: 600; text-transform: none; letter-spacing: 0; }
+    font-weight: 600; }
   .brow p { margin: 0; font-size: 13.8px; color: var(--ink-2); max-width: 46ch; }
   .brow .price { font-family: "Oswald", sans-serif; font-size: 24px; font-weight: 600;
-    letter-spacing: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    white-space: nowrap; font-variant-numeric: tabular-nums; }
   .brow .price small { font-size: 14px; opacity: .7; margin-left: 2px; }
-  .add {
-    width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--rule);
+  .add { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--rule);
     background: transparent; color: var(--ink); cursor: pointer; display: grid;
     place-items: center; font-size: 20px; line-height: 1;
-    transition: background 200ms, color 200ms, border-color 200ms, transform 200ms;
-  }
+    transition: background 200ms, color 200ms, border-color 200ms, transform 200ms; }
   .add:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.06); }
   .add.is-added { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
-  /* ---------- лист заказа ---------- */
-  .sheet {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 88;
+  /* ---------- лист замовлення ---------- */
+  .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 88;
     background: var(--surface); border-top: 1px solid var(--rule);
-    transform: translateY(110%);
-    transition: transform 420ms cubic-bezier(.22,.61,.36,1);
-    box-shadow: 0 -20px 50px -30px rgba(0,0,0,.9);
-  }
+    transform: translateY(110%); transition: transform 420ms cubic-bezier(.22,.61,.36,1);
+    box-shadow: 0 -20px 50px -30px rgba(0,0,0,.9); }
   .sheet.is-on { transform: none; }
   .sheet-in { max-width: var(--w); margin: 0 auto; padding: 14px var(--gut);
     display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
@@ -186,11 +142,11 @@
     font-size: 16px; line-height: 1; padding: 0 2px; }
   .sheet-x:hover { color: var(--accent); }
 
-  /* ---------- три шага ---------- */
-  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-  .flow div { padding: 30px 28px 30px 0; border-top: 2px solid var(--rule);
+  /* ---------- три кроки ---------- */
+  .flow { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .flow > div { padding: 28px 26px 28px 0; border-top: 2px solid var(--rule);
     transition: border-color 300ms ease; }
-  .flow div:hover { border-top-color: var(--accent); }
+  .flow > div:hover { border-top-color: var(--accent); }
   .flow .n { font-family: "Oswald", sans-serif; font-size: 13px; color: var(--accent);
     letter-spacing: .1em; margin-bottom: 10px; }
   .flow h3 { font-size: 19px; margin-bottom: 6px; }
@@ -205,11 +161,10 @@
   .place .hrs { font-family: "Oswald", sans-serif; font-size: 17px; color: var(--accent);
     white-space: nowrap; font-variant-numeric: tabular-nums; }
 
-  /* ---------- один большой отзыв вместо сетки ---------- */
+  /* ---------- відгук ---------- */
   .voice { max-width: 46ch; }
   .voice p { font-family: "Oswald", sans-serif; font-weight: 500;
-    font-size: clamp(20px, 2.6vw, 30px); line-height: 1.32; color: var(--ink); margin: 0 0 20px;
-    letter-spacing: -.01em; }
+    font-size: clamp(20px, 2.6vw, 30px); line-height: 1.32; margin: 0 0 20px; }
   .voice-meta { display: flex; align-items: center; justify-content: space-between;
     gap: 16px; flex-wrap: wrap; }
   .voice-who { font-size: 14px; color: var(--ink-2); }
@@ -223,17 +178,17 @@
   .voice-nav button:first-child svg { transform: rotate(180deg); }
 
   @media (max-width: 980px) {
-    .stage-mid { grid-template-columns: 1fr; align-items: start; }
-    .stage-note { max-width: 42ch; }
-    .board-list { grid-template-columns: 1fr; gap: 0; }
+    .cover-bot { grid-template-columns: 1fr; }
+    .cover-facts { text-align: left; grid-template-columns: repeat(3, auto);
+      justify-content: start; gap: 22px; }
+    .board-panel.is-active { grid-template-columns: 1fr; column-gap: 0; }
     .flow { grid-template-columns: 1fr; }
-    .flow div { padding: 22px 0; }
+    .flow > div { padding: 20px 0; }
   }
-  @media (max-width: 640px) {
-    .stage-ui { padding-top: 84px; }
-    .stage h1 { font-size: clamp(34px, 11vw, 52px); max-width: 12ch; }
-    .stage-ticks { display: none; }
-    .brow { grid-template-columns: 1fr auto; }
+  @media (max-width: 620px) {
+    .cover-in { padding-top: 88px; }
+    .cover-facts { grid-template-columns: repeat(2, auto); }
+    .rail figure { width: 84vw; }
     .place { grid-template-columns: 1fr; gap: 6px; }
     .sheet-list { width: 100%; order: 3; }
   }
@@ -248,8 +203,8 @@
       Містер Бургер
     </a>
     <nav class="menu" aria-label="Основна навігація">
+      <a href="#gallery">Наші страви</a>
       <a href="#menu">Меню</a>
-      <a href="#flow">Як готуємо</a>
       <a href="#places">Заклади</a>
       <a href="#contact">Контакти</a>
     </nav>
@@ -258,7 +213,7 @@
         <svg class="ic ic--sm anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg>
         066 872 15 08
       </a>
-      <a class="btn btn--sm" href="#menu">Меню</a>
+      <a class="btn btn--line btn--sm" href="#menu">Меню</a>
     </div>
     <button class="burger" type="button" aria-label="Відкрити навігацію" aria-expanded="false"><i></i></button>
   </div>
@@ -266,42 +221,80 @@
 
 <main id="top">
 
-  <!-- ЭТАП: настоящий 3D-бургер на WebGL -->
-  <section class="stage">
-    <div class="stage-bg" aria-hidden="true"></div>
-    <div class="stage-glow" aria-hidden="true"></div>
-    <canvas class="stage-canvas" data-burger3d-canvas
-            aria-label="Тривимірна модель бургера. Потягніть, щоб обертати"></canvas>
+  <!-- ОБКЛАДКА: фотографія веде, текст лежить на ній -->
+  <section class="cover">
+    <img class="cover-img" src="../assets/img/burger-hero.jpg" width="1600" height="1177"
+         alt="Бургер на грилі з сиром і салатом поруч із кошиком картоплі фрі" fetchpriority="high">
+    <div class="cover-in">
+      <div class="cover-top">
+        <span class="cover-tag"><i></i> Дубно, два заклади</span>
+      </div>
 
-    <div class="stage-ui">
-      <div class="stage-brand"><i></i> Дубно — два заклади</div>
+      <div></div>
 
-      <div class="stage-mid">
-        <div class="stage-title">
-          <h1 data-reveal-text>Стрітфуд<br>твого міста</h1>
-          <p class="stage-note">Котлети формуємо щоранку, булочки привозять свіжими.</p>
-          <div class="stage-cta">
+      <div class="cover-bot">
+        <div>
+          <h1 data-reveal-text>Смак<br>вулиці</h1>
+          <p>Котлети формуємо щоранку, булочки привозять свіжими, готуємо після замовлення.</p>
+          <div class="cover-cta">
             <a class="btn btn--hero" data-magnetic href="#menu">
               <svg class="ic" aria-hidden="true"><use href="#i-burger"></use></svg> Замовити
             </a>
-            <a class="link-quiet" href="tel:+380668721508">
-              <svg class="ic ic--sm anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg>
-              066 872 15 08
+            <a class="link-quiet" href="#gallery">
+              Подивитись страви
+              <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
             </a>
           </div>
         </div>
-        <div></div>
-      </div>
-
-      <div class="stage-foot">
-        <span class="stage-hint" data-burger3d-hint>
-          <span class="dot"></span> потягніть бургер, щоб покрутити
-        </span>
-        <div class="stage-ticks">
-          <span>доставка <b>30 хв</b></span>
-          <span>безкоштовно <b>від 400 ₴</b></span>
-          <span>щодня <b>10:00–22:00</b></span>
+        <div class="cover-facts">
+          <div>доставка<b>30 хв</b></div>
+          <div>від 400 ₴<b>безкоштовно</b></div>
+          <div>щодня<b>10–22</b></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФОТО-СТРІЧКА -->
+  <section class="rail-sec" id="gallery">
+    <div class="wrap">
+      <div class="rail-head">
+        <h2>Так це виглядає</h2>
+        <div class="rail-nav">
+          <button type="button" data-rail-prev aria-label="Попередні фото">
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+          </button>
+          <button type="button" data-rail-next aria-label="Наступні фото">
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+          </button>
+        </div>
+      </div>
+      <div class="rail" data-rail tabindex="0" role="region" aria-label="Фотографії страв, прокручується">
+        <figure>
+          <img src="../assets/img/burger-g1.jpg" width="1200" height="2130" loading="lazy"
+               alt="Бургер і картопля на чорному таці">
+          <figcaption><b>Подача</b> На чорному таці, як у закладі</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/burger-g2.jpg" width="1200" height="1276" loading="lazy"
+               alt="Великий бургер зі смаженою котлетою і сиром">
+          <figcaption><b>Смажена котлета</b> Просмажуємо на решітці</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/burger-g3.jpg" width="1200" height="1800" loading="lazy"
+               alt="Картопля фрі у паперовій упаковці">
+          <figcaption><b>Картопля фрі</b> Хрустка, з морською сіллю</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/burger-g4.jpg" width="1200" height="801" loading="lazy"
+               alt="Зала закладу з відвідувачами">
+          <figcaption><b>Зала</b> Стометрівка, майдан Незалежності</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/burger-g5.jpg" width="1200" height="1600" loading="lazy"
+               alt="Інтер'єр закладу: дерев'яна стеля і світло">
+          <figcaption><b>Інтер'єр</b> Дерево і тепле світло</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -358,6 +351,7 @@
             <button class="add" type="button" data-add="Веггі" data-price="145" aria-label="Додати Веггі">+</button>
           </div>
         </div>
+
         <div class="board-panel" data-panel="c" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Комбо Solo</h3><p>Бургер, картопля фрі, напій 0,5 л</p></div>
@@ -385,6 +379,7 @@
             <button class="add" type="button" data-add="Комбо Дитяче" data-price="155" aria-label="Додати Комбо Дитяче">+</button>
           </div>
         </div>
+
         <div class="board-panel" data-panel="s" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Картопля фрі</h3><p>Хрустка, з морською сіллю</p></div>
@@ -422,11 +417,12 @@
             <button class="add" type="button" data-add="Салат Цезар" data-price="145" aria-label="Додати Салат Цезар">+</button>
           </div>
         </div>
+
         <div class="board-panel" data-panel="n" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Кола, лемонад</h3><p>0,5 л, охолоджені</p></div>
             <div class="price">45<small>₴</small></div>
-            <button class="add" type="button" data-add="Кола, лемонад" data-price="45" aria-label="Додати Кола, лемонад">+</button>
+            <button class="add" type="button" data-add="Кола" data-price="45" aria-label="Додати Кола">+</button>
           </div>
           <div class="brow">
             <div><h3>Домашній лимонад</h3><p>М'ята, лайм, апельсин</p></div>
@@ -436,7 +432,7 @@
           <div class="brow">
             <div><h3>Кава з собою</h3><p>Американо, капучино, лате</p></div>
             <div class="price">55<small>₴</small></div>
-            <button class="add" type="button" data-add="Кава з собою" data-price="55" aria-label="Додати Кава з собою">+</button>
+            <button class="add" type="button" data-add="Кава" data-price="55" aria-label="Додати Кава">+</button>
           </div>
           <div class="brow">
             <div><h3>Чай</h3><p>Чорний, зелений, фруктовий</p></div>
@@ -446,7 +442,7 @@
           <div class="brow">
             <div><h3>Молочний коктейль</h3><p>Ваніль, шоколад або полуниця</p></div>
             <div class="price">85<small>₴</small></div>
-            <button class="add" type="button" data-add="Молочний коктейль" data-price="85" aria-label="Додати Молочний коктейль">+</button>
+            <button class="add" type="button" data-add="Коктейль" data-price="85" aria-label="Додати Коктейль">+</button>
           </div>
           <div class="brow">
             <div><h3>Вода</h3><p>0,5 л, негазована або газована</p></div>
@@ -454,6 +450,7 @@
             <button class="add" type="button" data-add="Вода" data-price="30" aria-label="Додати Вода">+</button>
           </div>
         </div>
+
         <div class="board-panel" data-panel="d" role="tabpanel" hidden>
           <div class="brow">
             <div><h3>Чізкейк</h3><p>Класичний або з ягодами</p></div>
@@ -472,26 +469,11 @@
           </div>
         </div>
       </div>
-      <p class="formnote">Ціни в прикладі — у фінальній версії поставимо ваші.</p>
+      <p class="formnote">Меню, ціни та фото — приклад для макета. Поставимо ваші.</p>
     </div>
   </section>
 
-
-  <!-- ВИТРИНА: фирменная чёрная булочка -->
-  <section class="signature" id="signature">
-    <picture>
-      <source media="(max-width: 700px)" srcset="../assets/img/black-burger-hero-900.jpg">
-      <img src="../assets/img/black-burger-hero.jpg" width="1900" height="1266" loading="lazy"
-           alt="Фірмовий бургер на чорній булочці з котлетою, сиром чедер, салатом і томатом">
-    </picture>
-    <div class="signature-txt">
-      <h2>Чорна булочка</h2>
-      <p>Активоване вугілля в тісті. На смак не впливає — це колір, а не присмак.</p>
-      <a class="btn" href="#menu">Спробувати</a>
-    </div>
-  </section>
-
-  <!-- ТРИ ШАГИ -->
+  <!-- ТРИ КРОКИ -->
   <section class="band" id="flow">
     <div class="wrap">
       <div class="flow rv">
@@ -534,7 +516,7 @@
     </div>
   </section>
 
-  <!-- ОДИН ВЕЛИКИЙ ВІДГУК -->
+  <!-- ВІДГУК -->
   <section class="band">
     <div class="wrap split">
       <div class="rv">
@@ -625,7 +607,7 @@
       </div>
       <div>
         <h4>Розділи</h4>
-        <a href="#menu">Меню</a><a href="#flow">Як готуємо</a><a href="#places">Заклади</a>
+        <a href="#gallery">Наші страви</a><a href="#menu">Меню</a><a href="#places">Заклади</a>
       </div>
       <div>
         <h4>Контакти</h4>
@@ -640,7 +622,6 @@
   </div>
 </footer>
 
-<!-- лист заказа -->
 <div class="sheet" data-order-bar aria-live="polite">
   <div class="sheet-in">
     <span class="small">У замовленні <b data-order-qty>0</b></span>
@@ -653,7 +634,47 @@
 <button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
 
 <script>
-/* ротатор отзывов: один большой отзыв вместо сетки одинаковых карточек */
+/* Фото-стрічка: тягнеться мишею і пальцем, стрілки прокручують на крок. */
+(function () {
+  var rail = document.querySelector("[data-rail]");
+  if (!rail) return;
+  var down = false, startX = 0, startScroll = 0, moved = 0;
+
+  rail.addEventListener("pointerdown", function (e) {
+    down = true; moved = 0;
+    startX = e.clientX; startScroll = rail.scrollLeft;
+    rail.classList.add("is-drag");
+    if (rail.setPointerCapture) rail.setPointerCapture(e.pointerId);
+  });
+  rail.addEventListener("pointermove", function (e) {
+    if (!down) return;
+    var dx = e.clientX - startX;
+    moved = Math.abs(dx);
+    rail.scrollLeft = startScroll - dx;
+  });
+  function stop() { down = false; rail.classList.remove("is-drag"); }
+  rail.addEventListener("pointerup", stop);
+  rail.addEventListener("pointercancel", stop);
+  rail.addEventListener("pointerleave", stop);
+  rail.addEventListener("click", function (e) { if (moved > 8) e.preventDefault(); }, true);
+
+  function step(dir) {
+    var fig = rail.querySelector("figure");
+    var w = fig ? fig.getBoundingClientRect().width + 16 : 320;
+    rail.scrollBy({ left: dir * w, behavior: "smooth" });
+  }
+  var prev = document.querySelector("[data-rail-prev]");
+  var next = document.querySelector("[data-rail-next]");
+  if (prev) prev.addEventListener("click", function () { step(-1); });
+  if (next) next.addEventListener("click", function () { step(1); });
+
+  rail.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { step(1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { step(-1); e.preventDefault(); }
+  });
+})();
+
+/* Відгуки: один великий відгук із перемиканням. */
 (function () {
   var REVIEWS = [
     ["«Найсмачніші бургери в місті. Беремо комбо Party на всю сім'ю — вистачає з головою.»", "Андрій", "постійний гість"],
@@ -684,9 +705,6 @@
 })();
 </script>
 
-<script src="../assets/vendor/three.min.js"></script>
-<script src="../assets/three-base.js"></script>
-<script src="../assets/burger-3d.js"></script>
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
 <script src="../assets/craft.js"></script>

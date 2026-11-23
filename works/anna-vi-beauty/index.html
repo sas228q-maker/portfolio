@@ -3,85 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anna Vi beauty — Дубно | Манікюр, педикюр, вії</title>
-<meta name="description" content="Студія Anna Vi beauty у Дубні: манікюр, педикюр, нарощування вій. Прайс, портфоліо робіт, запис на зручний час.">
+<title>Anna Vi beauty — студія манікюру та вій у Дубні</title>
+<meta name="description" content="Манікюр, педикюр, нарощування вій і корекція брів у Дубні. Один клієнт за раз, стерилізація після кожного, запис на зручний час.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Anna Vi beauty — Дубно | Манікюр, педикюр, вії">
-<meta property="og:description" content="Невелика студія манікюру, педикюру та вій у Дубні. Один клієнт — один майстер.">
-<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/assets/og.png">
+<meta property="og:title" content="Anna Vi beauty — Дубно">
+<meta property="og:description" content="Манікюр, педикюр і нарощування вій. Один клієнт за раз.">
+<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/works/assets/img/beauty-hero.jpg">
 <meta name="theme-color" content="#F7F5F7">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%237C4A5E'/%3E%3Ctext%20x='32'%20y='45'%20font-size='30'%20font-family='Georgia'%20fill='%23fff'%20text-anchor='middle'%3EAV%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%237C4A5E'/%3E%3Ctext%20x='32'%20y='45'%20font-size='30'%20font-family='Georgia'%20fill='%23F7F5F7'%20text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
 <link rel="stylesheet" href="../assets/craft.css">
 <style>
-  .hero { padding: 148px 0 76px; }
-  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
-  .t-beauty h1 { font-size: clamp(42px, 7.4vw, 84px); line-height: .98; font-weight: 500; }
-  .t-beauty h1 i { font-style: italic; font-weight: 500; }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  /* ============================================================
+     САЛОН. Протилежність бургерній: світло, багато повітря,
+     асиметрична журнальна сітка. Фото — вертикальні портрети,
+     а не горизонтальні кадри. Заголовки — антиква, не гротеск.
+     ============================================================ */
 
-  /* монограмма-пластина: спокойный авторский акцент страницы */
-  .plate { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-lg);
-    background: linear-gradient(158deg, #EFE3E8, #D8BEC8 58%, #B9929F);
-    display: grid; place-items: center; overflow: hidden; }
-  .plate span { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(76px, 11vw, 132px);
-    color: #fff; letter-spacing: .04em; line-height: 1; opacity: .92; }
-  .plate::after { content: ""; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,.5);
-    border-radius: 12px; }
-  .plate figcaption { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center;
-    font-size: 13px; color: rgba(255,255,255,.9); letter-spacing: .08em; }
-
-  .sign { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
-    font-size: 30px; color: var(--accent); margin-top: 14px; }
-
-  /* работы: плотная сетка без рамок-карточек */
-  .gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .gal figure { margin: 0; border-radius: var(--r); overflow: hidden; position: relative; aspect-ratio: 1;
-    display: grid; place-items: center; color: #fff; }
-  .gal figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 16px 13px;
-    font-size: 13.5px; background: linear-gradient(180deg, transparent, rgba(34,30,36,.62)); }
-  .g1 { background: linear-gradient(150deg, #E7C3AE, #C4826C); }
-  .g2 { background: linear-gradient(150deg, #DCC8D2, #A97889); }
-  .g3 { background: linear-gradient(150deg, #D9CDBE, #A98F72); }
-  .g4 { background: linear-gradient(150deg, #CDBFD9, #8B7699); }
-  .g5 { background: linear-gradient(150deg, #E9D2C4, #BE927A); }
-  .g6 { background: linear-gradient(150deg, #C6D3CC, #7C9188); }
-
-  .book-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: start; }
-  .live-row { display: flex; gap: 14px; align-items: flex-start; padding: 15px 0;
-    border-bottom: 1px solid var(--rule); }
-  .live-row:last-child { border-bottom: 0; }
-  .live-row b { display: block; font-size: 15.5px; }
-  .live-row span { font-size: 14.4px; color: var(--ink-2); }
-
-  @media (max-width: 900px) {
-    .hero-grid, .book-grid { grid-template-columns: 1fr; gap: 36px; }
-    .gal { grid-template-columns: repeat(2, 1fr); }
-    .plate { aspect-ratio: 3 / 2; }
+  .masthead { padding: 120px var(--gut) 0; max-width: var(--w); margin: 0 auto; }
+  .mast-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 46px;
+    align-items: end; }
+  .mast-kicker { font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px; }
+  .masthead h1 {
+    font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
+    font-size: clamp(44px, 7.6vw, 104px); line-height: .92; letter-spacing: -.02em;
+    margin: 0 0 20px; max-width: 13ch;
   }
-  @media (max-width: 560px) { .gal { grid-template-columns: 1fr; } }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .mast-lead { font-size: clamp(16px, 1.35vw, 18.5px); color: var(--ink-2);
+    max-width: 34ch; margin: 0 0 26px; }
+  .mast-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .mast-photo { position: relative; border-radius: var(--r-lg); overflow: hidden;
+    background: var(--surface-2); }
+  .mast-photo img { width: 100%; height: 100%; min-height: 380px; object-fit: cover;
+    display: block; }
+  .mast-badge { position: absolute; left: 18px; bottom: 18px; right: 18px;
+    padding: 14px 16px; border-radius: var(--r); background: rgba(28,22,26,.86);
+    color: #F2ECEF; font-size: 13.5px; display: flex; align-items: center;
+    justify-content: space-between; gap: 12px; }
+  .mast-badge b { font-weight: 600; }
 
-  /* крупное поле бренд-цвета: у всех трёх референсов салонов
-     фирменный цвет занимает большие площади, а не только акценты */
-  .field-band { background: var(--accent); color: #fff; }
-  .field-band h2 { color: #fff; }
-  .field-band p, .field-band .lead { color: rgba(255, 255, 255, .88); }
-  .field-band .sign { color: #fff; }
-  .promise { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 34px; }
-  .promise div { border-top: 1px solid rgba(255, 255, 255, .3); padding-top: 16px; }
-  .promise b { display: block; margin-bottom: 5px; color: #fff; }
-  .promise span { font-size: 14.4px; color: rgba(255, 255, 255, .84); }
-  .consult { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px;
-    border: 1px solid var(--rule); border-radius: var(--r); background: var(--surface-2); }
-  @media (max-width: 760px) { .promise { grid-template-columns: 1fr; gap: 18px; } }
+  /* ---------- стрічка портретів ---------- */
+  .gal { padding: 92px 0 96px; }
+  .gal-head { display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+  .gal-head h2 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500; font-size: clamp(30px, 4vw, 52px); letter-spacing: -.01em; }
+  .gal-nav { display: flex; gap: 8px; }
+  .gal-nav button { width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--rule); background: transparent; color: var(--ink);
+    cursor: pointer; display: grid; place-items: center;
+    transition: border-color 200ms, color 200ms, transform 200ms; }
+  .gal-nav button:hover { border-color: var(--accent); color: var(--accent);
+    transform: scale(1.06); }
+  .gal-nav button:first-child svg { transform: rotate(180deg); }
 
-  .shade-wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 46px; align-items: center; }
+  .gal-rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 16px; cursor: grab; scrollbar-width: none; }
+  .gal-rail::-webkit-scrollbar { display: none; }
+  .gal-rail.is-drag { cursor: grabbing; scroll-snap-type: none; }
+  .gal-rail figure { flex: 0 0 auto; width: min(62vw, 330px); margin: 0;
+    scroll-snap-align: start; }
+  .gal-rail .ph { border-radius: var(--r-lg); overflow: hidden; background: var(--surface-2); }
+  .gal-rail img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+    transition: transform 800ms cubic-bezier(.22,.61,.36,1); pointer-events: none; }
+  .gal-rail figure:hover img { transform: scale(1.05); }
+  .gal-rail figcaption { padding: 14px 2px 0; }
+  .gal-rail figcaption b { display: block; font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 21px; font-weight: 600; }
+  .gal-rail figcaption span { font-size: 13.5px; color: var(--ink-2); }
+
+  /* ---------- розкриття: послуги й питання ---------- */
+  .svc-list { border-top: 1px solid var(--rule); }
+  .svc { border-bottom: 1px solid var(--rule); }
+  .svc summary { display: grid; grid-template-columns: 54px 1fr auto 26px; gap: 18px;
+    align-items: center; padding: 24px 0; cursor: pointer; list-style: none; }
+  .svc summary::-webkit-details-marker { display: none; }
+  .svc .idx { font-family: "Cormorant Garamond", Georgia, serif; font-size: 19px;
+    color: var(--accent); font-variant-numeric: tabular-nums; }
+  .svc .nm { font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(21px, 2.4vw, 30px); font-weight: 500; letter-spacing: -.01em; }
+  .svc .pr { font-size: 15px; font-weight: 600; color: var(--accent);
+    font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .svc .mk { position: relative; width: 20px; height: 20px; }
+  .svc .mk::before, .svc .mk::after { content: ""; position: absolute; left: 50%; top: 50%;
+    background: var(--ink-2); border-radius: 2px; transform: translate(-50%,-50%);
+    transition: transform 260ms cubic-bezier(.22,.61,.36,1); }
+  .svc .mk::before { width: 15px; height: 1.5px; }
+  .svc .mk::after { width: 1.5px; height: 15px; }
+  .svc[open] .mk::after { transform: translate(-50%,-50%) rotate(90deg); }
+  .svc-body { padding: 0 0 26px 72px; display: grid; gap: 10px; max-width: 62ch; }
+  .svc-body p { margin: 0; font-size: 15.4px; color: var(--ink-2); }
+  .svc-body .rowline { display: flex; justify-content: space-between; gap: 16px;
+    font-size: 15px; border-bottom: 1px dotted var(--rule); padding-bottom: 8px; }
+  .svc-body .rowline b { font-variant-numeric: tabular-nums; }
+
+  /* ---------- палітра ---------- */
+  .shade-wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 46px;
+    align-items: center; }
   .shade-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
   .shade { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--rule);
-    background: var(--c); cursor: pointer; padding: 0; position: relative;
+    background: var(--c); cursor: pointer; padding: 0;
     transition: transform 220ms cubic-bezier(.22,.61,.36,1), box-shadow 220ms ease; }
   .shade:hover { transform: scale(1.08); }
   .shade[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
@@ -89,15 +115,43 @@
     place-items: center; text-align: center; border: 1px solid var(--rule);
     background: var(--c); transition: background 420ms cubic-bezier(.22,.61,.36,1);
     box-shadow: inset 0 0 90px rgba(0,0,0,.14); }
-  .shade-preview span { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 40px);
-    font-weight: 600; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+  .shade-preview span { font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(28px, 3.6vw, 44px); font-weight: 600; color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,.45); }
   .shade-preview small { display: block; margin-top: 6px; font-size: 13px;
-    color: rgba(255,255,255,.85); }
-  @media (max-width: 860px) { .shade-wrap { grid-template-columns: 1fr; gap: 28px; } }
+    color: rgba(255,255,255,.88); }
+
+  /* ---------- повноширинна смуга ---------- */
+  .band-photo { position: relative; min-height: min(66vh, 620px); display: grid;
+    align-items: center; overflow: hidden; background: #241A20; }
+  .band-photo img { position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 50%; }
+  .band-photo::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(24,17,21,.90) 0%, rgba(24,17,21,.62) 46%,
+                rgba(24,17,21,.30) 100%); }
+  .band-photo blockquote { position: relative; z-index: 2; max-width: var(--w);
+    margin: 0 auto; width: 100%; padding: 0 var(--gut); }
+  .band-photo p { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic;
+    font-size: clamp(24px, 3.4vw, 46px); line-height: 1.2; color: #F6EFF2;
+    margin: 0 0 18px; max-width: 22ch; }
+  .band-photo cite { font-style: normal; font-size: 14px; letter-spacing: .1em;
+    text-transform: uppercase; color: #D9C6CF; }
+
+  @media (max-width: 980px) {
+    .mast-grid, .shade-wrap { grid-template-columns: 1fr; gap: 30px; }
+    .masthead { padding-top: 104px; }
+    .svc summary { grid-template-columns: 38px 1fr auto 22px; gap: 12px; }
+    .svc-body { padding-left: 50px; }
+  }
+  @media (max-width: 620px) {
+    .gal-rail figure { width: 74vw; }
+    .svc summary { grid-template-columns: 1fr auto 20px; }
+    .svc .idx { display: none; }
+    .svc-body { padding-left: 0; }
+  }
 </style>
 </head>
 <body>
-<div class="progress" aria-hidden="true"></div>
 
 <header class="hdr">
   <div class="wrap hdr-in">
@@ -106,18 +160,18 @@
       Anna Vi beauty
     </a>
     <nav class="menu" aria-label="Основна навігація">
-      <a href="#prices">Послуги</a>
-      <a href="#works">Роботи</a>
-      <a href="#about">Про студію</a>
-      <a href="#book">Запис</a>
+      <a href="#gallery">Роботи</a>
+      <a href="#services">Послуги</a>
+      <a href="#palette">Палітра</a>
       <a href="#faq">Питання</a>
-      <a href="#contact">Контакти</a>
+      <a href="#contact">Запис</a>
     </nav>
     <div class="hdr-side">
       <a class="hdr-tel" href="tel:+380632419777">
-        <svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg> 063 241 97 77
+        <svg class="ic ic--sm anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg>
+        063 241 97 77
       </a>
-      <a class="btn btn--sm" href="#book">Записатися</a>
+      <a class="btn btn--line btn--sm" href="#contact">Записатись</a>
     </div>
     <button class="burger" type="button" aria-label="Відкрити навігацію" aria-expanded="false"><i></i></button>
   </div>
@@ -125,84 +179,146 @@
 
 <main id="top">
 
-  <section class="hero">
-    <div class="wrap hero-grid">
+  <!-- МАСТИМО: журнальна асиметрія -->
+  <section class="masthead">
+    <div class="mast-grid">
       <div>
-        <h1>Доглянуті руки<br>і <i>виразний погляд</i></h1>
-        <p class="lead">Манікюр, педикюр і нарощування вій у студії на вул. Стара. Один клієнт за раз.</p>
-        <div class="hero-cta">
-          <a class="btn btn--hero" href="#book">
-            <svg class="ic" aria-hidden="true"><use href="#i-calendar"></use></svg> Обрати час
-          </a>
-          <a class="link-quiet" href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">
-            <svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg> Роботи в Instagram
+        <div class="mast-kicker rv">Студія в Дубні, вул. Стара, 2б</div>
+        <h1 data-reveal-text>Доглянуті руки і <em>виразний</em> погляд</h1>
+        <p class="mast-lead">Один клієнт за раз — без черг і поспіху. Запис на конкретний час.</p>
+        <div class="mast-actions">
+          <a class="btn btn--hero" data-magnetic href="#contact">Записатись</a>
+          <a class="link-quiet" href="#gallery">
+            Подивитись роботи
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
           </a>
         </div>
       </div>
-      <figure class="plate">
-        <span>AV</span>
-        <figcaption>Іванна, майстриня студії</figcaption>
+      <figure class="mast-photo rv" data-spotlight style="margin:0">
+        <img src="../assets/img/beauty-hero.jpg" width="1600" height="1067" fetchpriority="high"
+             alt="Майстер за роботою над манікюром клієнтки">
+        <figcaption class="mast-badge">
+          <span>Працює <b>Іванна</b></span>
+          <span>запис за 1 день</span>
+        </figcaption>
       </figure>
     </div>
   </section>
 
-
-  <section class="band field-band">
+  <!-- ГАЛЕРЕЯ ПОРТРЕТІВ -->
+  <section class="gal" id="gallery">
     <div class="wrap">
-      <h2>Спокійний стиль, який тримається три тижні</h2>
-      <p class="lead">Я не роблю «яскраво, бо так модно». Підбираю форму й відтінок під ваші руки
-      та спосіб життя, тому покриття не скошується на третій день, а вії не заважають вмиватись.</p>
-      <div class="promise">
-        <div><b>Один клієнт за раз</b><span>Ніяких паралельних крісел — увесь час ваш.</span></div>
-        <div><b>Ціна без «від»</b><span>Називаю до початку роботи, доплат у процесі немає.</span></div>
-        <div><b>Догляд додому</b><span>Поясню, що робити між візитами, щоб трималось довше.</span></div>
+      <div class="gal-head">
+        <h2>Роботи студії</h2>
+        <div class="gal-nav">
+          <button type="button" data-gal-prev aria-label="Попередні роботи">
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+          </button>
+          <button type="button" data-gal-next aria-label="Наступні роботи">
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+          </button>
+        </div>
+      </div>
+      <div class="gal-rail" data-gal tabindex="0" role="region" aria-label="Галерея робіт, прокручується">
+        <figure>
+          <div class="ph"><img src="../assets/img/beauty-g1.jpg" width="1200" height="1800" loading="lazy" alt="Обробка нігтів пилочкою"></div>
+          <figcaption><b>Манікюр</b><span>Апаратна обробка, покриття</span></figcaption>
+        </figure>
+        <figure>
+          <div class="ph"><img src="../assets/img/beauty-g2.jpg" width="1200" height="1800" loading="lazy" alt="Рука з манікюром тримає лаки"></div>
+          <figcaption><b>Покриття</b><span>Нюд, молочний, пудра</span></figcaption>
+        </figure>
+        <figure>
+          <div class="ph"><img src="../assets/img/beauty-g3.jpg" width="1200" height="1800" loading="lazy" alt="Нарощування вій, робота майстра"></div>
+          <figcaption><b>Вії</b><span>Класика, 2D, 3D</span></figcaption>
+        </figure>
+        <figure>
+          <div class="ph"><img src="../assets/img/beauty-g4.jpg" width="1200" height="1796" loading="lazy" alt="Майстер зачісує клієнтку"></div>
+          <figcaption><b>Укладка</b><span>Перед виходом</span></figcaption>
+        </figure>
+        <figure>
+          <div class="ph"><img src="../assets/img/beauty-p1.jpg" width="1200" height="1800" loading="lazy" alt="Робоче місце майстра з догляду"></div>
+          <figcaption><b>Догляд</b><span>Чищення та маски</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="band" id="prices">
-    <div class="wrap">
-      <div class="sechead rv">
-        <h2>Послуги й вартість</h2>
-        <p class="lead">Ціни остаточні: складність, яку видно лише в процесі, я називаю до початку
-        роботи, а не після.</p>
+  <!-- ПОСЛУГИ -->
+  <section class="band band-alt" id="services">
+    <div class="wrap split">
+      <div class="rv">
+        <h2>Послуги й ціни</h2>
+        <p class="lead">Натисніть на послугу — розкриється склад і тривалість.</p>
       </div>
-
-      <div class="split split--wide rv">
-        <div class="panel">
-          <h3 style="margin-bottom:18px">Нігті</h3>
-          <div class="rows" style="border-top:0">
-            <div class="row"><div class="row-name">Манікюр апаратний<small>Обробка кутикули, форма, полірування</small></div><span class="row-lead"></span><span class="row-val">350 ₴</span></div>
-            <div class="row"><div class="row-name">Манікюр з гель-лаком<small>Покриття в один тон, дизайн на одному нігті</small></div><span class="row-lead"></span><span class="row-val">450 ₴</span></div>
-            <div class="row"><div class="row-name">Зміцнення гелем<small>Для тонких або проблемних нігтів</small></div><span class="row-lead"></span><span class="row-val">550 ₴</span></div>
-            <div class="row" style="border-bottom:0"><div class="row-name">Зняття покриття<small>Своє або нарощене</small></div><span class="row-lead"></span><span class="row-val">150 ₴</span></div>
+      <div class="rv svc-list">
+        <details class="svc" open>
+          <summary>
+            <span class="idx">01</span>
+            <span class="nm">Манікюр з покриттям</span>
+            <span class="pr">від 450 ₴</span>
+            <span class="mk" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p>Апаратна обробка, вирівнювання форми, покриття гель-лаком. Стерилізація інструменту після кожного клієнта.</p>
+            <div class="rowline"><span>Обробка без покриття</span><b>300 ₴</b></div>
+            <div class="rowline"><span>Покриття гель-лаком</span><b>450 ₴</b></div>
+            <div class="rowline"><span>Зміцнення гелем</span><b>550 ₴</b></div>
+            <div class="rowline"><span>Тривалість</span><b>1 год 40 хв</b></div>
           </div>
-        </div>
-        <div class="panel">
-          <h3 style="margin-bottom:18px">Педикюр і вії</h3>
-          <div class="rows" style="border-top:0">
-            <div class="row"><div class="row-name">Педикюр апаратний<small>Стопи, п'яти, обробка нігтів</small></div><span class="row-lead"></span><span class="row-val">500 ₴</span></div>
-            <div class="row"><div class="row-name">Нарощування вій<small>Класика, 2D або 3D — оберемо за формою ока</small></div><span class="row-lead"></span><span class="row-val">450 ₴</span></div>
-            <div class="row"><div class="row-name">Корекція вій<small>Через 2–3 тижні після нарощування</small></div><span class="row-lead"></span><span class="row-val">350 ₴</span></div>
-            <div class="row" style="border-bottom:0"><div class="row-name">Ламінування вій<small>З фарбуванням і доглядом</small></div><span class="row-lead"></span><span class="row-val">400 ₴</span></div>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="idx">02</span>
+            <span class="nm">Педикюр</span>
+            <span class="pr">від 550 ₴</span>
+            <span class="mk" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p>Обробка стоп, робота з натоптишами, покриття. Окреме крісло й одноразові матеріали.</p>
+            <div class="rowline"><span>Частковий педикюр</span><b>450 ₴</b></div>
+            <div class="rowline"><span>Повний з покриттям</span><b>650 ₴</b></div>
+            <div class="rowline"><span>Тривалість</span><b>2 год</b></div>
           </div>
-        </div>
-      </div>
-
-      <div class="panel rv" style="margin-top:22px;padding:22px 26px">
-        <div class="live-row" style="border:0;padding:0">
-          <svg class="ic ic--lg" style="color:var(--accent)" aria-hidden="true"><use href="#i-shield"></use></svg>
-          <span style="font-size:15px;color:var(--ink-2)">Інструменти проходять повний цикл стерилізації після кожного клієнта.
-          Файли й рукавички — одноразові. Працюю лише із сертифікованими матеріалами.</span>
-        </div>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="idx">03</span>
+            <span class="nm">Нарощування вій</span>
+            <span class="pr">від 500 ₴</span>
+            <span class="mk" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p>Підбираємо об'єм під форму ока. Матеріали гіпоалергенні, корекція через 3–4 тижні.</p>
+            <div class="rowline"><span>Класика</span><b>500 ₴</b></div>
+            <div class="rowline"><span>Об'єм 2D</span><b>600 ₴</b></div>
+            <div class="rowline"><span>Об'єм 3D</span><b>700 ₴</b></div>
+            <div class="rowline"><span>Корекція</span><b>350 ₴</b></div>
+          </div>
+        </details>
+        <details class="svc">
+          <summary>
+            <span class="idx">04</span>
+            <span class="nm">Брови</span>
+            <span class="pr">від 250 ₴</span>
+            <span class="mk" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-body">
+            <p>Корекція форми, фарбування фарбою або хною, укладка.</p>
+            <div class="rowline"><span>Корекція форми</span><b>250 ₴</b></div>
+            <div class="rowline"><span>Фарбування</span><b>300 ₴</b></div>
+            <div class="rowline"><span>Довготривала укладка</span><b>400 ₴</b></div>
+          </div>
+        </details>
       </div>
     </div>
   </section>
 
-  <section class="band" id="shades">
+  <!-- ПАЛІТРА -->
+  <section class="band" id="palette">
     <div class="wrap shade-wrap">
       <div class="rv">
-        <h2 data-reveal-text>Палітра</h2>
+        <h2>Палітра</h2>
         <p class="lead">Оберіть відтінок — покажу, як він виглядає в покритті. Це не каталог
         на продаж: так ви побачите напрямок ще до візиту.</p>
         <div class="shade-list" role="group" aria-label="Відтінки покриття">
@@ -221,98 +337,84 @@
     </div>
   </section>
 
-  <section class="band band-alt" id="works">
-    <div class="wrap">
-      <div class="sechead rv">
-        <h2>Роботи</h2>
-        <p class="lead">Найбільше фото — в Instagram, там понад тисяча робіт. Тут кілька, щоб було
-        видно стиль: спокійні відтінки, тонка лінія.</p>
+  <!-- ПОВНОШИРИННА СМУГА -->
+  <section class="band-photo">
+    <img src="../assets/img/beauty-g5.jpg" width="1200" height="801" loading="lazy"
+         alt="Інтер'єр студії: чорні крісла, дерево, тепле світло">
+    <blockquote>
+      <p>«Місце, куди хочеться прийти не лише за результатом»</p>
+      <cite>Студія на вул. Стара, 2б</cite>
+    </blockquote>
+  </section>
+
+  <!-- ПИТАННЯ -->
+  <section class="band" id="faq">
+    <div class="wrap split">
+      <div class="rv">
+        <h2>Часті питання</h2>
+        <p class="lead">Те, що питають перед першим візитом.</p>
       </div>
-      <div class="gal rv">
-        <figure class="g1" data-spotlight><figcaption>Нюд із тонкою лінією</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-hand"></use></svg></figure>
-        <figure class="g4"><figcaption>Нарощування вій, класика</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-eye"></use></svg></figure>
-        <figure class="g2"><figcaption>Френч на мінімальній довжині</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-polish"></use></svg></figure>
-        <figure class="g3"><figcaption>Об'єм 3D</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-sparkle"></use></svg></figure>
-        <figure class="g5"><figcaption>Молочний градієнт</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-drop"></use></svg></figure>
-        <figure class="g6"><figcaption>Педикюр із покриттям</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-heart"></use></svg></figure>
+      <div class="rv svc-list">
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Чи стерилізуєте інструмент?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Так. Після кожного клієнта — сухожар, пилки та файли одноразові.</p></div>
+        </details>
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Скільки тримається покриття?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Три-чотири тижні за нормальних умов. Якщо нігті слабкі — пропоную зміцнення гелем.</p></div>
+        </details>
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Чи можна прийти з дитиною?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Так, якщо попередити заздалегідь — підготую місце й час без поспіху.</p></div>
+        </details>
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Як скасувати запис?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Дзвінком або в Telegram. Прохання — не пізніше ніж за три години.</p></div>
+        </details>
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Чи є сертифікати?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Так, на суму послуги. Гарний варіант подарунка — оформлю в конверті.</p></div>
+        </details>
+        <details class="svc">
+          <summary><span class="idx">—</span><span class="nm">Скільки триває візит?</span><span class="pr"></span><span class="mk" aria-hidden="true"></span></summary>
+          <div class="svc-body"><p>Манікюр — близько 1 год 40 хв, педикюр — до 2 год, вії — 2–2,5 год.</p></div>
+        </details>
       </div>
     </div>
   </section>
 
-  <section class="band" id="about">
-    <div class="wrap split split--narrow">
+  <!-- ЗАПИС -->
+  <section class="band band-alt" id="contact">
+    <div class="wrap split split--wide">
       <div class="rv">
-        <h2>Про студію</h2>
-        <p class="lead">Мене звати Іванна. Anna Vi beauty — це одна кімната, одне крісло й один
-        клієнт за раз.</p>
-        <p>Працюю з 2019 року. За цей час зібрала понад півтори тисячі фото робіт — за ними
-        видно, що стиль у мене спокійний: нюд, молочні відтінки, тонка лінія. Якщо хочете
-        щось яскраве, теж зробимо, але скажу відразу: яскраве я люблю не менше.</p>
-        <p>Вії роблю з розрахунком на те, як ви живете. Якщо плаваєте в басейні або часто трете
-        очі — підберу варіант, який тримається довше, навіть якщо він виглядає скромніше.</p>
-        <div class="sign">Іванна</div>
-      </div>
-      <div class="rv">
-        <ul class="ilist">
-          <li>
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-award"></use></svg></span>
-            <div><b>Сертифікати</b><p>Навчання з апаратного манікюру та нарощування вій, матеріали з сертифікатами.</p></div>
-          </li>
-          <li>
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg></span>
-            <div><b>Стерильність</b><p>Повний цикл обробки інструментів, одноразові витратні матеріали.</p></div>
-          </li>
-          <li>
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
-            <div><b>Без черг</b><p>Один клієнт за раз. Якщо попередній візит затримується, попереджаю заздалегідь.</p></div>
-          </li>
-          <li>
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-heart"></use></svg></span>
-            <div><b>Догляд додому</b><p>Поясню, що робити між візитами, щоб покриття трималось довше.</p></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="band band-alt" id="book">
-    <div class="wrap book-grid">
-      <div class="rv">
-        <h2>Запис на прийом</h2>
-        <p class="lead">Найшвидше — залишити заявку або написати в Telegram. Відповідаю протягом
-        години в робочий час.</p>
-        <div class="consult" style="margin-top:20px">
-          <svg class="ic ic--lg" style="color:var(--accent)" aria-hidden="true"><use href="#i-sparkle"></use></svg>
-          <div><b>Не знаєте, що обрати?</b>
-            <p style="margin:4px 0 0;font-size:14.6px">Напишіть фото своїх рук або очей — безкоштовно
-            підберу форму, довжину й відтінок. Це ні до чого не зобов'язує.</p></div>
-        </div>
-        <div style="display:grid;gap:10px;margin-top:24px;max-width:400px">
-          <a class="btn" href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">
-            <svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg> Telegram
-          </a>
-          <a class="btn btn--line" href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">
-            <svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg> Instagram
-          </a>
-        </div>
-        <div style="margin-top:26px">
+        <h2>Записатись</h2>
+        <p>Залиште номер — підтверджу час у Telegram або дзвінком.</p>
+        <div style="margin-top:22px">
           <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
-            <div><b>Графік</b><span>Пн–Сб з 9:00 до 19:00, неділя — вихідний</span></div>
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+            <div><b>Телефон</b><span><a href="tel:+380632419777">+38 (063) 241-97-77</a></span></div>
           </div>
           <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></span>
-            <div><b>Адреса</b><span>м. Дубно, вул. Стара, 2б</span></div>
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="fly" aria-hidden="true"><use href="#i-send"></use></svg></span>
+            <div><b>Telegram</b><span><a href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">@anna_vi_beauty</a></span></div>
+          </div>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="hop" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <div><b>Адреса</b><span>вул. Стара, 2б, Дубно</span></div>
+          </div>
+          <div class="crow" style="border:0">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="flip" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+            <div><b>Графік</b><span>Пн–Сб 9:00 – 19:00, Нд — за домовленістю</span></div>
           </div>
         </div>
       </div>
 
       <form class="panel rv" data-form data-border-beam novalidate>
-        <h3>Заявка на запис</h3>
-        <p class="small">Передзвоню або напишу — як вам зручніше.</p>
+        <h3>Запис на послугу</h3>
+        <p class="small">Відповідаю протягом години в робочий час.</p>
         <div class="field">
           <label for="av-name">Ваше ім'я</label>
-          <input class="inp" id="av-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Олена...">
+          <input class="inp" id="av-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Ірина...">
         </div>
         <div class="field">
           <label for="av-phone">Телефон</label>
@@ -320,109 +422,25 @@
         </div>
         <div class="field">
           <label for="av-tg">Telegram (не обов'язково)</label>
-          <input class="inp" id="av-tg" name="telegram" type="text"
-                 placeholder="@username..." spellcheck="false" autocomplete="off">
+          <input class="inp" id="av-tg" name="telegram" type="text" placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="av-svc">Послуга</label>
           <select class="inp" id="av-svc" name="service">
-            <option>Манікюр апаратний</option>
-            <option>Манікюр з гель-лаком</option>
-            <option>Зміцнення гелем</option>
-            <option>Педикюр апаратний</option>
+            <option>Манікюр з покриттям</option>
+            <option>Педикюр</option>
             <option>Нарощування вій</option>
-            <option>Корекція вій</option>
-            <option>Ламінування вій</option>
+            <option>Брови</option>
+            <option>Ще не визначилась</option>
           </select>
         </div>
-        <div class="row2">
-          <div class="field">
-            <label for="av-date">Бажана дата</label>
-            <input class="inp" id="av-date" name="date" type="date">
-          </div>
-          <div class="field">
-            <label for="av-time">Зручний час</label>
-            <select class="inp" id="av-time" name="time">
-              <option>09:00</option><option>11:00</option><option>13:00</option>
-              <option>15:00</option><option>17:00</option><option>18:30</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="av-msg">Коментар</label>
+          <textarea class="inp" id="av-msg" name="message" rows="3" placeholder="Зручний день і час..."></textarea>
         </div>
-        <button class="btn btn--block" type="submit">Записатися</button>
-        <p class="formnote">Дані використовую лише для запису.</p>
+        <button class="btn btn--block" type="submit">Надіслати заявку</button>
         <div class="status" role="status"></div>
       </form>
-    </div>
-  </section>
-
-  <section class="band band-alt" id="faq">
-    <div class="wrap" style="max-width:880px">
-      <div class="sechead rv"><h2>Питання та відповіді</h2></div>
-      <div class="rv">
-        <details class="faq" open>
-          <summary>Скільки тримається покриття?</summary>
-          <p>Гель-лак — три-чотири тижні за звичайного догляду. Якщо працюєте руками або часто
-          миєте посуд без рукавичок, може бути трохи менше — скажу про це заздалегідь і
-          підберу міцніше покриття.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи можна з нарощеними віями в басейн?</summary>
-          <p>Можна, але хлор прискорює розклеювання. Якщо плаваєте регулярно, зроблю
-          скромніший об'єм — він тримається довше за пишний.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи буде боляче під час нарощування вій?</summary>
-          <p>Ні. Ви лежите із заплющеними очима, процедура займає близько двох годин, багато
-          клієнток засинають. Якщо відчуєте найменший дискомфорт — скажіть одразу.</p>
-        </details>
-        <details class="faq">
-          <summary>Що робити перед першим візитом?</summary>
-          <p>Нічого особливого. Не знімайте старе покриття самостійно — зроблю це я.
-          Для вій приходьте без макіяжу очей, якщо зручно.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи можна перенести запис?</summary>
-          <p>Так, напишіть хоча б за три години. Я працюю сама, тому перенесення
-          попереджає, що час можна віддати іншій клієнтці.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи є протипоказання для манікюру?</summary>
-          <p>Гострі запалення шкіри, грибок або відкриті рани на руках — у такому разі
-          переносимо візит. Якщо є сумніви, напишіть, обговоримо до запису.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="contact">
-    <div class="wrap">
-      <div class="sechead rv"><h2>Контакти</h2></div>
-      <div class="split rv">
-        <div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></span>
-            <div><b>Адреса</b><span>м. Дубно, вул. Стара, 2б</span></div>
-          </div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg></span>
-            <div><b>Телефон</b><span><a href="tel:+380632419777">+38 (063) 241-97-77</a></span></div>
-          </div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg></span>
-            <div><b>Telegram</b><span><a href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">@anna_vi_beauty</a></span></div>
-          </div>
-          <div class="crow" style="border:0">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg></span>
-            <div><b>Instagram</b><span><a href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">@anna.vi_beauty</a></span></div>
-          </div>
-        </div>
-        <div class="panel" style="text-align:center;padding:40px 26px">
-          <svg class="ic ic--xl" style="color:var(--accent);margin:0 auto 14px" aria-hidden="true"><use href="#i-pin"></use></svg>
-          <h3 style="margin-bottom:4px">Дубно, вул. Стара, 2б</h3>
-          <p class="small" style="margin:0">Другий поверх, вхід з двору. Поруч є де припаркуватись.</p>
-          <a class="btn btn--line btn--sm" style="margin-top:18px" href="#book">Записатися</a>
-        </div>
-      </div>
     </div>
   </section>
 </main>
@@ -436,28 +454,61 @@
           Anna Vi beauty
         </a>
         <p class="small measure">Студія манікюру, педикюру та нарощування вій у Дубні.
-        Один клієнт — один майстер, лише за записом.</p>
+        Один клієнт за раз.</p>
       </div>
       <div>
         <h4>Розділи</h4>
-        <a href="#prices">Послуги</a><a href="#works">Роботи</a><a href="#about">Про студію</a><a href="#book">Запис</a><a href="#faq">Питання</a>
+        <a href="#gallery">Роботи</a><a href="#services">Послуги</a><a href="#palette">Палітра</a>
       </div>
       <div>
-        <h4>Зв'язок</h4>
+        <h4>Контакти</h4>
         <a href="tel:+380632419777">063 241 97 77</a>
         <a href="https://t.me/anna_vi_beauty" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://instagram.com/anna.vi_beauty" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
     <div class="ftr-bot">
       <span>Anna Vi beauty, Дубно</span>
-      <span>Макет сайту. Ціни й фото — приклад, замінимо на ваші.</span>
+      <span>Макет сайту. Ціни та фото — приклад, замінимо на ваші.</span>
     </div>
   </div>
 </footer>
 
 <button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
-<div class="mcta"><a class="btn btn--block" href="#book"><svg class="ic" aria-hidden="true"><use href="#i-calendar"></use></svg> Обрати час</a></div>
+
+<script>
+/* Галерея портретів: перетягування + стрілки + клавіатура. */
+(function () {
+  var rail = document.querySelector("[data-gal]");
+  if (!rail) return;
+  var down = false, sx = 0, ss = 0, moved = 0;
+  rail.addEventListener("pointerdown", function (e) {
+    down = true; moved = 0; sx = e.clientX; ss = rail.scrollLeft;
+    rail.classList.add("is-drag");
+    if (rail.setPointerCapture) rail.setPointerCapture(e.pointerId);
+  });
+  rail.addEventListener("pointermove", function (e) {
+    if (!down) return;
+    var dx = e.clientX - sx; moved = Math.abs(dx);
+    rail.scrollLeft = ss - dx;
+  });
+  function stop() { down = false; rail.classList.remove("is-drag"); }
+  rail.addEventListener("pointerup", stop);
+  rail.addEventListener("pointercancel", stop);
+  rail.addEventListener("pointerleave", stop);
+  function step(d) {
+    var f = rail.querySelector("figure");
+    var w = f ? f.getBoundingClientRect().width + 18 : 320;
+    rail.scrollBy({ left: d * w, behavior: "smooth" });
+  }
+  var pv = document.querySelector("[data-gal-prev]"), nx = document.querySelector("[data-gal-next]");
+  if (pv) pv.addEventListener("click", function () { step(-1); });
+  if (nx) nx.addEventListener("click", function () { step(1); });
+  rail.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { step(1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { step(-1); e.preventDefault(); }
+  });
+})();
+</script>
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>

@@ -3,104 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Стоматологія «Мелан» — Дубно | Лікування, протезування, імплантація</title>
-<meta name="description" content="Стоматологія «Мелан» у Дубні — перший приватний стоматологічний кабінет міста, з 1994 року. Лікування, протезування, імплантація, дитячий прийом.">
+<title>Стоматологія «Мелан» — Дубно, вул. Стара, 33</title>
+<meta name="description" content="Стоматологія «Мелан» у Дубні: лікування, чистка, імплантація, протезування. Письмовий план лікування з цінами до початку робіт. У місті з 1994 року.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Стоматологія «Мелан» — Дубно | З 1994 року">
-<meta property="og:description" content="Перший приватний стоматологічний кабінет у Дубні. Письмовий план лікування з цінами до початку робіт.">
-<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/assets/og.png">
+<meta property="og:title" content="Стоматологія «Мелан» — Дубно">
+<meta property="og:description" content="Спочатку огляд і письмовий план з цінами, потім лікування. Понад 30 років у місті.">
+<meta property="og:image" content="https://sas228q-maker.github.io/portfolio/works/assets/img/dental-hero.jpg">
 <meta name="theme-color" content="#F6F8F9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231C6E8C'/%3E%3Ctext%20x='32'%20y='46'%20font-size='34'%20font-family='Georgia'%20font-weight='bold'%20fill='%23fff'%20text-anchor='middle'%3E%D0%9C%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231C6E8C'/%3E%3Ctext%20x='32'%20y='45'%20font-size='30'%20font-family='Arial'%20font-weight='bold'%20fill='%23F6F8F9'%20text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
 <link rel="stylesheet" href="../assets/craft.css">
 <style>
-  .hero { padding: 150px 0 74px; }
-  .hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 56px; align-items: center; }
-  .t-dental h1 { font-size: clamp(38px, 6.4vw, 68px); line-height: 1.02; }
-  .t-dental h1 b { font-weight: 600; color: var(--accent); }
-  .t-dental h2 { font-size: clamp(25px, 3.2vw, 38px); }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  /* ============================================================
+     СТОМАТОЛОГІЯ. Спокій і довіра, а не яскравість.
+     Головний елемент — вертикальний луч уздовж історії клініки.
+     Луч живе у власному жолобі, текст починається ПРАВІШЕ нього.
+     ============================================================ */
 
-  /* пластина «з 1994» — спокойный акцент вместо ряда метрик */
-  .year-plate { border: 1px solid var(--rule); border-radius: var(--r-lg); background: var(--surface);
-    padding: 40px 34px; text-align: center; }
-  .year-plate .yr { font-family: var(--font-display); font-size: clamp(56px, 9vw, 96px); font-weight: 600;
-    line-height: 1; color: var(--accent); letter-spacing: -.03em; }
-  .year-plate .cap { font-size: 14px; color: var(--ink-2); margin-top: 6px; }
-  .year-plate .sub { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--rule);
-    font-size: 14.6px; color: var(--ink-2); }
-  .year-plate .tooth { width: 84px; height: 84px; margin: 0 auto 20px; border-radius: 50%;
-    display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+  .intro { padding: 122px var(--gut) 0; max-width: var(--w); margin: 0 auto; }
+  .intro-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 44px;
+    align-items: center; }
+  .intro h1 { font-family: "Spectral", Georgia, serif; font-weight: 500;
+    font-size: clamp(34px, 4.9vw, 68px); line-height: 1.05; letter-spacing: -.015em;
+    margin: 0 0 16px; max-width: 16ch; }
+  .intro p { color: var(--ink-2); font-size: clamp(15.5px, 1.3vw, 18px);
+    max-width: 40ch; margin: 0 0 22px; }
+  .intro-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .intro-photo { margin: 0; border-radius: var(--r-lg); overflow: hidden;
+    background: var(--surface-2); border: 1px solid var(--rule); }
+  .intro-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 
-  /* врачи — списком, а не карточками */
-  .doc { display: grid; grid-template-columns: 64px 1fr auto; gap: 20px; align-items: center;
-    padding: 22px 0; border-bottom: 1px solid var(--rule); }
-  .doc:last-child { border-bottom: 0; }
-  .doc-ava { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
-    background: var(--accent-soft); color: var(--accent); font-family: var(--font-display);
-    font-size: 24px; font-weight: 600; }
-  .doc h3 { margin: 0 0 3px; font-family: var(--font-body); font-size: 16.5px; font-weight: 600; }
-  .doc .role { font-size: 14px; color: var(--accent); margin: 0 0 4px; }
-  .doc p { margin: 0; font-size: 14.4px; }
-  .doc .years { font-size: 13.4px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
-
-  details.faq { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r);
-    padding: 18px 22px; margin-bottom: 10px; }
-  details.faq summary { cursor: pointer; font-weight: 600; font-size: 16px; list-style: none;
-    display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-  details.faq summary::-webkit-details-marker { display: none; }
-  details.faq summary::after { content: "+"; color: var(--accent); font-weight: 600; font-size: 22px; line-height: 1; }
-  details.faq[open] summary::after { content: "–"; }
-  details.faq p { margin: 12px 0 0; font-size: 15px; }
-
-  .quotes { border-top: 1px solid var(--rule); }
-  .quotes blockquote { margin: 0; padding: 24px 0; border-bottom: 1px solid var(--rule);
-    display: grid; grid-template-columns: 1fr 160px; gap: 22px; align-items: baseline; }
-  .quotes p { margin: 0 0 8px; color: var(--ink); font-size: 16px; }
-  .quotes footer { font-size: 14px; color: var(--ink-2); display: flex; align-items: center; gap: 9px; }
-  .q-mark { color: var(--accent); }
-
-  .urgent { display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px;
-    border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--rule)); border-radius: var(--r);
-    background: var(--accent-soft); }
-  .urgent b { display: block; margin-bottom: 3px; }
-  .urgent p { margin: 0 0 12px; font-size: 14.6px; }
-
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 34px; }
-    .doc { grid-template-columns: 52px 1fr; }
-    .doc .years { grid-column: 2; }
-    .quotes blockquote { grid-template-columns: 1fr; gap: 10px; }
-  }
-
-  /* акції: у ADent головна будується навколо них */
-  .promo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .promo { display: flex; flex-direction: column; padding: 26px; border-radius: var(--r-lg);
-    border: 1px solid var(--rule); background: var(--surface); }
-  .promo .tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; letter-spacing: .04em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .promo h3 { font-size: 18px; margin-bottom: 8px; }
-  .promo p { font-size: 14.4px; margin-bottom: 16px; }
-  .promo .when { margin-top: auto; font-size: 13.4px; color: var(--ink-2); }
-  .promo-note { margin-top: 16px; font-size: 13.4px; color: var(--ink-2); }
-  /* конкретика приёма: что именно происходит и сколько занимает */
-  .intake { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 44px; }
-  .intake div { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline;
-    padding: 15px 0; border-bottom: 1px solid var(--rule); }
-  .intake b { font-weight: 600; font-size: 15.4px; }
-  .intake b small { display: block; font-weight: 400; font-size: 13.6px; color: var(--ink-2); margin-top: 3px; }
-  .intake span { font-size: 13.6px; color: var(--accent); white-space: nowrap;
+  /* ---------- смуга з цифрами ---------- */
+  .years { display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .years > div { padding: 26px 24px 26px 0; }
+  .years b { display: block; font-family: "Spectral", Georgia, serif; font-weight: 600;
+    font-size: clamp(30px, 3.6vw, 46px); line-height: 1; color: var(--accent);
     font-variant-numeric: tabular-nums; }
-  @media (max-width: 860px) { .promo-grid, .intake { grid-template-columns: 1fr; } }
+  .years span { font-size: 14px; color: var(--ink-2); }
 
-  /* послуги: чіткий акцент на головному, розкриття по кліку */
+  /* ---------- історія з лучем ---------- */
+  .beam-host { position: relative; padding-left: 76px; }
+  .beam-wrap { position: absolute; left: 0; top: 0; bottom: 0; width: 48px;
+    pointer-events: none; }
+  .beam-svg { display: block; overflow: visible; }
+  .beam-base { fill: none; stroke: var(--rule); stroke-width: 2; }
+  .beam-path { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round;
+    transition: stroke-dashoffset 90ms linear;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 55%, transparent)); }
+  .beam-head { fill: var(--accent); transition: opacity 220ms ease; }
+  .beam-halo { fill: color-mix(in srgb, var(--accent) 30%, transparent);
+    transition: opacity 220ms ease; }
+  .tl { list-style: none; margin: 0; padding: 0; position: relative; z-index: 1; }
+  .tl li { padding: 0 0 34px; }
+  .tl li:last-child { padding-bottom: 0; }
+  .tl .yr { font-family: "Spectral", Georgia, serif; font-size: 15px; font-weight: 600;
+    color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+  .tl h3 { margin: 4px 0 5px; font-size: 19px; }
+  .tl p { margin: 0; font-size: 15px; max-width: 56ch; }
+
+  /* ---------- послуги та питання: розкриття ---------- */
   .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .svc { border: 1px solid var(--rule); border-radius: var(--r-lg);
-    background: var(--surface); overflow: hidden;
-    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms cubic-bezier(.22,.61,.36,1); }
+    background: var(--surface); overflow: hidden; box-shadow: var(--shadow-sm);
+    transition: border-color 240ms ease, box-shadow 240ms ease,
+                transform 240ms cubic-bezier(.22,.61,.36,1); }
   .svc:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
     box-shadow: var(--shadow-lift); }
   .svc summary { display: flex; align-items: center; gap: 14px; padding: 20px 22px;
@@ -111,55 +81,90 @@
     font-variant-numeric: tabular-nums; white-space: nowrap; }
   .svc-mark { position: relative; width: 22px; height: 22px; flex: none; }
   .svc-mark::before, .svc-mark::after { content: ""; position: absolute; left: 50%; top: 50%;
-    background: var(--accent); border-radius: 2px; transform: translate(-50%, -50%);
+    background: var(--accent); border-radius: 2px; transform: translate(-50%,-50%);
     transition: transform 240ms cubic-bezier(.22,.61,.36,1); }
   .svc-mark::before { width: 14px; height: 2px; }
   .svc-mark::after { width: 2px; height: 14px; }
-  .svc[open] .svc-mark::after { transform: translate(-50%, -50%) rotate(90deg); }
-  .svc-list { margin: 0; padding: 0 22px 20px 22px; list-style: none; display: grid; gap: 8px; }
-  .svc-list li { position: relative; padding-left: 20px; font-size: 14.6px; color: var(--ink-2); }
+  .svc[open] .svc-mark::after { transform: translate(-50%,-50%) rotate(90deg); }
+  .svc-list { margin: 0; padding: 0 22px 20px; list-style: none; display: grid; gap: 8px; }
+  .svc-list li { position: relative; padding-left: 20px; font-size: 14.6px;
+    color: var(--ink-2); }
   .svc-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px;
     height: 2px; background: var(--accent); border-radius: 2px; }
-  /* головні послуги — з акцентною заливкою, їх видно з першого погляду */
   .svc--accent { background: color-mix(in srgb, var(--accent) 9%, var(--surface));
     border-color: color-mix(in srgb, var(--accent) 46%, var(--rule)); }
-  .svc--accent .svc-name { font-size: 17.5px; }
   .svc-note { margin-top: 18px; font-size: 13.6px; color: var(--ink-2); }
 
-  /* контраст блоків на світлому: тінь замість невидимих рамок */
-  .panel, .promo, .doc, .year-plate { box-shadow: var(--shadow-sm); }
-  .band-alt .panel, .band-alt .promo { background: var(--surface); }
-  .intake div { border-bottom-color: color-mix(in srgb, var(--rule) 80%, var(--ink)); }
+  /* ---------- повноширинна смуга ---------- */
+  .band-photo { position: relative; min-height: min(62vh, 560px); display: grid;
+    align-items: center; overflow: hidden; background: #0E1B21; }
+  .band-photo img { position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; }
+  .band-photo::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(88deg, rgba(10,22,28,.92) 0%, rgba(10,22,28,.66) 44%,
+                rgba(10,22,28,.24) 100%); }
+  .band-photo blockquote { position: relative; z-index: 2; max-width: var(--w);
+    margin: 0 auto; width: 100%; padding: 0 var(--gut); }
+  .band-photo p { font-family: "Spectral", Georgia, serif; font-size: clamp(22px, 3vw, 40px);
+    line-height: 1.2; color: #EAF2F5; margin: 0; max-width: 24ch; }
 
-  @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } }
+  /* ---------- етапи прийому ---------- */
+  .intake { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .intake > div { padding: 22px 22px 22px 0; border-top: 1px solid var(--rule); }
+  .intake .n { font-family: "Spectral", Georgia, serif; font-size: 15px; color: var(--accent);
+    font-variant-numeric: tabular-nums; }
+  .intake h3 { font-size: 16.5px; margin: 6px 0 4px; }
+  .intake p { margin: 0; font-size: 14.4px; color: var(--ink-2); }
 
-  .beam-host { position: relative; }
-  .beam-host .tl--beam { position: relative; z-index: 1; }
-  @media (max-width: 760px) { .beam-host .tl--beam { padding-left: 30px; } }
+  /* ---------- лікарі ---------- */
+  .docs { display: grid; gap: 0; }
+  .doc { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center;
+    padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .doc:first-child { border-top: 1px solid var(--rule); }
+  .doc .av { width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
+    background: var(--surface-2); display: grid; place-items: center; color: var(--accent); }
+  .doc h3 { margin: 0 0 3px; font-size: 17px; }
+  .doc p { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+  @media (max-width: 980px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 28px; }
+    .intro { padding-top: 106px; }
+    .svc-grid, .intake { grid-template-columns: 1fr; }
+    .beam-host { padding-left: 62px; }
+    .beam-wrap { width: 40px; }
+  }
+  @media (max-width: 620px) {
+    .years { grid-template-columns: 1fr; }
+    .years > div { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+    .years > div:last-child { border-bottom: 0; }
+    .beam-host { padding-left: 54px; }
+    .beam-wrap { width: 34px; }
+    .doc { grid-template-columns: 52px 1fr; gap: 12px; }
+    .doc .av { width: 52px; height: 52px; }
+  }
 </style>
 </head>
 <body>
-<div class="progress" aria-hidden="true"></div>
 
 <header class="hdr">
   <div class="wrap hdr-in">
     <a class="logo" href="#top">
       <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-tooth"></use></svg></span>
-      Стоматологія «Мелан»
+      Мелан
     </a>
     <nav class="menu" aria-label="Основна навігація">
-      <a href="#promo">Акції</a>
       <a href="#services">Послуги</a>
-      <a href="#about">Про клініку</a>
+      <a href="#history">Історія</a>
       <a href="#doctors">Лікарі</a>
       <a href="#faq">Питання</a>
-      <a href="#contact">Контакти</a>
+      <a href="#contact">Запис</a>
     </nav>
     <div class="hdr-side">
       <a class="hdr-tel" href="tel:+380955203390">
-        <svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg> 095 520 33 90
+        <svg class="ic ic--sm anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg>
+        095 520 33 90
       </a>
-      <a class="btn btn--sm" href="#book">Записатися</a>
+      <a class="btn btn--line btn--sm" href="#contact">Записатись</a>
     </div>
     <button class="burger" type="button" aria-label="Відкрити навігацію" aria-expanded="false"><i></i></button>
   </div>
@@ -167,70 +172,40 @@
 
 <main id="top">
 
-  <section class="hero">
-    <div class="wrap hero-grid">
+  <section class="intro">
+    <div class="intro-grid">
       <div>
-        <h1>Лікуємо зуби<br>у Дубні <b>з 1994 року</b></h1>
-        <p class="lead">Спочатку огляд і письмовий план з цінами, потім лікування. Понад 30 років у місті.</p>
-        <div class="hero-cta">
-          <a class="btn btn--hero" href="#book">
-            <svg class="ic" aria-hidden="true"><use href="#i-calendar"></use></svg> Записатися на прийом
-          </a>
-          <a class="link-quiet" href="tel:+380955203390">
-            <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Гострий біль
+        <h1 data-reveal-text>Лікуємо зуби у Дубні з 1994 року</h1>
+        <p>Спочатку огляд і письмовий план з цінами. Потім — лікування. Без «побачимо по ходу».</p>
+        <div class="intro-actions">
+          <a class="btn btn--hero" data-magnetic href="#contact">Записатись на огляд</a>
+          <a class="link-quiet" href="#services">
+            Що лікуємо
+            <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
           </a>
         </div>
       </div>
+      <figure class="intro-photo rv" data-spotlight>
+        <img src="../assets/img/dental-hero.jpg" width="1600" height="2326" fetchpriority="high"
+             alt="Кабінет стоматології: крісло, обладнання, світле приміщення">
+      </figure>
+    </div>
+  </section>
 
-      <div class="year-plate">
-        <div class="tooth"><svg class="ic ic--xl" aria-hidden="true"><use href="#i-tooth"></use></svg></div>
-        <div class="yr">1994</div>
-        <div class="cap">рік відкриття кабінету</div>
-        <div class="sub">Понад 30 років безперервної практики в одному місті. Перші пацієнти
-        приводять дітей і онуків.</div>
+  <section class="band">
+    <div class="wrap">
+      <div class="years rv">
+        <div><b>1994</b><span>рік заснування, перший приватний кабінет у місті</span></div>
+        <div><b>30+</b><span>років безперервної практики в Дубні</span></div>
+        <div><b>1 рік</b><span>гарантія на пломби, коронки та імпланти</span></div>
       </div>
     </div>
   </section>
 
-
-  <section class="band" id="promo">
+  <section class="band band-alt" id="services">
     <div class="wrap">
       <div class="sechead rv">
-        <h2>Акції цього місяця</h2>
-        <p class="lead">Ми не робимо знижок «на все» — вони знецінюють і роботу, і довіру.
-        Натомість даємо вигоду тим, хто приходить вчасно і приводить родину.</p>
-      </div>
-      <div class="promo-grid rv">
-        <div class="promo">
-          <span class="tag">Родинам</span>
-          <h3>Другий прийом зі знижкою</h3>
-          <p>Якщо приводите дитину або когось із рідних у той самий день — друга консультація
-          й огляд без оплати.</p>
-          <span class="when">Постійно, до кінця року</span>
-        </div>
-        <div class="promo">
-          <span class="tag">Профілактика</span>
-          <h3>Чистка плюс огляд</h3>
-          <p>Професійна чистка з обов'язковим оглядом усіх зубів і складанням плану, якщо
-          щось знайдемо.</p>
-          <span class="when">Для нових пацієнтів</span>
-        </div>
-        <div class="promo">
-          <span class="tag">Дітям</span>
-          <h3>Перший візит — знайомство</h3>
-          <p>Приймаємо дитину від трьох років, показуємо кабінет і даємо звикнути. Без лікування
-          й без оплати.</p>
-          <span class="when">Щодня в робочі години</span>
-        </div>
-      </div>
-      <p class="promo-note">Умови в прикладі — у фінальній версії поставимо ваші дійсні акції.</p>
-    </div>
-  </section>
-
-  <section class="band" id="services">
-    <div class="wrap">
-      <div class="sechead rv">
-        <h2 data-reveal-text>Послуги й вартість</h2>
+        <h2>Послуги й вартість</h2>
         <p class="lead">Натисніть на послугу — розкриється, що входить і скільки це триває.</p>
       </div>
       <div class="svc-grid rv">
@@ -288,107 +263,170 @@
     </div>
   </section>
 
-  <section class="band band-alt" id="about">
+  <section class="band" id="history">
     <div class="wrap split">
       <div class="rv">
-        <h2>Як ми працюємо</h2>
-        <p class="lead">За тридцять років обладнання змінювалось не один раз. Підхід — ні.</p>
-        <p>Пацієнт має розуміти, що з ним роблять і за що він платить. Тому ми ніколи не
-        починаємо лікування «по ходу»: спочатку огляд, потім письмовий план із етапами
-        й цінами, і лише після вашої згоди — робота.</p>
-        <p>Якщо в процесі знаходимо щось додаткове, зупиняємось і питаємо. Не «долікуємо
-        мовчки», бо так швидше.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
-          <span class="specs" style="margin:0">
-            <li>Письмова гарантія</li><li>Знімки на місці</li><li>Власна лабораторія</li><li>Дитячий прийом</li>
-          </span>
-        </div>
+        <h2>Як ми працювали</h2>
+        <p class="lead">Прокрутіть — луч пройде крізь роки.</p>
       </div>
-      <div class="rv">
-        <div class="beam-host" data-beam>
-          <div class="beam-wrap" aria-hidden="true">
-            <svg class="beam-svg" preserveAspectRatio="none">
-              <path class="beam-base"></path>
-              <path class="beam-path"></path>
-              <circle class="beam-halo" r="13" cx="0" cy="0"></circle>
-              <circle class="beam-head" r="4.5" cx="0" cy="0"></circle>
-            </svg>
-          </div>
-        <ol class="tl tl--beam">
-          <li><span class="yr">1994</span><p>Відкриваємо перший приватний стоматологічний кабінет у Дубні.</p></li>
-          <li><span class="yr">2005</span><p>Своя лабораторія: коронки й протези робимо на місці.</p></li>
-          <li><span class="yr">2015</span><p>Нове обладнання: рентген-апарат і сучасна ендодонтія.</p></li>
-          <li><span class="yr">2020</span><p>Напрямок імплантації та відбілювання. Приймаємо дітей від 3 років.</p></li>
-          <li><span class="yr">Сьогодні</span><p>Понад тридцять років безперервної практики.</p></li>
-        </ol>
+      <div class="rv beam-host" data-beam>
+        <div class="beam-wrap" aria-hidden="true">
+          <svg class="beam-svg" preserveAspectRatio="none">
+            <path class="beam-base"></path>
+            <path class="beam-path"></path>
+            <circle class="beam-halo" r="13" cx="0" cy="0"></circle>
+            <circle class="beam-head" r="4.5" cx="0" cy="0"></circle>
+          </svg>
         </div>
+        <ol class="tl">
+          <li>
+            <div class="yr">1994</div>
+            <h3>Перший приватний кабінет у Дубні</h3>
+            <p>Відкрились, коли приватна стоматологія в місті тільки з'являлась.</p>
+          </li>
+          <li>
+            <div class="yr">2005</div>
+            <h3>Власна зуботехнічна лабораторія</h3>
+            <p>Коронки й протези робимо на місці — не чекаєте тижнями на доставку.</p>
+          </li>
+          <li>
+            <div class="yr">2014</div>
+            <h3>Імплантація та цифрова діагностика</h3>
+            <p>Знімки й планування в цифровому вигляді, план лікування — письмово.</p>
+          </li>
+          <li>
+            <div class="yr">2020</div>
+            <h3>Окремий дитячий прийом</h3>
+            <p>Перший візит для дитини — знайомство, без лікування й без страху.</p>
+          </li>
+          <li>
+            <div class="yr">Сьогодні</div>
+            <h3>Той самий кабінет на вул. Стара, 33</h3>
+            <p>Ті самі лікарі, які працювали тут роками.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-photo">
+    <img src="../assets/img/dental-g1.jpg" width="1200" height="1800" loading="lazy"
+         alt="Сучасний кабінет клініки: ресепшн і обладнання">
+    <blockquote>
+      <p>«Спочатку план і ціна. Потім — лікування»</p>
+    </blockquote>
+  </section>
+
+  <section class="band band-alt">
+    <div class="wrap">
+      <div class="sechead rv">
+        <h2>Що входить у прийом</h2>
+        <p class="lead">Шість кроків від входу до плану лікування.</p>
+      </div>
+      <div class="intake rv">
+        <div><div class="n">01</div><h3>Розмова</h3><p>Що турбує, як давно, що вже робили.</p></div>
+        <div><div class="n">02</div><h3>Огляд</h3><p>Усі зуби, ясна, прикус. 10–15 хвилин.</p></div>
+        <div><div class="n">03</div><h3>Знімок</h3><p>Якщо потрібно — робимо на місці.</p></div>
+        <div><div class="n">04</div><h3>План</h3><p>Письмово: що робимо, у якому порядку, за скільки.</p></div>
+        <div><div class="n">05</div><h3>Обговорення</h3><p>Можна взяти план додому й подумати.</p></div>
+        <div><div class="n">06</div><h3>Лікування</h3><p>Починаємо тільки після вашої згоди.</p></div>
       </div>
     </div>
   </section>
 
   <section class="band" id="doctors">
-    <div class="wrap">
-      <div class="sechead rv">
+    <div class="wrap split">
+      <div class="rv">
         <h2>Лікарі</h2>
-        <p class="lead">Імена та спеціалізації — приклад для макета. У фінальній версії поставимо
-        реальні фото й регалії ваших лікарів.</p>
+        <p class="lead">Ті, хто вас прийматиме.</p>
       </div>
-      <div class="panel rv" style="padding:6px 28px">
+      <div class="docs rv">
         <div class="doc">
-          <div class="doc-ava" aria-hidden="true">О</div>
-          <div>
-            <h3>Олена Мельник</h3>
-            <p class="role">Терапевт, ендодонтія</p>
-            <p>Лікування каналів під контролем знімків. Працює в клініці з 2005 року.</p>
-          </div>
-          <span class="years">з 2005</span>
+          <span class="av" aria-hidden="true"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-tooth"></use></svg></span>
+          <div><h3>Терапевт-стоматолог</h3><p>Лікування карієсу, каналів, реставрація</p></div>
         </div>
         <div class="doc">
-          <div class="doc-ava" aria-hidden="true">І</div>
-          <div>
-            <h3>Ігор Савчук</h3>
-            <p class="role">Ортопед, протезування</p>
-            <p>Коронки, мости, знімні протези. Веде пацієнтів від плану до встановлення.</p>
-          </div>
-          <span class="years">з 2011</span>
+          <span class="av" aria-hidden="true"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-stetho"></use></svg></span>
+          <div><h3>Хірург-імплантолог</h3><p>Імплантація, видалення, підготовка до протезування</p></div>
         </div>
         <div class="doc">
-          <div class="doc-ava" aria-hidden="true">М</div>
-          <div>
-            <h3>Марія Коваль</h3>
-            <p class="role">Дитячий прийом, гігієна</p>
-            <p>Приймає дітей від трьох років. Перший візит — знайомчий, без лікування.</p>
-          </div>
-          <span class="years">з 2016</span>
+          <span class="av" aria-hidden="true"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-award"></use></svg></span>
+          <div><h3>Ортопед</h3><p>Коронки, мости, знімні протези</p></div>
+        </div>
+        <div class="doc">
+          <span class="av" aria-hidden="true"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-smile"></use></svg></span>
+          <div><h3>Дитячий стоматолог</h3><p>Прийом від 3 років, профілактика</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band band-alt" id="book">
+  <section class="band band-alt" id="faq">
+    <div class="wrap split">
+      <div class="rv">
+        <h2>Часті питання</h2>
+        <p class="lead">Те, що питають найчастіше.</p>
+      </div>
+      <div class="svc-grid rv" style="grid-template-columns:1fr">
+        <details class="svc">
+          <summary><span class="svc-name">Скільки коштує перший візит?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>Огляд і консультація — 300 ₴. Якщо починаємо лікування того ж дня, консультацію не рахуємо.</li></ul>
+        </details>
+        <details class="svc">
+          <summary><span class="svc-name">Чи боляче лікувати?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>Використовуємо сучасну анестезію. Якщо відчуваєте дискомфорт — кажіть одразу, додамо.</li></ul>
+        </details>
+        <details class="svc">
+          <summary><span class="svc-name">Чи можна прийти з гострим болем?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>Так, для гострого болю тримаємо вікно того ж дня. Телефонуйте зранку.</li></ul>
+        </details>
+        <details class="svc">
+          <summary><span class="svc-name">Скільки триває лікування?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>Карієс — один візит. Канали — один-два. Імплантація — кілька місяців із приживленням.</li></ul>
+        </details>
+        <details class="svc">
+          <summary><span class="svc-name">Чи є розстрочка?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>На великі плани — так. Обговорюємо після складання плану лікування.</li></ul>
+        </details>
+        <details class="svc">
+          <summary><span class="svc-name">Що з гарантією?</span><span class="svc-mark" aria-hidden="true"></span></summary>
+          <ul class="svc-list"><li>Один рік на пломби, коронки та імпланти за умови профілактичних оглядів.</li></ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
     <div class="wrap split split--wide">
       <div class="rv">
-        <h2>Запис на прийом</h2>
-        <p class="lead">Залиште заявку — адміністратор зателефонує, підбере зручний час і підкаже,
-        що взяти з собою.</p>
-        <div class="urgent" style="margin-top:24px">
-          <svg class="ic ic--lg" style="color:var(--accent)" aria-hidden="true"><use href="#i-flame"></use></svg>
-          <div>
-            <b>Гострий біль?</b>
-            <p>Не чекайте на заявку — телефонуйте одразу. Приймаємо поза чергою в робочі години.</p>
-            <a class="btn btn--sm" href="tel:+380955203390">
-              <svg class="ic ic--sm" aria-hidden="true"><use href="#i-phone"></use></svg> +38 (095) 520-33-90
-            </a>
+        <h2>Записатись на прийом</h2>
+        <p>Залиште номер — підберемо час і підтвердимо.</p>
+        <div style="margin-top:22px">
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="ring" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+            <div><b>Телефон</b><span><a href="tel:+380955203390">+38 (095) 520-33-90</a></span></div>
+          </div>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="hop" aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <div><b>Адреса</b><span>вул. Стара, 33, Дубно</span></div>
+          </div>
+          <div class="crow">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="fly" aria-hidden="true"><use href="#i-send"></use></svg></span>
+            <div><b>Instagram</b><span><a href="https://instagram.com/melan.dental" target="_blank" rel="noopener">@melan.dental</a></span></div>
+          </div>
+          <div class="crow" style="border:0">
+            <span class="icon-box icon-box--sm"><svg class="ic anim-ic" data-anim="flip" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+            <div><b>Графік</b><span>Пн–Пт 9:00 – 18:00, Сб 9:00 – 14:00</span></div>
           </div>
         </div>
       </div>
 
-      <form class="panel rv" data-form novalidate>
+      <form class="panel rv" data-form data-border-beam novalidate>
         <h3>Заявка на прийом</h3>
-        <p class="small">Передзвонимо протягом години в робочий час.</p>
+        <p class="small">Передзвонимо й підберемо зручний час.</p>
         <div class="field">
           <label for="md-name">Ваше ім'я</label>
-          <input class="inp" id="md-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Ірина...">
+          <input class="inp" id="md-name" name="name" type="text" autocomplete="name" placeholder="Наприклад, Оксана...">
         </div>
         <div class="field">
           <label for="md-phone">Телефон</label>
@@ -396,155 +434,26 @@
         </div>
         <div class="field">
           <label for="md-tg">Telegram (не обов'язково)</label>
-          <input class="inp" id="md-tg" name="telegram" type="text"
-                 placeholder="@username..." spellcheck="false" autocomplete="off">
+          <input class="inp" id="md-tg" name="telegram" type="text" placeholder="@username..." spellcheck="false" autocomplete="off">
         </div>
         <div class="field">
           <label for="md-svc">Що турбує</label>
           <select class="inp" id="md-svc" name="service">
-            <option>Гострий біль</option>
-            <option>Консультація й огляд</option>
+            <option>Біль або карієс</option>
             <option>Професійна чистка</option>
-            <option>Лікування карієсу</option>
-            <option>Лікування каналів</option>
-            <option>Протезування</option>
             <option>Імплантація</option>
+            <option>Коронки та протези</option>
             <option>Дитячий прийом</option>
+            <option>Просто огляд</option>
           </select>
         </div>
-        <div class="row2">
-          <div class="field">
-            <label for="md-date">Бажана дата</label>
-            <input class="inp" id="md-date" name="date" type="date">
-          </div>
-          <div class="field">
-            <label for="md-time">Зручний час</label>
-            <select class="inp" id="md-time" name="time">
-              <option>09:00</option><option>11:00</option><option>13:00</option>
-              <option>15:00</option><option>17:00</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="md-msg">Коментар</label>
+          <textarea class="inp" id="md-msg" name="message" rows="3" placeholder="Зручний день і час..."></textarea>
         </div>
-        <button class="btn btn--block" type="submit">Записатися на прийом</button>
-        <p class="formnote">Дані використовуємо лише для запису.</p>
+        <button class="btn btn--block" type="submit">Надіслати заявку</button>
         <div class="status" role="status"></div>
       </form>
-    </div>
-  </section>
-
-  <section class="band band-alt" id="intake">
-    <div class="wrap">
-      <div class="sechead rv">
-        <h2>Що саме входить у прийом</h2>
-        <p class="lead">Щоб не було сюрпризів: ось із чого складається звичайний візит
-        і скільки це займає часу.</p>
-      </div>
-      <div class="intake rv">
-        <div><b>Огляд і знімок<small>Дивимось усі зуби, а не лише той, що болить</small></b><span>15 хв</span></div>
-        <div><b>Письмовий план<small>Етапи, терміни й вартість кожного кроку</small></b><span>10 хв</span></div>
-        <div><b>Анестезія<small>Сучасна, підбираємо за вашою чутливістю</small></b><span>5 хв</span></div>
-        <div><b>Лікування<small>З перервами, якщо потрібно</small></b><span>30–60 хв</span></div>
-        <div><b>Контрольний огляд<small>Перевіряємо прикус і край пломби</small></b><span>5 хв</span></div>
-        <div><b>Гарантія<small>Письмова, один рік на виконані роботи</small></b><span>одразу</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="faq">
-    <div class="wrap" style="max-width:880px">
-      <div class="sechead rv"><h2>Часті запитання</h2></div>
-      <div class="rv">
-        <details class="faq" open>
-          <summary>Скільки коштує лікування?</summary>
-          <p>Залежить від складності. Пломба — від 900 ₴, чистка — від 1 200 ₴, коронка — від 4 500 ₴,
-          імплант — від 14 000 ₴. Точну суму називаємо після огляду й фіксуємо в плані лікування.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи буде боляче?</summary>
-          <p>Використовуємо сучасну анестезію. Більшість пацієнтів не відчувають нічого, крім самого
-          уколу. Якщо хвилюєтесь — скажіть лікарю заздалегідь, зробимо паузу й підберемо варіант.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи можна оплатити частинами?</summary>
-          <p>Так. Для великих планів оплату розбиваємо на етапи за планом лікування, без відсотків.</p>
-        </details>
-        <details class="faq">
-          <summary>З якого віку приймаєте дітей?</summary>
-          <p>Від трьох років. Перший візит робимо знайомчим — без лікування, щоб дитина звикла
-          до кабінету й лікаря.</p>
-        </details>
-        <details class="faq">
-          <summary>Що робити при гострому болю?</summary>
-          <p>Телефонуйте одразу. Приймаємо поза чергою в робочі години — скажіть адміністратору,
-          що біль сильний, і вас приймуть першим.</p>
-        </details>
-        <details class="faq">
-          <summary>Чи є гарантія на лікування?</summary>
-          <p>Так, письмова гарантія один рік на терапевтичні роботи та протези. Умови прописуємо
-          в плані лікування до початку робіт.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="band band-alt">
-    <div class="wrap">
-      <div class="sechead rv"><h2>Відгуки пацієнтів</h2></div>
-      <div class="quotes rv">
-        <blockquote>
-          <div>
-            <p>Боялась стоматологів усе життя. Тут уперше не було боляче, і все пояснили заздалегідь.</p>
-            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Оксана, лікування карієсу</footer>
-          </div>
-          <div class="small" style="color:var(--ink-2)">Терапія</div>
-        </blockquote>
-        <blockquote>
-          <div>
-            <p>Зробили коронки — усе за планом і за тією ціною, яку назвали спочатку.</p>
-            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Андрій, протезування</footer>
-          </div>
-          <div class="small" style="color:var(--ink-2)">Протезування</div>
-        </blockquote>
-        <blockquote>
-          <div>
-            <p>Дитина йшла зі сльозами, а вийшла задоволена. Дякую за терпіння до малих.</p>
-            <footer><svg class="ic ic--sm q-mark" aria-hidden="true"><use href="#i-quote"></use></svg> Марта, дитячий прийом</footer>
-          </div>
-          <div class="small" style="color:var(--ink-2)">Діти</div>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="contact">
-    <div class="wrap">
-      <div class="sechead rv"><h2>Як нас знайти</h2></div>
-      <div class="split rv">
-        <div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg></span>
-            <div><b>Адреса</b><span>м. Дубно, вул. Стара, 33</span></div>
-          </div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg></span>
-            <div><b>Телефон</b><span><a href="tel:+380955203390">+38 (095) 520-33-90</a></span></div>
-          </div>
-          <div class="crow">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
-            <div><b>Графік</b><span>Пн–Пт 9:00 – 18:00, Сб — за записом</span></div>
-          </div>
-          <div class="crow" style="border:0">
-            <span class="icon-box icon-box--sm"><svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg></span>
-            <div><b>Instagram</b><span><a href="https://instagram.com/melan.dental" target="_blank" rel="noopener">@melan.dental</a></span></div>
-          </div>
-        </div>
-        <div class="panel" style="text-align:center;padding:40px 26px">
-          <svg class="ic ic--xl" style="color:var(--accent);margin:0 auto 14px" aria-hidden="true"><use href="#i-pin"></use></svg>
-          <h3 style="margin-bottom:4px">Дубно, вул. Стара, 33</h3>
-          <p class="small" style="margin:0">Перший поверх, окремий вхід. Поруч є де припаркуватись.</p>
-          <a class="btn btn--line btn--sm" style="margin-top:18px" href="#book">Записатися на прийом</a>
-        </div>
-      </div>
     </div>
   </section>
 </main>
@@ -555,31 +464,29 @@
       <div>
         <a class="logo" href="#top" style="margin-bottom:12px">
           <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-tooth"></use></svg></span>
-          Стоматологія «Мелан»
+          Мелан
         </a>
-        <p class="small measure">Перший приватний стоматологічний кабінет у Дубні, з 1994 року.
-        Лікування, протезування, імплантація, дитячий прийом.</p>
+        <p class="small measure">Стоматологія в Дубні з 1994 року. Лікування, імплантація,
+        протезування, дитячий прийом.</p>
       </div>
       <div>
         <h4>Розділи</h4>
-        <a href="#promo">Акції</a><a href="#services">Послуги</a><a href="#intake">Прийом</a><a href="#doctors">Лікарі</a><a href="#faq">Питання</a>
+        <a href="#services">Послуги</a><a href="#history">Історія</a><a href="#doctors">Лікарі</a>
       </div>
       <div>
-        <h4>Зв'язок</h4>
+        <h4>Контакти</h4>
         <a href="tel:+380955203390">095 520 33 90</a>
         <a href="https://instagram.com/melan.dental" target="_blank" rel="noopener">Instagram</a>
-        <a href="#book">Запис на прийом</a>
       </div>
     </div>
     <div class="ftr-bot">
       <span>Стоматологія «Мелан», Дубно</span>
-      <span>Макет сайту. Ціни, лікарі та відгуки — приклад.</span>
+      <span>Макет сайту. Ціни, лікарі та фото — приклад, замінимо на ваші.</span>
     </div>
   </div>
 </footer>
 
 <button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
-<div class="mcta"><a class="btn btn--block" href="#book"><svg class="ic" aria-hidden="true"><use href="#i-calendar"></use></svg> Записатися на прийом</a></div>
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
