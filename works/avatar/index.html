@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
+<link rel="stylesheet" href="../assets/craft.css">
 <style>
   .hero { padding: 150px 0 76px; }
   .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 48px; align-items: center; }
@@ -195,7 +196,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <h1>Все для<br>твоїх колісних</h1>
+        <h1 data-reveal-text>Все для<br>твоїх колісних</h1>
         <p class="lead">Велосипеди, електроскутери, мотоцикли та запчастини. Підберемо за бюджетом і задачею.</p>
         <div class="hero-cta">
           <a class="btn btn--hero" href="#catalog">
@@ -240,7 +241,7 @@
         у фінальній версії поставимо ваші фото, ціни й залишки.</p>
       </div>
 
-      <div class="c-filters rv" role="search">
+      <div class="c-filters rv" data-border-beam role="search">
         <div class="field">
           <label for="c-cat">Категорія</label>
           <select class="inp" id="c-cat">
@@ -286,7 +287,7 @@
       </div>
 
       <div class="c-grid" data-cat-grid>
-        <article class="c-item" data-model data-cat="velo" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="low"
                  data-task="city work" data-price="7200" data-name="Міський велосипед 26"">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-bike"></use></svg>
@@ -304,7 +305,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="velo" data-budget="mid"
+        <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="mid"
                  data-task="offroad" data-price="10400" data-name="Гірський велосипед 27,5"">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-bike"></use></svg>
@@ -322,7 +323,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="velo" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="velo" data-budget="low"
                  data-task="kids" data-price="4300" data-name="Дитячий велосипед 20"">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-bike"></use></svg>
@@ -340,7 +341,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="electro" data-budget="mid"
+        <article class="c-item" data-spotlight data-model data-cat="electro" data-budget="mid"
                  data-task="city work" data-price="18900" data-name="Електроскутер 500 Вт">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-scooter"></use></svg>
@@ -358,7 +359,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="electro" data-budget="high"
+        <article class="c-item" data-spotlight data-model data-cat="electro" data-budget="high"
                  data-task="offroad" data-price="27500" data-name="Електроскутер 1000 Вт">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-scooter"></use></svg>
@@ -376,7 +377,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="electro" data-budget="mid"
+        <article class="c-item" data-spotlight data-model data-cat="electro" data-budget="mid"
                  data-task="city work offroad" data-price="5400" data-name="Акумулятор 48 В">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-battery"></use></svg>
@@ -394,7 +395,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="moto" data-budget="high"
+        <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="high"
                  data-task="city work" data-price="32000" data-name="Скутер 50 см³">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-moto"></use></svg>
@@ -412,7 +413,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="moto" data-budget="high"
+        <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="high"
                  data-task="city work" data-price="26800" data-name="Мопед 49 см³">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-moto"></use></svg>
@@ -430,7 +431,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="moto" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="moto" data-budget="low"
                  data-task="city offroad work" data-price="2100" data-name="Комплект захисту">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-shield"></use></svg>
@@ -448,7 +449,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="parts" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low"
                  data-task="city offroad kids" data-price="650" data-name="Покришка 26"">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-wheel"></use></svg>
@@ -466,7 +467,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="parts" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low"
                  data-task="city offroad work" data-price="180" data-name="Мастило та хімія">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-oil"></use></svg>
@@ -484,7 +485,7 @@
             </div>
           </div>
         </article>
-        <article class="c-item" data-model data-cat="parts" data-budget="low"
+        <article class="c-item" data-spotlight data-model data-cat="parts" data-budget="low"
                  data-task="city work" data-price="890" data-name="Велокомп'ютер">
           <div class="c-photo" aria-hidden="true">
             <svg class="ic ic--xl" aria-hidden="true"><use href="#i-gauge"></use></svg>
@@ -702,6 +703,7 @@
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
+<script src="../assets/craft.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>

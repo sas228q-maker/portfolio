@@ -1,0 +1,70 @@
+/* ==========================================================================
+   СТИЛИ ДЛЯ КРАФТОВЫХ ЭФФЕКТОВ (парные к craft.js)
+   Принцип: только transform и opacity, уважение prefers-reduced-motion.
+   ========================================================================== */
+
+/* ---------- 1. Spotlight ---------- */
+[data-spotlight] { position: relative; isolation: isolate; overflow: hidden; }
+[data-spotlight]::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0; transition: opacity 420ms cubic-bezier(.22,.61,.36,1);
+  background: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%),
+              color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+              transparent 62%);
+}
+[data-spotlight]:hover::after { opacity: 1; }
+[data-spotlight] > * { position: relative; z-index: 1; }
+
+/* ---------- 2. Magnetic ---------- */
+[data-magnetic] {
+  transition: transform 260ms cubic-bezier(.22,.61,.36,1),
+              box-shadow 260ms ease, background 260ms ease;
+  will-change: transform;
+}
+
+/* ---------- 3. Text reveal по словам ---------- */
+.has-reveal .rw { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.has-reveal .rw i {
+  display: inline-block; font-style: normal;
+  transform: translateY(105%); opacity: 0;
+  transition: transform 720ms cubic-bezier(.22,.61,.36,1), opacity 720ms ease;
+}
+.has-reveal .rw i.in { transform: none; opacity: 1; }
+
+/* ---------- 4. Tracing beam ---------- */
+.beam-host { position: relative; }
+.beam-wrap { position: absolute; left: 0; top: 0; bottom: 0; width: 48px; pointer-events: none; }
+.beam-svg { display: block; overflow: visible; }
+.beam-base { fill: none; stroke: var(--rule); stroke-width: 2; }
+.beam-path {
+  fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round;
+  transition: stroke-dashoffset 90ms linear;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 55%, transparent));
+}
+.beam-head { fill: var(--accent); transition: opacity 220ms ease; }
+.beam-halo { fill: color-mix(in srgb, var(--accent) 30%, transparent); transition: opacity 220ms ease; }
+
+/* ---------- 5. Border beam: блик по периметру ---------- */
+.has-border-beam { position: relative; }
+.has-border-beam::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+  background: conic-gradient(from var(--ba, 0deg),
+              transparent 0%, transparent 72%,
+              color-mix(in srgb, var(--accent) 85%, transparent) 86%,
+              transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: beamSpin 4.6s linear infinite;
+  pointer-events: none;
+}
+@property --ba { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes beamSpin { to { --ba: 360deg; } }
+
+/* ---------- Поддержка reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-spotlight]::after { transition: none; }
+  .has-reveal .rw i { transform: none; opacity: 1; transition: none; }
+  .has-border-beam::before { animation: none; opacity: 0; }
+  .beam-path { transition: none; }
+}

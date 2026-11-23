@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
+<link rel="stylesheet" href="../assets/craft.css">
 <style>
   .hero { padding: 148px 0 76px; }
   .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
@@ -201,7 +202,7 @@
   <section class="band" id="shades">
     <div class="wrap shade-wrap">
       <div class="rv">
-        <h2>Палітра</h2>
+        <h2 data-reveal-text>Палітра</h2>
         <p class="lead">Оберіть відтінок — покажу, як він виглядає в покритті. Це не каталог
         на продаж: так ви побачите напрямок ще до візиту.</p>
         <div class="shade-list" role="group" aria-label="Відтінки покриття">
@@ -213,7 +214,7 @@
           <button type="button" class="shade" data-shade="Графіт" data-color="#4A4550" style="--c:#4A4550" aria-label="Відтінок Графіт"></button>
         </div>
       </div>
-      <div class="shade-preview rv" data-shade-preview style="--c:#D9B8A4">
+      <div class="shade-preview rv" data-spotlight data-shade-preview style="--c:#D9B8A4">
         <span data-shade-name>Нюд</span>
         <small>натисніть на кружечок зліва</small>
       </div>
@@ -228,7 +229,7 @@
         видно стиль: спокійні відтінки, тонка лінія.</p>
       </div>
       <div class="gal rv">
-        <figure class="g1"><figcaption>Нюд із тонкою лінією</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-hand"></use></svg></figure>
+        <figure class="g1" data-spotlight><figcaption>Нюд із тонкою лінією</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-hand"></use></svg></figure>
         <figure class="g4"><figcaption>Нарощування вій, класика</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-eye"></use></svg></figure>
         <figure class="g2"><figcaption>Френч на мінімальній довжині</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-polish"></use></svg></figure>
         <figure class="g3"><figcaption>Об'єм 3D</figcaption><svg class="ic ic--xl" aria-hidden="true"><use href="#i-sparkle"></use></svg></figure>
@@ -306,7 +307,7 @@
         </div>
       </div>
 
-      <form class="panel rv" data-form novalidate>
+      <form class="panel rv" data-form data-border-beam novalidate>
         <h3>Заявка на запис</h3>
         <p class="small">Передзвоню або напишу — як вам зручніше.</p>
         <div class="field">
@@ -460,6 +461,7 @@
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
+<script src="../assets/craft.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
+<link rel="stylesheet" href="../assets/craft.css">
 <style>
   .hero { padding: 150px 0 80px; }
   .hero-grid { display: grid; grid-template-columns: 1fr .92fr; gap: 40px; align-items: center; }
@@ -166,7 +167,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <h1>Стрітфуд<br>твого міста</h1>
+        <h1 data-reveal-text>Стрітфуд<br>твого міста</h1>
         <p class="lead">Бургери на грилі, комбо та напої. Два заклади в Дубні, доставка за 30 хвилин.</p>
         <div class="hero-cta">
           <a class="btn btn--hero" href="#menu">
@@ -213,7 +214,7 @@
           <button class="tab btn btn--line btn--sm" role="tab" aria-selected="false" data-tab="n" type="button">Напої</button>
         </div>
 
-        <div class="panel is-active" data-panel="b" role="tabpanel">
+        <div class="panel is-active" data-panel="b" role="tabpanel" data-spotlight>
           <div class="split split--wide">
             <div class="rows">
               <div class="row"><div class="row-name">Містер Бургер<small>Яловича котлета 150 г, чедер, томат, салат, фірмовий соус</small></div><span class="row-lead"></span><span class="row-val row-val--accent">165 ₴</span><button class="ord-add" type="button" data-add="Містер Бургер" data-price="165" aria-label="Додати Містер Бургер до замовлення"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-plus"></use></svg><span data-add-label>Додати</span></button></div>
@@ -378,7 +379,7 @@
       </div>
 
       <form class="panel rv" data-form novalidate>
-        <div class="ord-bar" data-order-bar aria-live="polite">
+        <div class="ord-bar" data-order-bar data-border-beam aria-live="polite">
           <div class="ord-head">
             <span>У замовленні <b data-order-qty>0</b> поз.</span>
             <b data-order-sum>0 ₴</b>
@@ -447,6 +448,7 @@
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
+<script src="../assets/craft.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>

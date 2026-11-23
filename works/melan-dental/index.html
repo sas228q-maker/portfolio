@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/premium.css">
+<link rel="stylesheet" href="../assets/craft.css">
 <style>
   .hero { padding: 150px 0 74px; }
   .hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 56px; align-items: center; }
@@ -131,6 +132,10 @@
   .intake div { border-bottom-color: color-mix(in srgb, var(--rule) 80%, var(--ink)); }
 
   @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } }
+
+  .beam-host { position: relative; }
+  .beam-host .tl--beam { position: relative; z-index: 1; }
+  @media (max-width: 760px) { .beam-host .tl--beam { padding-left: 30px; } }
 </style>
 </head>
 <body>
@@ -225,11 +230,11 @@
   <section class="band" id="services">
     <div class="wrap">
       <div class="sechead rv">
-        <h2>Послуги й вартість</h2>
+        <h2 data-reveal-text>Послуги й вартість</h2>
         <p class="lead">Натисніть на послугу — розкриється, що входить і скільки це триває.</p>
       </div>
       <div class="svc-grid rv">
-        <details class="svc svc--accent" open>
+        <details data-spotlight class="svc svc--accent" open>
           <summary>
             <span class="svc-name">Лікування карієсу</span>
             <span class="svc-price">від 900 ₴</span>
@@ -237,7 +242,7 @@
           </summary>
           <ul class="svc-list"><li>Пломба з композиту</li><li>Підбір за кольором емалі</li><li>1 візит, 40–60 хв</li></ul>
         </details>
-        <details class="svc svc--accent">
+        <details data-spotlight class="svc svc--accent">
           <summary>
             <span class="svc-name">Професійна чистка</span>
             <span class="svc-price">від 1 200 ₴</span>
@@ -245,7 +250,7 @@
           </summary>
           <ul class="svc-list"><li>Ультразвук і Air Flow</li><li>Полірування та фторування</li><li>1 година</li></ul>
         </details>
-        <details class="svc svc--accent">
+        <details data-spotlight class="svc svc--accent">
           <summary>
             <span class="svc-name">Імплантація</span>
             <span class="svc-price">від 14 000 ₴</span>
@@ -253,7 +258,7 @@
           </summary>
           <ul class="svc-list"><li>Встановлення імпланта</li><li>Консультація щодо типу</li><li>Коронка за планом</li></ul>
         </details>
-        <details class="svc">
+        <details data-spotlight class="svc">
           <summary>
             <span class="svc-name">Лікування каналів</span>
             <span class="svc-price">від 1 800 ₴</span>
@@ -261,7 +266,7 @@
           </summary>
           <ul class="svc-list"><li>Ендодонтія з контролем на знімках</li><li>1–2 візити</li></ul>
         </details>
-        <details class="svc">
+        <details data-spotlight class="svc">
           <summary>
             <span class="svc-name">Коронки та протези</span>
             <span class="svc-price">від 4 500 ₴</span>
@@ -269,7 +274,7 @@
           </summary>
           <ul class="svc-list"><li>Металокераміка або цирконій</li><li>Власна лабораторія</li><li>За одиницю</li></ul>
         </details>
-        <details class="svc">
+        <details data-spotlight class="svc">
           <summary>
             <span class="svc-name">Дитячий прийом</span>
             <span class="svc-price">від 600 ₴</span>
@@ -300,13 +305,23 @@
         </div>
       </div>
       <div class="rv">
-        <ol class="tl">
+        <div class="beam-host" data-beam>
+          <div class="beam-wrap" aria-hidden="true">
+            <svg class="beam-svg" preserveAspectRatio="none">
+              <path class="beam-base"></path>
+              <path class="beam-path"></path>
+              <circle class="beam-halo" r="13" cx="0" cy="0"></circle>
+              <circle class="beam-head" r="4.5" cx="0" cy="0"></circle>
+            </svg>
+          </div>
+        <ol class="tl tl--beam">
           <li><span class="yr">1994</span><p>Відкриваємо перший приватний стоматологічний кабінет у Дубні.</p></li>
           <li><span class="yr">2005</span><p>Своя лабораторія: коронки й протези робимо на місці.</p></li>
           <li><span class="yr">2015</span><p>Нове обладнання: рентген-апарат і сучасна ендодонтія.</p></li>
           <li><span class="yr">2020</span><p>Напрямок імплантації та відбілювання. Приймаємо дітей від 3 років.</p></li>
           <li><span class="yr">Сьогодні</span><p>Понад тридцять років безперервної практики.</p></li>
         </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -568,6 +583,7 @@
 
 <script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
+<script src="../assets/craft.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>
