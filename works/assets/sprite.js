@@ -1,82 +1,76 @@
-/* SiteHunter — SVG-спрайт иконок. Никаких эмодзи: всё векторное.
-   Использование: <svg class="ic"><use href="#i-phone"></use></svg> */
+/* SiteHunter — спрайт иконок.
+   Источник: Tabler Icons (MIT), сетка 24×24, штрих 2.
+   Сгенерировано scripts/build_icon_sprite.py — вручную не править.
+   Рисованные вручную пути убраны: они ломались (кривые выходили за вьюбокс). */
 (function () {
   "use strict";
-
-  var P = {
-    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.9z"/>',
-    pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
-    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/>',
-    instagram: '<rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>',
-    send: '<path d="M21.5 2.5 10.8 13.2"/><path d="M21.5 2.5 14.7 21.5l-3.9-8.3-8.3-3.9 19-6.8z"/>',
-    star: '<path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.5L12 17.5l-5.8 3.05 1.1-6.5-4.7-4.6 6.5-.95z"/>',
-    check: '<path d="M20 6 9 17.5 4 12.5"/>',
-    checkCircle: '<circle cx="12" cy="12" r="9.5"/><path d="M8 12.4l2.6 2.6L16 9.6"/>',
-    arrowRight: '<path d="M4.5 12h15"/><path d="m13 5.5 6.5 6.5-6.5 6.5"/>',
-    arrowUp: '<path d="M12 19.5V4.5"/><path d="m5.5 11 6.5-6.5 6.5 6.5"/>',
-    chevronDown: '<path d="m6 9.5 6 6 6-6"/>',
-    plus: '<path d="M12 5v14M5 12h14"/>',
-    close: '<path d="M18 6 6 18M6 6l12 12"/>',
-
-    burger: '<path d="M3 11.2a9 9 0 0 1 18 0z"/><path d="M3 14.4c2-1.3 4-1.3 6 0s4 1.3 6 0 4-1.3 6 0"/><path d="M3.4 17.6h17.2"/><path d="M4.6 20.6h14.8a1.6 1.6 0 0 0-1.6-1.6H6.2a1.6 1.6 0 0 0-1.6 1.6z"/>',
-    fries: '<path d="M6.5 9.5V6.8a1.3 1.3 0 0 1 2.6 0v2.7"/><path d="M10.7 9.5V4.6a1.3 1.3 0 0 1 2.6 0v4.9"/><path d="M14.9 9.5V6.4a1.3 1.3 0 0 1 2.6 0v3.1"/><path d="M5.4 9.5h13.2l-1.2 10.9a1.4 1.4 0 0 1-1.4 1.2H8a1.4 1.4 0 0 1-1.4-1.2z"/>',
-    cup: '<path d="M7 3.5h10l-1.1 16.2a1.4 1.4 0 0 1-1.4 1.3h-5a1.4 1.4 0 0 1-1.4-1.3z"/><path d="M6.6 8.4h10.8"/>',
-    pizza: '<path d="M12 3 3.2 20.4a18.4 18.4 0 0 0 17.6 0z"/><circle cx="11" cy="10" r="1.4"/><circle cx="14.5" cy="15" r="1.4"/><circle cx="9" cy="16" r="1.4"/>',
-    coffee: '<path d="M4 8.5h13.5v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17.5 10h1.3a3.1 3.1 0 0 1 0 6.2h-1.3"/><path d="M8 3v3M12 3v3"/>',
-    cake: '<path d="M3.5 20.5h17"/><path d="M5.5 20.5v-5.8a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v5.8"/><path d="M12 11.7V8"/><path d="M8.5 8h7"/>',
-
-    scissors: '<circle cx="6.2" cy="6.2" r="2.8"/><circle cx="6.2" cy="17.8" r="2.8"/><path d="M20 4 8.3 15.7"/><path d="M14.6 14.6 20 20"/><path d="M8.3 8.3 12 12"/>',
-    sparkle: '<path d="M12 3 14 9l6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M19 3.5v3M17.5 5h3M5.5 16v2.6M4.2 17.3h2.6"/>',
-    polish: '<path d="M9.4 13.6 15 8l3.4 3.4-5.6 5.6z"/><path d="m8.4 15.5-2.9 4 4-2.9"/><path d="M15.4 7.6 17 6a2.1 2.1 0 0 1 3 3l-1.6 1.6"/>',
-    eye: '<path d="M2.2 12S6 5.8 12 5.8 21.8 12 21.8 12 18 18.2 12 18.2 2.2 12 2.2 12z"/><circle cx="12" cy="12" r="3.1"/>',
-    heart: '<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/>',
-    drop: '<path d="M12 2.6 6.7 8.2a7.5 7.5 0 1 0 10.6 0z"/>',
-    flower: '<circle cx="12" cy="12" r="2.6"/><path d="M12 9.4c0-3 1-5.4 3-5.4s2.4 2.6.6 5.4M14.6 12c3 0 5.4 1 5.4 3s-2.6 2.4-5.4.6M12 14.6c0 3-1 5.4-3 5.4s-2.4-2.6-.6-5.4M9.4 12c-3 0-5.4-1-5.4-3s2.6-2.4 5.4-.6"/>',
-
-    bike: '<circle cx="5.6" cy="17.4" r="3.6"/><circle cx="18.4" cy="17.4" r="3.6"/><path d="M9.2 17.4h5.6l4.2-9.4"/><path d="M9.2 17.4 12.4 8H9"/><path d="M15.5 8h3.4"/>',
-    moto: '<circle cx="5" cy="17.6" r="3.4"/><circle cx="19" cy="17.6" r="3.4"/><path d="M8.4 17.6h7.2"/><path d="m13.4 17.6 3-8.4h3.2"/><path d="M9.2 9.2h4.6l2.4 8.4"/>',
-    scooter: '<circle cx="5.2" cy="17.8" r="3.2"/><circle cx="18.8" cy="17.8" r="3.2"/><path d="M8.4 17.8h7.2"/><path d="M14.4 17.8 16.4 7.6h3"/><path d="M9 7.6h4.6"/>',
-    wheel: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3.2v5.8M12 15v5.8M3.2 12H9M15 12h5.8"/>',
-    wrench: '<path d="M14.6 6.2a1 1 0 0 0 0 1.4l1.8 1.8a1 1 0 0 0 1.4 0l3.6-3.6a6.2 6.2 0 0 1-8.2 8.2l-6.3 6.3a2.1 2.1 0 0 1-3-3l6.3-6.3a6.2 6.2 0 0 1 8.2-8.2z"/>',
-    shield: '<path d="M12 21.6s8-4.1 8-10.2V5.1L12 2 4 5.1v6.3c0 6.1 8 10.2 8 10.2z"/><path d="M9 12.2l2.2 2.2 4-4.2"/>',
-    gauge: '<path d="M4.3 18.2a10 10 0 1 1 15.4 0"/><path d="m12 13.4 5.6-5.2"/><circle cx="12" cy="14.4" r="1.6"/>',
-    battery: '<rect x="2.2" y="7" width="17" height="10" rx="2.6"/><path d="M21.6 10.4v3.2"/><path d="M6 10.6v2.8M10 10.6v2.8M14 10.6v2.8"/>',
-    oil: '<path d="M3 16.8h13.4a3.6 3.6 0 0 0 3.6-3.6V9.4l-4.4-1.6H9.4L7 10.4H3z"/><path d="M6.4 10.4V7.6h6"/><path d="M20 12.4h1.8"/>',
-    snow: '<path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/>',
-
-    tooth: '<path d="M12 3.6c-4.1 0-6.2 2.2-6.2 5.2 0 2 .5 3 .8 5.1.3 1.7.4 4.5 1.8 4.5 1.3 0 1.3-2.8 1.8-4.5.3-1.1.8-1.8 1.8-1.8s1.5.7 1.8 1.8c.5 1.7.5 4.5 1.8 4.5 1.4 0 1.5-2.8 1.8-4.5.3-2.1.8-3.1.8-5.1 0-3-2.1-5.2-6.2-5.2z"/>',
-    smile: '<circle cx="12" cy="12" r="9.2"/><path d="M8 14.2s1.5 2.4 4 2.4 4-2.4 4-2.4"/><path d="M9.2 9.6v.6M14.8 9.6v.6"/>',
-    syringe: '<path d="M18.6 2.4 21.6 5.4"/><path d="m16.4 7.6-1.9-1.9"/><path d="m13.6 4.6 5.8 5.8"/><path d="m10.6 7.6 5.8 5.8"/><path d="m9.2 11.6-6.4 6.4v3.6h3.6l6.4-6.4"/>',
-    stetho: '<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v1.6a4 4 0 0 0 8 0V13"/><circle cx="19" cy="10.4" r="2.4"/>',
-    award: '<circle cx="12" cy="9" r="5.8"/><path d="M9.2 14.2 7.6 21.4 12 19l4.4 2.4-1.6-7.2"/>',
-    calendar: '<rect x="3.2" y="5" width="17.6" height="16" rx="2.6"/><path d="M8 3v4M16 3v4M3.2 11h17.6"/>',
-    percent: '<path d="M19 5 5 19"/><circle cx="6.8" cy="6.8" r="2.6"/><circle cx="17.2" cy="17.2" r="2.6"/>',
-    truck: '<path d="M1.6 5.6h13.8v11.2H1.6z"/><path d="M15.4 8.6h3.9l3.1 3.1v5.1h-7z"/><circle cx="5.8" cy="18.8" r="2.4"/><circle cx="18.2" cy="18.8" r="2.4"/>',
-    users: '<path d="M16.4 20.6v-1.9a4 4 0 0 0-4-4H5.6a4 4 0 0 0-4 4v1.9"/><circle cx="9" cy="7.4" r="3.8"/><path d="M22.4 20.6v-1.9a4 4 0 0 0-3-3.9"/><path d="M15.6 3.8a4 4 0 0 1 0 7.4"/>',
-    flame: '<path d="M12 2.4s4.2 4.8 4.2 8.8a4.2 4.2 0 0 1-8.4 0c0-.9.3-1.8.3-1.8s-2.5 2.1-2.5 5.1a6.4 6.4 0 0 0 12.8 0c0-4.8-6.4-12.1-6.4-12.1z"/>',
-    leaf: '<path d="M11 20.4A7.4 7.4 0 0 1 3.6 13c0-5.2 4.2-9.4 9.4-9.4h7.4V11a7.4 7.4 0 0 1-7.4 7.4z"/><path d="M3.6 20.4C7 15.6 11.4 12.6 17 11"/>',
-    card: '<rect x="2.2" y="5" width="19.6" height="14" rx="2.6"/><path d="M2.2 10h19.6"/>',
-    mail: '<rect x="2.2" y="4.4" width="19.6" height="15.2" rx="2.6"/><path d="m2.8 7 9.2 6 9.2-6"/>',
-    camera: '<path d="M21.6 19a2.4 2.4 0 0 1-2.4 2.4H4.8A2.4 2.4 0 0 1 2.4 19V8.6a2.4 2.4 0 0 1 2.4-2.4h3.9l1.9-2.8h6.8l1.9 2.8h3.9a2.4 2.4 0 0 1 2.4 2.4z"/><circle cx="12" cy="13.4" r="3.8"/>',
-    box: '<path d="m21 8.2-9-5.2-9 5.2v7.6l9 5.2 9-5.2z"/><path d="m3 8.2 9 5.2 9-5.2"/><path d="M12 13.4v10"/>',
-    tag: '<path d="M20.6 12.6 12.7 20.5a2 2 0 0 1-2.8 0L2.6 13.2V3.4h9.8l8.2 8.2a1 1 0 0 1 0 1z"/><circle cx="7.2" cy="8" r="1.4"/>',
-    search: '<circle cx="11" cy="11" r="7.4"/><path d="m20.6 20.6-4.4-4.4"/>',
-    hand: '<path d="M8.4 11V4.6a1.8 1.8 0 0 1 3.6 0V10"/><path d="M12 10V3.6a1.8 1.8 0 0 1 3.6 0V10"/><path d="M15.6 10.6V5.6a1.8 1.8 0 0 1 3.6 0v9.8a6.6 6.6 0 0 1-6.6 6.6h-1a6.6 6.6 0 0 1-6.6-6.6v-3a1.8 1.8 0 0 1 3.6 0"/>',
-    baby: '<circle cx="12" cy="8" r="5"/><path d="M9.8 7.4v.4M14.2 7.4v.4"/><path d="M10.2 10.4s.8 1 1.8 1 1.8-1 1.8-1"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>',
-    gift: '<rect x="3" y="8.6" width="18" height="4.4" rx="1.4"/><path d="M4.6 13v6.6a1.8 1.8 0 0 0 1.8 1.8h11.2a1.8 1.8 0 0 0 1.8-1.8V13"/><path d="M12 8.6v12.8"/><path d="M12 8.6S10.6 3 8 3a2.6 2.6 0 0 0 0 5.6z"/><path d="M12 8.6S13.4 3 16 3a2.6 2.6 0 0 1 0 5.6z"/>',
-    route: '<circle cx="6" cy="19" r="2.6"/><circle cx="18" cy="5" r="2.6"/><path d="M8.6 19h6.4a3.4 3.4 0 0 0 0-6.8h-6a3.4 3.4 0 0 1 0-6.8h6.4"/>',
-    quote: '<path d="M9.4 6.4C6.4 7.4 4.6 10 4.6 13.2c0 2.6 1.6 4.4 3.9 4.4 2 0 3.5-1.5 3.5-3.5 0-1.9-1.3-3.3-3.1-3.3-.3 0-.6 0-.9.1.4-1.5 1.6-2.7 3.2-3.3z"/><path d="M19.4 6.4c-3 1-4.8 3.6-4.8 6.8 0 2.6 1.6 4.4 3.9 4.4 2 0 3.5-1.5 3.5-3.5 0-1.9-1.3-3.3-3.1-3.3-.3 0-.6 0-.9.1.4-1.5 1.6-2.7 3.2-3.3z"/>'
+  var ICONS = {
+    "phone": '<symbol id="i-phone" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" /></symbol>',
+    "pin": '<symbol id="i-pin" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /> <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0" /></symbol>',
+    "clock": '<symbol id="i-clock" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 7v5l3 3" /></symbol>',
+    "instagram": '<symbol id="i-instagram" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /> <path d="M8.5 12a3.5 3.5 0 1 0 7 0a3.5 3.5 0 0 0 -7 0" /> <path d="M17 7v.01" /></symbol>',
+    "send": '<symbol id="i-send" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M10 14l11 -11" /> <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></symbol>',
+    "star": '<symbol id="i-star" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245" /></symbol>',
+    "check": '<symbol id="i-check" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 12l5 5l10 -10" /></symbol>',
+    "checkCircle": '<symbol id="i-checkCircle" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 12l2 2l4 -4" /></symbol>',
+    "arrowRight": '<symbol id="i-arrowRight" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 12l14 0" /> <path d="M13 18l6 -6" /> <path d="M13 6l6 6" /></symbol>',
+    "arrowUp": '<symbol id="i-arrowUp" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 5l0 14" /> <path d="M18 11l-6 -6" /> <path d="M6 11l6 -6" /></symbol>',
+    "chevronDown": '<symbol id="i-chevronDown" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6 9l6 6l6 -6" /></symbol>',
+    "plus": '<symbol id="i-plus" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 5l0 14" /> <path d="M5 12l14 0" /></symbol>',
+    "close": '<symbol id="i-close" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M18 6l-12 12" /> <path d="M6 6l12 12" /></symbol>',
+    "quote": '<symbol id="i-quote" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5" /> <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5" /></symbol>',
+    "mail": '<symbol id="i-mail" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /> <path d="M3 7l9 6l9 -6" /></symbol>',
+    "camera": '<symbol id="i-camera" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /> <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></symbol>',
+    "box": '<symbol id="i-box" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /> <path d="M12 12l8 -4.5" /> <path d="M12 12l0 9" /> <path d="M12 12l-8 -4.5" /></symbol>',
+    "tag": '<symbol id="i-tag" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6.5 7.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3" /></symbol>',
+    "search": '<symbol id="i-search" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /> <path d="M21 21l-6 -6" /></symbol>',
+    "card": '<symbol id="i-card" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -8" /> <path d="M3 10l18 0" /> <path d="M7 15l.01 0" /> <path d="M11 15l2 0" /></symbol>',
+    "users": '<symbol id="i-users" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /> <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></symbol>',
+    "calendar": '<symbol id="i-calendar" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /> <path d="M16 3v4" /> <path d="M8 3v4" /> <path d="M4 11h16" /></symbol>',
+    "percent": '<symbol id="i-percent" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M16 17a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M6 7a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M6 18l12 -12" /></symbol>',
+    "truck": '<symbol id="i-truck" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" /></symbol>',
+    "route": '<symbol id="i-route" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M19 7a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" /> <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5" /></symbol>',
+    "award": '<symbol id="i-award" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0" /> <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889" /> <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889" /></symbol>',
+    "shield": '<symbol id="i-shield" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06" /> <path d="M15 19l2 2l4 -4" /></symbol>',
+    "leaf": '<symbol id="i-leaf" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 21c.5 -4.5 2.5 -8 7 -10" /> <path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0" /></symbol>',
+    "flame": '<symbol id="i-flame" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" /></symbol>',
+    "gift": '<symbol id="i-gift" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /> <path d="M12 8l0 13" /> <path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /> <path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol>',
+    "baby": '<symbol id="i-baby" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M16 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6" /> <path d="M6 9h14" /> <path d="M9 17l1 -3" /> <path d="M16 14l1 3" /></symbol>',
+    "hand": '<symbol id="i-hand" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M8 13v-7.5a1.5 1.5 0 0 1 3 0v6.5" /> <path d="M11 5.5v-2a1.5 1.5 0 1 1 3 0v8.5" /> <path d="M14 5.5a1.5 1.5 0 0 1 3 0v6.5" /> <path d="M17 7.5a1.5 1.5 0 0 1 3 0v8.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" /></symbol>',
+    "clockPlus": '<symbol id="i-clockPlus" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M20.984 12.535a9 9 0 1 0 -8.468 8.45" /> <path d="M16 19h6" /> <path d="M19 16v6" /> <path d="M12 7v5l3 3" /></symbol>',
+    "gauge": '<symbol id="i-gauge" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M13.41 10.59l2.59 -2.59" /> <path d="M7 12a5 5 0 0 1 5 -5" /></symbol>',
+    "battery": '<symbol id="i-battery" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2" /> <path d="M7 10l0 4" /> <path d="M10 10l0 4" /> <path d="M13 10l0 4" /></symbol>',
+    "snow": '<symbol id="i-snow" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M10 4l2 1l2 -1" /> <path d="M12 2v6.5l3 1.72" /> <path d="M17.928 6.268l.134 2.232l1.866 1.232" /> <path d="M20.66 7l-5.629 3.25l.01 3.458" /> <path d="M19.928 14.268l-1.866 1.232l-.134 2.232" /> <path d="M20.66 17l-5.629 -3.25l-2.99 1.738" /> <path d="M14 20l-2 -1l-2 1" /> <path d="M12 22v-6.5l-3 -1.72" /> <path d="M6.072 17.732l-.134 -2.232l-1.866 -1.232" /> <path d="M3.34 17l5.629 -3.25l-.01 -3.458" /> <path d="M4.072 9.732l1.866 -1.232l.134 -2.232" /> <path d="M3.34 7l5.629 3.25l2.99 -1.738" /></symbol>',
+    "oil": '<symbol id="i-oil" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546" /> <path d="M5 14h14" /></symbol>',
+    "drop": '<symbol id="i-drop" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546" /></symbol>',
+    "burger": '<symbol id="i-burger" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M4 15h16a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4" /> <path d="M12 4c3.783 0 6.953 2.133 7.786 5h-15.572c.833 -2.867 4.003 -5 7.786 -5" /> <path d="M5 12h14" /></symbol>',
+    "pizza": '<symbol id="i-pizza" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 21.5c-3.04 0 -5.952 -.714 -8.5 -1.983l8.5 -16.517l8.5 16.517a19.09 19.09 0 0 1 -8.5 1.983" /> <path d="M5.38 15.866a14.94 14.94 0 0 0 6.815 1.634a14.944 14.944 0 0 0 6.502 -1.479" /> <path d="M13 11.01v-.01" /> <path d="M11 14v-.01" /></symbol>',
+    "coffee": '<symbol id="i-coffee" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" /> <path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /> <path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /> <path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5" /> <path d="M16.746 16.726a3 3 0 1 0 .252 -5.555" /></symbol>',
+    "cup": '<symbol id="i-cup" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M5 11h14v-3h-14l0 3" /> <path d="M17.5 11l-1.5 10h-8l-1.5 -10" /> <path d="M6 8v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /> <path d="M15 5v-2" /></symbol>',
+    "cake": '<symbol id="i-cake" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8" /> <path d="M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197" /> <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737" /></symbol>',
+    "fries": '<symbol id="i-fries" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12m0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3" /></symbol>',
+    "meat": '<symbol id="i-meat" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821" /> <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071" /> <path d="M7.5 16l1 1" /> <path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121" /></symbol>',
+    "scissors": '<symbol id="i-scissors" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M3 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M8.6 8.6l10.4 10.4" /> <path d="M8.6 15.4l10.4 -10.4" /></symbol>',
+    "sparkle": '<symbol id="i-sparkle" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6" /></symbol>',
+    "eye": '<symbol id="i-eye" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></symbol>',
+    "heart": '<symbol id="i-heart" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></symbol>',
+    "flower": '<symbol id="i-flower" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M12 2a3 3 0 0 1 3 3c0 .562 -.259 1.442 -.776 2.64l-.724 1.36l1.76 -1.893c.499 -.6 .922 -1 1.27 -1.205a2.968 2.968 0 0 1 4.07 1.099a3.011 3.011 0 0 1 -1.09 4.098c-.374 .217 -.99 .396 -1.846 .535l-2.664 .366l2.4 .326c1 .145 1.698 .337 2.11 .576a3.011 3.011 0 0 1 1.09 4.098a2.968 2.968 0 0 1 -4.07 1.098c-.348 -.202 -.771 -.604 -1.27 -1.205l-1.76 -1.893l.724 1.36c.516 1.199 .776 2.079 .776 2.64a3 3 0 0 1 -6 0c0 -.562 .259 -1.442 .776 -2.64l.724 -1.36l-1.76 1.893c-.499 .601 -.922 1 -1.27 1.205a2.968 2.968 0 0 1 -4.07 -1.098a3.011 3.011 0 0 1 1.09 -4.098c.374 -.218 .99 -.396 1.846 -.536l2.664 -.366l-2.4 -.325c-1 -.145 -1.698 -.337 -2.11 -.576a3.011 3.011 0 0 1 -1.09 -4.099a2.968 2.968 0 0 1 4.07 -1.099c.348 .203 .771 .604 1.27 1.205l1.76 1.894c-1 -2.292 -1.5 -3.625 -1.5 -4a3 3 0 0 1 3 -3" /></symbol>',
+    "polish": '<symbol id="i-polish" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 21v-4a4 4 0 1 1 4 4h-4" /> <path d="M21 3a16 16 0 0 0 -12.8 10.2" /> <path d="M21 3a16 16 0 0 1 -10.2 12.8" /> <path d="M10.6 9a9 9 0 0 1 4.4 4.4" /></symbol>',
+    "bike": '<symbol id="i-bike" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M2 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /> <path d="M16 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /> <path d="M12 19v-4l-3 -3l5 -4l2 3h3" /> <path d="M13.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></symbol>',
+    "moto": '<symbol id="i-moto" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M2 16a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M16 16a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /> <path d="M7.5 14h5l4 -4h-10.5m1.5 4l4 -4" /> <path d="M13 6h2l1.5 3l2 4" /></symbol>',
+    "scooter": '<symbol id="i-scooter" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M16 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M4 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M8 17h5a6 6 0 0 1 5 -5v-5a2 2 0 0 0 -2 -2h-1" /></symbol>',
+    "wheel": '<symbol id="i-wheel" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M12 14l0 7" /> <path d="M10 12l-6.75 -2" /> <path d="M14 12l6.75 -2" /></symbol>',
+    "tooth": '<symbol id="i-tooth" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 5.5c-1.074 -.586 -2.583 -1.5 -4 -1.5c-2.1 0 -4 1.247 -4 5c0 4.899 1.056 8.41 2.671 10.537c.573 .756 1.97 .521 2.567 -.236c.398 -.505 .819 -1.439 1.262 -2.801c.292 -.771 .892 -1.504 1.5 -1.5c.602 0 1.21 .737 1.5 1.5c.443 1.362 .864 2.295 1.262 2.8c.597 .759 2 .993 2.567 .237c1.615 -2.127 2.671 -5.637 2.671 -10.537c0 -3.74 -1.908 -5 -4 -5c-1.423 0 -2.92 .911 -4 1.5" /> <path d="M12 5.5l3 1.5" /></symbol>',
+    "smile": '<symbol id="i-smile" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 10l.01 0" /> <path d="M15 10l.01 0" /> <path d="M9.5 15a3.5 3.5 0 0 0 5 0" /></symbol>',
+    "syringe": '<symbol id="i-syringe" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M17 3l4 4" /> <path d="M19 5l-4.5 4.5" /> <path d="M11.5 6.5l6 6" /> <path d="M16.5 11.5l-6.5 6.5h-4v-4l6.5 -6.5" /> <path d="M7.5 12.5l1.5 1.5" /> <path d="M10.5 9.5l1.5 1.5" /> <path d="M3 21l3 -3" /></symbol>',
+    "stetho": '<symbol id="i-stetho" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /> <path d="M8 15a6 6 0 1 0 12 0v-3" /> <path d="M11 3v2" /> <path d="M6 3v2" /> <path d="M18 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></symbol>',
+    "wrench": '<symbol id="i-wrench" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" /></symbol>'
   };
-
-  var symbols = "";
-  for (var k in P) { if (P.hasOwnProperty(k)) {
-    symbols += '<symbol id="i-' + k + '" viewBox="0 0 24 24">' + P[k] + "</symbol>";
-  } }
-
-  var sprite = '<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">'
-    + '<defs><style>symbol{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}'
-    + 'symbol .solid,.solid{fill:currentColor;stroke:none}</style></defs>' + symbols + "</svg>";
-
+  var body = "";
+  for (var k in ICONS) { if (ICONS.hasOwnProperty(k)) body += ICONS[k]; }
+  var sprite = '<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">' +
+    '<defs><style>symbol{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style></defs>' +
+    body + "</svg>";
   function inject() {
     if (document.getElementById("sh-sprite")) return;
     var d = document.createElement("div");
@@ -86,7 +80,6 @@
     d.innerHTML = sprite;
     document.body.insertBefore(d, document.body.firstChild);
   }
-
   if (document.body) inject();
   else document.addEventListener("DOMContentLoaded", inject);
 })();

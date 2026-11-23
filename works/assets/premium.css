@@ -164,9 +164,9 @@ h4 { font-size: 16px; }
 .t-dental h1, .t-dental h2 { font-weight: 600; }
 
 p { margin: 0 0 14px; color: var(--ink-2); }
-.lead { font-size: clamp(16.5px, 1.3vw, 19px); color: var(--ink-2); max-width: 62ch; }
+.lead { font-size: clamp(16.5px, 1.3vw, 19px); color: var(--ink-2); max-width: min(62ch, 100%); }
 .small { font-size: 14px; }
-.measure { max-width: 68ch; }   /* комфортная длина строки 65–75 символов */
+.measure { max-width: min(68ch, 100%); }   /* комфортная длина строки 65–75 символов */
 
 /* --------------------------------------------------------------------------
    5. КАРКАС И РИТМ. Больше воздуха НАД заголовком, чем под ним.
@@ -247,9 +247,9 @@ section { position: relative; }
   display: flex; align-items: baseline; gap: 16px;
   padding: 18px 0; border-bottom: 1px solid var(--rule);
 }
-.row-name { font-weight: 600; font-size: 16.5px; }
+.row-name { font-weight: 600; font-size: 16.5px; min-width: 0; }
 .row-name small { display: block; font-weight: 400; font-size: 13.8px; color: var(--ink-2);
-  margin-top: 3px; max-width: 52ch; }
+  margin-top: 3px; max-width: min(52ch, 100%); }
 .row-lead { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-5px); min-width: 20px; }
 .row-val { font-weight: 700; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .row-val--accent { color: var(--accent); }
@@ -410,3 +410,128 @@ section { position: relative; }
   html { scroll-behavior: auto; }
   .btn:hover, .up:hover { transform: none; }
 }
+
+
+/* ==========================================================================
+   АКЦЕНТ НА ГЛАВНОМ, МИКРОАНИМАЦИИ
+   Правило: на каждом экране один громкий элемент. Остальное — тихое.
+   ========================================================================== */
+
+/* --- индикатор прочтения --- */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 95;
+  background: var(--accent); transition: width 90ms linear; }
+
+/* --- бегущая строка: сдержанная, с паузой при наведении --- */
+.ticker { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  background: var(--surface); overflow: hidden; padding: 15px 0; }
+.ticker-track { display: flex; gap: 38px; width: max-content;
+  animation: ticker 42s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker span { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap;
+  font-size: 14.6px; color: var(--ink-2); }
+.ticker b { color: var(--ink); font-weight: 600; }
+.ticker i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: block; flex: none; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* --- главная кнопка: единственный громкий элемент экрана --- */
+.btn--hero { padding: 21px 42px; font-size: 17.5px; font-weight: 700;
+  letter-spacing: -.01em; position: relative; overflow: hidden; }
+.btn--hero::after { content: ""; position: absolute; top: 0; bottom: 0; width: 38%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.34), transparent);
+  transform: translateX(-180%) skewX(-18deg);
+  animation: sheen 5s cubic-bezier(.4,0,.2,1) infinite; pointer-events: none; }
+@keyframes sheen {
+  0%, 58% { transform: translateX(-180%) skewX(-18deg); }
+  88%, 100% { transform: translateX(320%) skewX(-18deg); }
+}
+.hero-cta { align-items: center; }
+/* вторичное действие — не кнопка, а заметная текстовая ссылка */
+.link-quiet { display: inline-flex; align-items: center; gap: 8px; font-size: 15.5px;
+  font-weight: 600; color: var(--ink); padding: 12px 4px; position: relative; }
+.link-quiet::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 6px;
+  height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 260ms cubic-bezier(.22,.61,.36,1); }
+.link-quiet:hover { text-decoration: none; color: var(--accent); }
+.link-quiet:hover::after { transform: scaleX(1); }
+.link-quiet .ic { transition: transform 220ms cubic-bezier(.22,.61,.36,1); }
+.link-quiet:hover .ic { transform: translateX(4px); }
+
+/* --- ссылки в шапке: подчёркивание, растущее слева --- */
+.menu a { position: relative; }
+.menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px;
+  height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 240ms cubic-bezier(.22,.61,.36,1); }
+.menu a:hover::after { transform: scaleX(1); }
+
+/* --- строки меню: не сухая таблица --- */
+.rows { border-top: 0; }
+.row { position: relative; padding: 20px 0 20px 16px; border-bottom: 1px solid var(--rule);
+  transition: background 220ms ease, padding-left 220ms cubic-bezier(.22,.61,.36,1); }
+.row::before { content: ""; position: absolute; left: 0; top: 50%; height: 0; width: 2px;
+  background: var(--accent); transform: translateY(-50%);
+  transition: height 260ms cubic-bezier(.22,.61,.36,1); }
+.row:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); padding-left: 22px; }
+.row:hover::before { height: 60%; }
+.row-name { font-size: 17px; }
+.row-val { display: inline-block; padding: 3px 11px; border-radius: 7px;
+  background: var(--accent-soft); font-weight: 700; }
+.row-val small { display: block; font-size: 12px; font-weight: 400; color: var(--ink-2);
+  background: transparent; }
+
+/* --- иконки в плашках: лёгкий отклик --- */
+.icon-box { transition: transform 260ms cubic-bezier(.22,.61,.36,1), background 260ms ease; }
+.ilist li:hover .icon-box, .crow:hover .icon-box, .prod:hover .icon-box {
+  transform: translateY(-3px) scale(1.04); }
+
+/* --- появление блоков: было почти незаметно --- */
+.rv { opacity: 0; transform: translateY(34px) scale(.985);
+  transition: opacity 760ms cubic-bezier(.22,.61,.36,1),
+              transform 760ms cubic-bezier(.22,.61,.36,1); }
+.rv.is-in { opacity: 1; transform: none; }
+
+/* --- карточки промо и товаров: микроподъём --- */
+.promo, .work-row, .panel { transition: border-color 260ms ease, transform 260ms cubic-bezier(.22,.61,.36,1); }
+.promo:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 42%, var(--rule)); }
+.prod { transition: background 220ms ease, padding-left 220ms cubic-bezier(.22,.61,.36,1); }
+.prod:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); padding-left: 14px; }
+
+/* --- заголовок секции: акцентная чёрточка вместо пустоты --- */
+.sechead h2 { position: relative; padding-top: 18px; }
+.sechead h2::before { content: ""; position: absolute; top: 0; left: 0; width: 44px; height: 3px;
+  background: var(--accent); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  animation: none; }
+.sechead.rv.is-in h2::before { animation: growLine 620ms cubic-bezier(.22,.61,.36,1) 120ms both; }
+@keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* --- акцентное число/факт --- */
+.facts dd { position: relative; }
+.facts > div { transition: background 240ms ease; }
+.facts > div:hover { background: color-mix(in srgb, var(--accent) 5%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--hero::after { animation: none; opacity: 0; }
+  .ticker-track { animation: none; }
+  .sechead.rv.is-in h2::before { animation: none; transform: scaleX(1); }
+  .rv { opacity: 1; transform: none; }
+}
+
+
+/* ==========================================================================
+   MIN-WIDTH: 0 для текста внутри flex.
+   Без этого длинный max-width в ch или длинное слово выталкивают строку
+   за пределы экрана — классическая причина горизонтального скролла.
+   ========================================================================== */
+.row-name, .prod-name, .prod > div, .ilist li > div, .crow > div,
+.live-row > span, .picker-count, .ord-list li span, .work-text, .sechead {
+  min-width: 0;
+}
+.row-name, .row-name small, .prod-name, .prod-name small, .citem span, .crow span,
+.ilist b, .ilist p, .live-row span, .doc h3, .doc p, .step p, .promo p {
+  overflow-wrap: anywhere;
+}
+
+
+/* Атрибут hidden должен побеждать любой авторский display.
+   Без этого .tabs{display:flex} не скрывался при активном фильтре. */
+[hidden] { display: none !important; }

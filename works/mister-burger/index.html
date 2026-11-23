@@ -128,6 +128,7 @@
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="hdr">
   <div class="wrap hdr-in">
@@ -158,13 +159,12 @@
     <div class="wrap hero-grid">
       <div>
         <h1>Стрітфуд<br>твого міста</h1>
-        <p class="lead">Котлети формуємо щоранку з охолодженої яловичини, булочки привозять
-        свіжими, соуси робимо самі. Готуємо після замовлення — не тримаємо під лампою.</p>
+        <p class="lead">Бургери на грилі, комбо та напої. Два заклади в Дубні, доставка за 30 хвилин.</p>
         <div class="hero-cta">
-          <a class="btn btn--lg" href="#menu">
+          <a class="btn btn--hero" href="#menu">
             <svg class="ic" aria-hidden="true"><use href="#i-burger"></use></svg> Дивитись меню
           </a>
-          <a class="btn btn--line btn--lg" href="tel:+380668721508">
+          <a class="link-quiet" href="tel:+380668721508">
             <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Замовити
           </a>
         </div>
@@ -195,6 +195,10 @@
       <div><dt>Безкоштовна доставка</dt><dd>від 400 ₴</dd></div>
     </dl>
   </section>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track"><span><i></i><b>котлети формуємо щоранку</b></span><span><i></i><b>доставка 30 хвилин</b></span><span><i></i><b>безкоштовно від 400 ₴</b></span><span><i></i><b>два заклади в Дубні</b></span><span><i></i><b>готуємо після замовлення</b></span></div>
+  </div>
+
 
   <section class="band" id="menu">
     <div class="wrap">
@@ -439,6 +443,7 @@
 <button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
 <div class="mcta"><a class="btn btn--block" href="tel:+380668721508"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Замовити: 066 872 15 08</a></div>
 
+<script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
 <script src="../assets/site.js"></script>
 </body>

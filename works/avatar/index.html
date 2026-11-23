@@ -81,7 +81,7 @@
   }
 
   /* підбір моделі: покупець знає бюджет і задачу, а не назви моделей */
-  .picker { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: end;
+  .picker { display: grid; grid-template-columns: 1fr 1fr auto auto; gap: 14px; align-items: end;
     padding: 22px 24px; border: 1px solid var(--rule); border-radius: var(--r-lg);
     position: relative; z-index: 1;
     background: var(--surface); margin-bottom: 22px; }
@@ -96,6 +96,7 @@
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="hdr">
   <div class="wrap hdr-in">
@@ -126,14 +127,12 @@
     <div class="wrap hero-grid">
       <div>
         <h1>Все для<br>твоїх колісних</h1>
-        <p class="lead">Велосипеди, електроскутери, мотоцикли та запчастини. Спитаємо, де будете
-        їздити й скільки хочете витратити, і покажемо два-три реальні варіанти — без «беріть
-        найдорожче».</p>
+        <p class="lead">Велосипеди, електроскутери, мотоцикли та запчастини. Підберемо за бюджетом і задачею.</p>
         <div class="hero-cta">
-          <a class="btn btn--lg" href="#catalog">
+          <a class="btn btn--hero" href="#catalog">
             <svg class="ic" aria-hidden="true"><use href="#i-search"></use></svg> Дивитись каталог
           </a>
-          <a class="btn btn--line btn--lg" href="tel:+380505220283">
+          <a class="link-quiet" href="tel:+380505220283">
             <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Порадитись
           </a>
         </div>
@@ -170,6 +169,10 @@
       <div><dt>Розстрочка</dt><dd>Можна частинами</dd></div>
     </dl>
   </section>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track"><span><i></i><b>зборка у вартості</b></span><span><i></i><b>тест-драйв на місці</b></span><span><i></i><b>запчастини в наявності</b></span><span><i></i><b>розстрочка</b></span><span><i></i><b>два магазини в Дубні</b></span></div>
+  </div>
+
 
   <section class="band" id="cats">
     <div class="wrap">
@@ -243,6 +246,7 @@
             <option value="work">На роботу щодня</option>
           </select>
         </div>
+        <button class="btn btn--line btn--sm" type="button" data-picker-reset hidden>Скинути фільтр</button>
         <div class="picker-count" data-picker-count-wrap hidden>Підходить: <b data-picker-count>0</b> з <span data-picker-total>0</span></div>
       </form>
 
@@ -458,6 +462,7 @@
 <button class="up" type="button" aria-label="Догори"><svg class="ic" aria-hidden="true"><use href="#i-arrowUp"></use></svg></button>
 <div class="mcta"><a class="btn btn--block" href="tel:+380505220283"><svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> 050 522 02 83</a></div>
 
+<script src="../assets/lead-config.js"></script>
 <script src="../assets/sprite.js"></script>
 <script src="../assets/site.js"></script>
 </body>

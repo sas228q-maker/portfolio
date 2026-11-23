@@ -89,7 +89,7 @@
   /* ---------- вкладки: мышь + клавиатура (стрелки, Home, End) ---------- */
   document.querySelectorAll("[data-tabs]").forEach(function (group) {
     var tabs = Array.prototype.slice.call(group.querySelectorAll(".tab"));
-    var panels = group.querySelectorAll(".panel");
+    var tabPanels = group.querySelectorAll(".panel");
     if (!tabs.length) return;
 
     function activate(tab, focus) {
@@ -99,7 +99,7 @@
         t.setAttribute("aria-selected", on ? "true" : "false");
         t.tabIndex = on ? 0 : -1;
       });
-      panels.forEach(function (p) { p.classList.remove("is-active"); p.hidden = true; });
+      tabPanels.forEach(function (p) { p.classList.remove("is-active"); p.hidden = true; });
       var target = group.querySelector('[data-panel="' + tab.dataset.tab + '"]');
       if (target) { target.classList.add("is-active"); target.hidden = false; }
       if (focus) tab.focus();
@@ -118,13 +118,75 @@
     });
   });
 
-  /* ---------- формы: понятный статус, защита от двойной отправки ---------- */
+  /* ---------- формы: заявка реально уходит в Telegram ----------
+     Сайт статический, бэкенда нет. Отправляем через Bot API прямо из браузера.
+     Если не получилось — предлагаем отправить в Telegram в один тап,
+     чтобы заявка не потерялась ни за каких условий. */
+  function leadText(form, formName) {
+    var get = function (n) {
+      var el = form.querySelector('[name="' + n + '"]');
+      return el ? el.value.trim() : '';
+    };
+    var lines = [
+      "🔔 <b>Нова заявка з сайту</b>",
+      "Сайт: <b>" + formName + "</b>",
+      "Ім'я: " + (get("name") || "не вказано"),
+      "Телефон: " + get("phone")
+    ];
+    if (get("service")) lines.push("Послуга: " + get("service"));
+    if (get("type")) lines.push("Заклад: " + get("type"));
+    if (get("guests")) lines.push("Осіб: " + get("guests"));
+    if (get("date")) lines.push("Бажана дата: " + get("date"));
+    if (get("time")) lines.push("Час: " + get("time"));
+    if (get("car")) lines.push("Авто: " + get("car"));
+    if (get("message")) lines.push("Повідомлення: " + get("message"));
+    lines.push("—");
+    lines.push("Сторінка: " + location.href);
+    lines.push("Час: " + new Date().toLocaleString("uk-UA"));
+    return lines.join("\n");
+  }
+
+  function sendToTelegram(form, formName, onDone) {
+    var cfg = window.SH_LEAD;
+    var text = leadText(form, formName);
+    if (!cfg || !cfg.token || !cfg.chat) { onDone(false, "not-configured", text); return; }
+    var body = new URLSearchParams({
+      chat_id: cfg.chat, text: text, parse_mode: "HTML", disable_web_page_preview: "true"
+    });
+    fetch("https://api.telegram.org/bot" + cfg.token + "/sendMessage", { method: "POST", body: body })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { onDone(!!j.ok, j.description || "", text); })
+      .catch(function (e) { onDone(false, String(e).slice(0, 90), text); });
+  }
+
+  function tgDeepLink(text) {
+    var cfg = window.SH_LEAD;
+    var who = (cfg && cfg.owner) || "Sanik9991";
+    return "https://t.me/" + who + "?text=" + encodeURIComponent(text);
+  }
+
   document.querySelectorAll("form[data-form]").forEach(function (form) {
     var status = form.querySelector(".status");
     if (status) status.setAttribute("aria-live", "polite");
 
+    /* Скрытая ловушка для спам-ботов. Реальные люди это поле не видят,
+       потому что оно вынесено за экран и помечено aria-hidden. */
+    var honey = document.createElement("input");
+    honey.type = "text";
+    honey.name = "company";
+    honey.tabIndex = -1;
+    honey.autocomplete = "off";
+    honey.setAttribute("aria-hidden", "true");
+    honey.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0";
+    form.appendChild(honey);
+
+    var t = (document.querySelector("title") || {}).textContent || "Сайт";
+    var formName = t.split("—")[0].split("|")[0].trim() || "Сайт";
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (honey.value) return;                    // это бот — тихо выходим
+
       var tel = form.querySelector('input[type="tel"]');
       if (tel && tel.value.replace(/\D/g, "").length < 9) {
         tel.focus();
@@ -132,21 +194,45 @@
         setTimeout(function () { tel.removeAttribute("aria-invalid"); }, 2200);
         return;
       }
-      var btn = form.querySelector('button[type="submit"]');
-      var label = btn ? btn.textContent : "";
-      if (btn) { btn.disabled = true; btn.textContent = "Надсилаємо..."; }
-      // демонстрационный макет: реального запроса нет
-      setTimeout(function () {
-        if (btn) { btn.disabled = false; btn.textContent = label; }
-        if (status) {
-          var nameEl = form.querySelector('input[name="name"]');
-          var who = nameEl && nameEl.value.trim() ? nameEl.value.trim() + ", " : "";
-          status.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-checkCircle"></use></svg>' +
-            "<span>" + who + "заявку прийнято. Зателефонуємо протягом 15 хвилин у робочий час.</span>";
-          status.classList.add("is-on");
+
+      // ограничение: не чаще одной заявки в минуту с одного браузера
+      try {
+        var lastAt = +localStorage.getItem("sh_lead_at") || 0;
+        if (Date.now() - lastAt < 60000) {
+          if (status) {
+            status.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg>' +
+              "<span>Заявку вже надіслано. Якщо потрібно ще раз — зачекайте хвилину " +
+              "або напишіть у Telegram.</span>";
+            status.classList.add("is-on");
+          }
+          return;
         }
-        form.reset();
-      }, 420);
+      } catch (err) { /* режим приватності — просто продовжуємо */ }
+
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.innerHTML : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Надсилаємо..."; }
+
+      sendToTelegram(form, formName, function (ok, why, text) {
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        if (!status) return;
+        status.classList.add("is-on");
+
+        if (ok) {
+          try { localStorage.setItem("sh_lead_at", String(Date.now())); } catch (err) {}
+          status.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-checkCircle"></use></svg>' +
+            "<span>Дякуємо! Заявку надіслано — зв'яжемося протягом 15 хвилин у робочий час.</span>";
+          form.reset();
+        } else {
+          /* Резервный путь: посетитель отправляет заявку сам, в один тап.
+             Так заявка не теряется, даже если Telegram недоступен. */
+          status.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-send"></use></svg>' +
+            '<span>Автоматична відправка не спрацювала. Натисніть кнопку — текст заявки ' +
+            'вже складено, залишиться тільки надіслати.<br>' +
+            '<a class="btn btn--sm" style="margin-top:10px" target="_blank" rel="noopener" href="' +
+            tgDeepLink(text) + '">Відкрити Telegram із заявкою</a></span>';
+        }
+      });
     });
   });
 
@@ -227,13 +313,31 @@
   window.addEventListener("load", fitPreviews);
   fitPreviews();
 
+  /* ---------- прогресс прочтения страницы ---------- */
+  var progBar = document.querySelector(".progress");
+  if (progBar) {
+    var upd = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+      progBar.style.width = (p * 100).toFixed(2) + "%";
+    };
+    window.addEventListener("scroll", upd, { passive: true });
+    window.addEventListener("resize", upd);
+    upd();
+  }
+
+  /* ---------- бегущая строка: дублируем, чтобы шов не был виден ---------- */
+  document.querySelectorAll(".ticker-track").forEach(function (track) {
+    track.innerHTML = track.innerHTML + track.innerHTML;
+  });
+
   /* ---------- сборщик заказа: позиции, количество, сумма ----------
      Референсы True Burger и W Burger работают как магазин: можно набрать
      позиции и увидеть сумму. Добавляем то же, без бэкенда. */
   var orderRoot = document.querySelector("[data-order]");
   if (orderRoot) {
     var bag = {};
-    var bar = document.querySelector("[data-order-bar]");
+    var ordBar = document.querySelector("[data-order-bar]");
     var qtyEl = document.querySelector("[data-order-qty]");
     var sumEl = document.querySelector("[data-order-sum]");
     var listEl = document.querySelector("[data-order-list]");
@@ -245,7 +349,7 @@
 
       if (qtyEl) qtyEl.textContent = qty;
       if (sumEl) sumEl.textContent = sum.toLocaleString("uk-UA") + " ₴";
-      if (bar) bar.classList.toggle("is-on", qty > 0);
+      if (ordBar) ordBar.classList.toggle("is-on", qty > 0);
 
       if (listEl) {
         listEl.innerHTML = names.map(function (n) {
@@ -266,7 +370,7 @@
         var label = btn.querySelector("[data-add-label]");
         if (label) label.textContent = inBag ? "Ще одну" : "Додати";
       });
-      if (bar) bar.setAttribute("aria-live", "polite");
+      if (ordBar) ordBar.setAttribute("aria-live", "polite");
     };
 
     /* делегируем на документ: список заказа находится в форме, ВНЕ контейнера
@@ -304,28 +408,34 @@
     var countEl = document.querySelector("[data-picker-count]");
     var totalEl = document.querySelector("[data-picker-total]");
     var countWrap = document.querySelector("[data-picker-count-wrap]");
+    var resetEl = document.querySelector("[data-picker-reset]");
     var items = document.querySelectorAll("[data-model]");
     var group = picker.parentElement.querySelector("[data-tabs]");
     var tabsEl = group ? group.querySelector(".tabs") : null;
-    var panels = group ? Array.prototype.slice.call(group.querySelectorAll(".panel")) : [];
+    var pickPanels = group ? Array.prototype.slice.call(group.querySelectorAll(".panel")) : [];
     var lastTab = 0;
+    var wasFiltering = false;
 
     var apply = function () {
       var filtering = !!(bsel.value || tsel.value);
 
-      if (group && panels.length) {
-        if (filtering) {
-          var cur = panels.findIndex(function (p) { return p.classList.contains("is-active"); });
+      /* Панелями управляем ТОЛЬКО на переходах режима.
+         Если трогать их постоянно, обработчик вкладок и этот код начинают
+         перебивать друг друга — выбранная вкладка откатывалась назад. */
+      if (group && pickPanels.length) {
+        if (filtering && !wasFiltering) {
+          var cur = pickPanels.findIndex(function (p) { return p.classList.contains("is-active"); });
           if (cur >= 0) lastTab = cur;
-          panels.forEach(function (p) { p.hidden = false; p.classList.add("is-active"); });
-        } else {
-          panels.forEach(function (p, i) {
+          pickPanels.forEach(function (p) { p.hidden = false; p.classList.add("is-active"); });
+        } else if (!filtering && wasFiltering) {
+          pickPanels.forEach(function (p, i) {
             var on = i === lastTab;
             p.classList.toggle("is-active", on);
             p.hidden = !on;
           });
         }
       }
+      wasFiltering = filtering;
       if (tabsEl) tabsEl.hidden = filtering;
 
       var shown = 0;
@@ -343,13 +453,26 @@
       if (totalEl) totalEl.textContent = items.length;
       // при пустом фильтре показана одна категория — счётчик по всем 12 только путал бы
       if (countWrap) countWrap.hidden = !filtering;
+      if (resetEl) resetEl.hidden = !filtering;
     };
 
     bsel.addEventListener("change", apply);
     tsel.addEventListener("change", apply);
-    // клик по вкладке сбрасывает фильтр — иначе непонятно, что показано
+    /* Клик по вкладке во время активного фильтра: сбрасываем фильтр и
+       остаёмся на той вкладке, которую выбрал человек. */
+    if (resetEl) {
+      resetEl.addEventListener("click", function () {
+        bsel.value = "";
+        tsel.value = "";
+        apply();
+      });
+    }
     if (tabsEl) {
-      tabsEl.addEventListener("click", function () {
+      tabsEl.addEventListener("click", function (e) {
+        if (!wasFiltering) return;                 // обычный режим — не мешаем вкладкам
+        var btn = e.target.closest(".tab");
+        var idx = btn ? Array.prototype.indexOf.call(tabsEl.querySelectorAll(".tab"), btn) : -1;
+        if (idx >= 0) lastTab = idx;
         bsel.value = "";
         tsel.value = "";
         apply();
