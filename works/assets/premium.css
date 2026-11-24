@@ -67,7 +67,9 @@
 }
 /* Стоматологія Мелан: клинический холодный белый, доверие */
 .t-dental {
-  --bg: #F6F8F9; --surface: #FFFFFF; --surface-2: #EDF2F4; --rule: #DDE5E9;
+  /* Лазурный подтон вместо нейтрально-серого: стоматология = чистота и блеск.
+     Оттенок очень бледный, чтобы не превращаться в «синий акцент». */
+  --bg: #F2F8FC; --surface: #FFFFFF; --surface-2: #E6F2F9; --rule: #D8E7F0;
   --ink: #14212B; --ink-2: #5F7280; --accent: #1C6E8C; --accent-ink: #FFFFFF;
   --accent-soft: rgba(28, 110, 140, .1); --focus: #1C6E8C;
   --shadow: 0 10px 30px -14px rgba(20, 33, 43, .14);
@@ -579,3 +581,16 @@ section { position: relative; }
   .sechead.rv.is-in h2::before { animation: none; transform: translateX(-50%) scaleX(1); }
 }
 @media (max-width: 760px) { .sechead { margin-bottom: 24px; } }
+
+
+/* Лазурное свечение в фоне стоматологии: очень бледное, чтобы дать воздух
+   и ассоциацию с чистотой, но не спорить с акцентным синим. */
+.t-dental body, body.t-dental {
+  background-image:
+    radial-gradient(60% 42% at 82% 0%, rgba(110, 190, 230, .16), transparent 70%),
+    radial-gradient(46% 36% at 6% 22%, rgba(150, 210, 240, .12), transparent 72%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.t-dental .band-alt { background: linear-gradient(180deg, #EDF6FB, #F4FAFD); }
+.t-dental .ftr { background: #E8F2F9; }

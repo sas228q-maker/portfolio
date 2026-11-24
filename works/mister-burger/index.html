@@ -49,8 +49,13 @@
     font-size: clamp(46px, 9.4vw, 132px); line-height: .86; letter-spacing: -.015em;
     margin: 0 0 16px; max-width: 11ch;
   }
+  /* Тень обязательна: на телефоне под текстом оказывается светлая часть
+     фотографии, и без неё строка терялась. */
   .cover p { font-size: clamp(15px, 1.4vw, 18px); color: #DED6C9; max-width: 32ch;
-    margin: 0 0 22px; }
+    margin: 0 0 22px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .95), 0 3px 14px rgba(0, 0, 0, .85); }
+  .cover h1 { text-shadow: 0 2px 4px rgba(0, 0, 0, .55), 0 8px 40px rgba(0, 0, 0, .6); }
+  .cover-tag { text-shadow: 0 1px 3px rgba(0, 0, 0, .9); }
   .cover-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
   .cover-facts { display: grid; gap: 12px; text-align: right; }
@@ -188,6 +193,23 @@
     .board-panel.is-active { grid-template-columns: 1fr; column-gap: 0; }
     .flow { grid-template-columns: 1fr; }
     .flow > div { padding: 20px 0; }
+  }
+  @media (max-width: 980px) {
+    /* на узком экране текст стоит ниже и попадает на светлую часть фото.
+       Затемняем низ и даём мягкий ореол вокруг самого текстового блока —
+       без чётких краёв, чтобы не выглядело плашкой. */
+    .cover::after {
+      background: linear-gradient(180deg, rgba(14,12,11,.78) 0%, rgba(14,12,11,.30) 30%,
+                  rgba(14,12,11,.80) 62%, rgba(14,12,11,.98) 100%);
+    }
+    .cover-bot > div:first-child { position: relative; }
+    .cover-bot > div:first-child::before {
+      content: ""; position: absolute; inset: -28px -20px -24px -20px; z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(118% 104% at 16% 56%,
+        rgba(12,10,9,.90) 0%, rgba(12,10,9,.70) 42%,
+        rgba(12,10,9,.28) 66%, rgba(12,10,9,0) 80%);
+    }
   }
   @media (max-width: 620px) {
     .cover-in { padding-top: 92px; }
